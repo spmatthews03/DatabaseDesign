@@ -5,7 +5,7 @@ Repository for 6400Fall18Team026
 - Create a branch following the format *name*-master.
     - No work should be directly done on master.
     - This will be your development branch.
-    - Example: brian-master
+    - Example: *brian*-master
 
 ## Pull Requests
 - Please submit a pull request before code is merged from *name*-master -> master.
