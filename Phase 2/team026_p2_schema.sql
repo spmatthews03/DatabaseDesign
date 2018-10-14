@@ -1,5 +1,3 @@
-CREATE DATABASE seans_table;
-USE seans_table;
 CREATE TABLE `User`(
 	email varchar(30) NOT NULL,
 	name varchar(30) NOT NULL,
