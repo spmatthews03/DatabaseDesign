@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.UI.Screens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,22 @@ namespace Corkboard.UI
         public MainWindow()
         {
             InitializeComponent();
+            Navigate(new Login());
         }
+
+        #region private
+
+        private void Navigate(Page nextPage)
+        {
+            this.Content = nextPage;
+        }
+
+        private void Navigate(Page nextPage, object state)
+        {
+            this.Content = nextPage;
+            // implement state transfer
+        }
+
+        #endregion
     }
 }
