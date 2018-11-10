@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.UI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,18 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class Home : Page
     {
-        public Home()
+        public Home(MainWindow window, User user)
         {
             InitializeComponent();
+            MainWindow = window;
+            User = user;
         }
+
+        #region private
+
+        private MainWindow MainWindow { get; set; }
+        private User User { get; set; }
+
+        #endregion
     }
 }

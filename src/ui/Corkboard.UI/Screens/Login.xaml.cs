@@ -1,4 +1,5 @@
-﻿using Corkboard.UI.Popups;
+﻿using Corkboard.UI.Models;
+using Corkboard.UI.Popups;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,9 +23,32 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class Login : Page
     {
-        public Login()
+        public Login(MainWindow window)
         {
             InitializeComponent();
+            MainWindow = window;
+        }
+
+        private MainWindow MainWindow { get; set; }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            var email = EmailBox.Text;
+            var pin = PinBox.Text;
+            if (email == null || !new EmailAddressAttribute().IsValid(email))
+            {
+                CreatePopup("Invalid email. Close this window to update your email.");
+                return;
+            }
+
+            var user = Authenticate(email, pin);
+            if (user == null)
+            {
+                CreatePopup("Invalid credentials. Close this window to update your credentials.");
+                return;
+            }
+
+            MainWindow.Navigate(new Home(MainWindow, user));
         }
 
         #region focus events
@@ -63,36 +87,29 @@ namespace Corkboard.UI.Screens
 
         #endregion
 
-        #region click events
-
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            if (EmailBox.Text == null || !new EmailAddressAttribute().IsValid(EmailBox.Text))
-            {
-                CreatePopup("Invalid email. Close this window to update your email.");
-                return;
-            }
-
-            if (!ValidateCredentials(EmailBox.Text, PinBox.Text))
-            {
-                CreatePopup("Invalid credentials. Close this window to update your credentials.");
-                return;
-            }
-        }
-
-        #endregion
-
         #region private
+
+        private User Authenticate(string email, string pin)
+        {
+            // call api to validate user, expect api to return all user details
+            var exists = true;
+            if (!exists)
+            {
+                return null;
+            }
+
+            return new User
+            {
+                Email = "test@test.com",
+                Name = "Test",
+                Pin = 1234
+            };
+        }
 
         private void CreatePopup(string message)
         {
             var popup = new Error(message);
             popup.ShowDialog();
-        }
-
-        private bool ValidateCredentials(string email, string pin)
-        {
-            return true;
         }
 
         #endregion

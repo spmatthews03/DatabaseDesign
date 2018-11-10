@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Documents\OMSCS\6400\Projects\1\6400Fall18Team026\src\ui\Corkboard.UI\obj\Debug\
+d:\Documents\OMSCS\6400\Projects\1\6400Fall18Team026\src\ui\Corkboard.UI\obj\Debug\
 Corkboard.UI
 none
 false
 DEBUG;TRACE
-D:\Documents\OMSCS\6400\Projects\1\6400Fall18Team026\src\ui\Corkboard.UI\App.xaml
-131235213295
+d:\Documents\OMSCS\6400\Projects\1\6400Fall18Team026\src\ui\Corkboard.UI\App.xaml
+13-1217184296
 
-17-1956907740
-16-221250052
+22-841972804
+16-1490753369
 MainWindow.xaml;Popups\AddCorkboard.xaml;Popups\Error.xaml;Popups\PasswordProtected.xaml;Screens\AddPushpin.xaml;Screens\CorkboardStats.xaml;Screens\Home.xaml;Screens\Login.xaml;Screens\PopularSites.xaml;Screens\PopularTags.xaml;Screens\SearchPushpin.xaml;Screens\ViewCorkboard.xaml;Screens\ViewPushpin.xaml;
 
-False
+True
 

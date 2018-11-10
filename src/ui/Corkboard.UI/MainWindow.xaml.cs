@@ -24,22 +24,18 @@ namespace Corkboard.UI
         public MainWindow()
         {
             InitializeComponent();
-            Navigate(new Login());
+            Navigate(new Login(this));
         }
 
-        #region private
-
-        private void Navigate(Page nextPage)
+        public void Navigate(Page nextPage)
         {
             this.Content = nextPage;
         }
 
-        private void Navigate(Page nextPage, object state)
+        public void Navigate(Page nextPage, object state)
         {
             this.Content = nextPage;
             // implement state transfer
         }
-
-        #endregion
     }
 }
