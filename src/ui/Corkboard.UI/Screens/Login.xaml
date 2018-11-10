@@ -8,7 +8,7 @@
       d:DesignHeight="900" d:DesignWidth="800"
       Title="Login">
 
-    <Grid x:Name="PageGrid">
+    <Grid x:Name="PageGrid" KeyDown="PageGrid_KeyDown">
         <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Height="79" Margin="278,484,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="250" GotFocus="EmailBox_GotFocus" LostFocus="EmailBox_LostFocus" TextAlignment="Center" Foreground="#FF0835FF" FontSize="18"/>
         <TextBox x:Name="PinBox" HorizontalAlignment="Left" Height="79" Margin="278,588,0,0" TextWrapping="Wrap" Text="Pin" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF002DF5" FontSize="18" GotFocus="PinBox_GotFocus" LostFocus="PinBox_LostFocus"/>
         <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="364,696,0,0" VerticalAlignment="Top" Width="74" Click="Login_Click"/>

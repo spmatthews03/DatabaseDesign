@@ -51,6 +51,14 @@ namespace Corkboard.UI.Screens
             MainWindow.Navigate(new Home(MainWindow, user));
         }
 
+        private void PageGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login_Click(sender, e);
+            }
+        }
+
         #region focus events
 
         private void EmailBox_GotFocus(object sender, RoutedEventArgs e)
