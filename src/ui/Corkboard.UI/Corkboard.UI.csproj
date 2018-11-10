@@ -62,6 +62,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Corkboard.cs" />
+    <Compile Include="Models\Pushpin.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Popups\AddCorkboard.xaml.cs">
       <DependentUpon>AddCorkboard.xaml</DependentUpon>

@@ -9,6 +9,11 @@ namespace Corkboard.UI.Models
     public class Corkboard
     {
         /// <summary>
+        /// Represents the pushpins on this corkboard.
+        /// </summary>
+        public List<Pushpin> Pushpins { get; set; }
+
+        /// <summary>
         /// Represents the title of the corkboard.
         /// </summary>
         public string Title { get; set; }
