@@ -24,6 +24,7 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
             homePage = previousPage;
+            DisplaySites();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -34,6 +35,33 @@ namespace Corkboard.UI.Screens
         #region private
 
         private Home homePage;
+
+        private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
+        {
+            newBinding = newBinding ?? value;
+            return new GridViewColumn
+            {
+                Header = value,
+                DisplayMemberBinding = new Binding(newBinding),
+                Width = width
+            };
+        }
+
+        private void DisplaySites()
+        {
+            var view = new GridView();
+            SitesView.View = view;
+            view.Columns.Add(CreateGridColumn("Site", 309));
+            view.Columns.Add(CreateGridColumn("Pushpins", 309));
+            // call api
+            // add result from api
+            // maybe api will return the formatted info?
+
+            //foreach (var pushpin in pushpins)
+            //{
+            //    SitesView.Items.Add(new { Site = pushpin.Url, Pushpins = board.Pushpins.Count });
+            //}
+        }
 
         #endregion
     }
