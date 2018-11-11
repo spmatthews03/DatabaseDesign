@@ -21,17 +21,16 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class AddCorkboard : Page
     {
-        public AddCorkboard(MainWindow window, Home previousPage)
+        public AddCorkboard(Home previousPage)
         {
             InitializeComponent();
-            MainWindow = window;
             PreviousPage = previousPage;
             PopulateCategoryDropdown();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigate(PreviousPage);
+            PreviousPage.MainWindow.Navigate(PreviousPage);
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
@@ -88,7 +87,6 @@ namespace Corkboard.UI.Screens
         #region private
 
         private Home PreviousPage { get; set; }
-        private MainWindow MainWindow { get; set; }
 
         private void PopulateCategoryDropdown()
         {

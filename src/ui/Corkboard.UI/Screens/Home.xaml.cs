@@ -29,9 +29,11 @@ namespace Corkboard.UI.Screens
             DisplayUserInformation();
         }
 
+        public MainWindow MainWindow { get; private set; }
+
         private void CreateCorkboardButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigate(new AddCorkboard(MainWindow, this));
+            MainWindow.Navigate(new AddCorkboard(this));
         }
 
         #region focus events
@@ -55,8 +57,6 @@ namespace Corkboard.UI.Screens
         #endregion
 
         #region private
-
-        private MainWindow MainWindow { get; set; }
         private User User { get; set; }
 
         private void DisplayUserInformation()
