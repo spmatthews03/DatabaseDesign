@@ -24,6 +24,7 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
             HomePage = previousPage;
+            DisplayTags();
         }
 
         public Home HomePage { get; private set; }
@@ -32,5 +33,15 @@ namespace Corkboard.UI.Screens
         {
             HomePage.MainWindow.Navigate(HomePage);
         }
+
+        #region private
+
+        private void DisplayTags()
+        {
+            // call api for information
+            // set in listview
+        }
+
+        #endregion
     }
 }

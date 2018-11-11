@@ -38,7 +38,8 @@ namespace Corkboard.UI.Screens
 
         private void DisplayResults(string search)
         {
-            // call api, get results
+            // call api
+            // display results in listview
         }
 
         #endregion
