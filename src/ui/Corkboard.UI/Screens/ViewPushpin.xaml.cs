@@ -24,5 +24,20 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
         }
+
+        private void FollowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // follow user
+        }
+
+        private void LikeButton_Click(object sender, RoutedEventArgs e)
+        {
+            // like/unlike pushpin
+        }
+
+        private void PostButton_Click(object sender, RoutedEventArgs e)
+        {
+            // post comment
+        }
     }
 }
