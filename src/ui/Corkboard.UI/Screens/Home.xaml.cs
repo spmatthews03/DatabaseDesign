@@ -36,6 +36,11 @@ namespace Corkboard.UI.Screens
             MainWindow.Navigate(new AddCorkboard(this));
         }
 
+        private void PushpinSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(new SearchPushpin(this, SearchBox.Text));
+        }
+
         #region focus events
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
