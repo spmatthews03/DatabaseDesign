@@ -67,6 +67,8 @@ namespace Corkboard.UI.Screens
             {
                 EmailBox.Text = string.Empty;
             }
+
+            EmailBlock.Visibility = Visibility.Visible;
         }
 
         private void EmailBox_LostFocus(object sender, RoutedEventArgs e)
@@ -74,6 +76,7 @@ namespace Corkboard.UI.Screens
             if (string.IsNullOrWhiteSpace(EmailBox.Text))
             {
                 EmailBox.Text = "Email";
+                EmailBlock.Visibility = Visibility.Hidden;
             }
         }
 
@@ -83,6 +86,8 @@ namespace Corkboard.UI.Screens
             {
                 PinBox.Text = string.Empty;
             }
+
+            PinBlock.Visibility = Visibility.Visible;
         }
 
         private void PinBox_LostFocus(object sender, RoutedEventArgs e)
@@ -90,6 +95,7 @@ namespace Corkboard.UI.Screens
             if (string.IsNullOrWhiteSpace(PinBox.Text))
             {
                 PinBox.Text = "Pin";
+                PinBlock.Visibility = Visibility.Hidden;
             }
         }
 

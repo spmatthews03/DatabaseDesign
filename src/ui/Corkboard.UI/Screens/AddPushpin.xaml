@@ -10,11 +10,11 @@
 
     <Grid>
         <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="10,42,0,0" TextWrapping="Wrap" Text="Add Pushpin to " VerticalAlignment="Top" Height="40" Width="780" FontSize="24" TextAlignment="Center"/>
-        <TextBox x:Name="UrlBox" HorizontalAlignment="Left" Height="61" Margin="124,158,0,0" TextWrapping="Wrap" Text="Url" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center"/>
+        <TextBox x:Name="UrlBox" HorizontalAlignment="Left" Height="61" Margin="124,158,0,0" TextWrapping="Wrap" Text="Url" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center" GotFocus="UrlBox_GotFocus" LostFocus="UrlBox_LostFocus"/>
         <TextBlock x:Name="UrlBlock" HorizontalAlignment="Left" Margin="334,224,0,0" TextWrapping="Wrap" Text="Url" VerticalAlignment="Top" Height="31" Width="143" FontSize="20" TextAlignment="Center" Visibility="Hidden"/>
-        <TextBox x:Name="DescriptionBox" HorizontalAlignment="Left" Height="63" Margin="124,277,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center"/>
+        <TextBox x:Name="DescriptionBox" HorizontalAlignment="Left" Height="63" Margin="124,277,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center" GotFocus="DescriptionBox_GotFocus" LostFocus="DescriptionBox_LostFocus"/>
         <TextBlock x:Name="DescriptionBlock" HorizontalAlignment="Left" Margin="334,345,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Height="31" Width="143" FontSize="20" TextAlignment="Center" Visibility="Hidden"/>
-        <TextBox x:Name="TagsBox" HorizontalAlignment="Left" Height="59" Margin="124,427,0,0" TextWrapping="Wrap" Text="Tags - Comma Separated" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center"/>
+        <TextBox x:Name="TagsBox" HorizontalAlignment="Left" Height="59" Margin="124,427,0,0" TextWrapping="Wrap" Text="Tags - Comma Separated" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center" GotFocus="TagsBox_GotFocus" LostFocus="TagsBox_LostFocus"/>
         <TextBlock x:Name="TagsBlock" HorizontalAlignment="Left" Margin="334,491,0,0" TextWrapping="Wrap" Text="Tags - Comma Separated" VerticalAlignment="Top" Height="30" Width="143" FontSize="20" TextAlignment="Center" Visibility="Hidden"/>
 
     </Grid>
