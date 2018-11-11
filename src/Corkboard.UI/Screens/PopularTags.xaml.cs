@@ -36,10 +36,32 @@ namespace Corkboard.UI.Screens
 
         #region private
 
+        private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
+        {
+            newBinding = newBinding ?? value;
+            return new GridViewColumn
+            {
+                Header = value,
+                DisplayMemberBinding = new Binding(newBinding),
+                Width = width
+            };
+        }
+
         private void DisplayTags()
         {
-            // call api for information
-            // set in listview
+            var view = new GridView();
+            TagView.View = view;
+            view.Columns.Add(CreateGridColumn("Tag", 211.333));
+            view.Columns.Add(CreateGridColumn("Pushpins", 211.333));
+            view.Columns.Add(CreateGridColumn("Unique Corkboards", 211.333));
+            // call api
+            // add result from api
+            // popular info might be a dynamic object
+
+            //foreach (var info in popularInfo)
+            //{
+            //    TagView.Items.Add(new { Title = info.Title, Pushpins = board.info.Count });
+            //}
         }
 
         #endregion
