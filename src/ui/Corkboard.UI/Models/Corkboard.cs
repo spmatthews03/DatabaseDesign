@@ -14,6 +14,11 @@ namespace Corkboard.UI.Models
         public string Category { get; set; }
 
         /// <summary>
+        /// Represents when the corkboard was last updated.
+        /// </summary>
+        public DateTime LastUpdate { get; set; }
+
+        /// <summary>
         /// Represents the pushpins on this corkboard.
         /// </summary>
         public List<Pushpin> Pushpins { get; set; }
