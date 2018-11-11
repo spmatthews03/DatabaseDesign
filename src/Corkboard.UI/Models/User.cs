@@ -8,6 +8,13 @@ namespace Corkboard.UI.Models
 {
     public class User
     {
+        public User(string email, string name, int pin)
+        {
+            Email = email;
+            Name = name;
+            Pin = pin;
+        }
+
         /// <summary>
         /// Represents the user's email.
         /// </summary>
