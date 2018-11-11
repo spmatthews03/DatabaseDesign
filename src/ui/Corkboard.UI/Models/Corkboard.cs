@@ -32,5 +32,10 @@ namespace Corkboard.UI.Models
         /// Represents the title of the corkboard.
         /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Represents the watchers of the corkboard.
+        /// </summary>
+        public List<User> Watchers { get; set; }
     }
 }
