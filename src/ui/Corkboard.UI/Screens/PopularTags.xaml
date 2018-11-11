@@ -5,10 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Corkboard.UI.Screens"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="800"
       Title="PopularTags">
 
     <Grid>
-        
+        <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="24,30,0,0" TextWrapping="Wrap" Text="Popular Tags" VerticalAlignment="Top" Height="40" Width="746" FontSize="24" TextAlignment="Center"/>
+        <TextBlock x:Name="TagTitle" HorizontalAlignment="Left" Margin="80,140,0,0" TextWrapping="Wrap" Text="Tag" VerticalAlignment="Top" FontSize="22" TextAlignment="Center" Height="35" Width="96"/>
+        <TextBlock x:Name="PushPinTitle" HorizontalAlignment="Left" Margin="347,140,0,0" TextWrapping="Wrap" Text="PushPin" VerticalAlignment="Top" FontSize="22" TextAlignment="Center" Height="35" Width="96"/>
+        <TextBlock x:Name="UniqueCorkboardTitle" HorizontalAlignment="Left" Margin="618,140,0,0" TextWrapping="Wrap" Text="Unique Corkboard" VerticalAlignment="Top" FontSize="22" TextAlignment="Center" Height="35" Width="96"/>
+        <ListView x:Name="TagView" HorizontalAlignment="Left" Height="394" Margin="80,180,0,0" VerticalAlignment="Top" Width="634">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="308,648,0,0" VerticalAlignment="Top" Width="180" FontSize="20" Click="CancelButton_Click" Height="44"/>
+
     </Grid>
 </Page>

@@ -20,9 +20,17 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class PopularTags : Page
     {
-        public PopularTags()
+        public PopularTags(Home previousPage)
         {
             InitializeComponent();
+            HomePage = previousPage;
+        }
+
+        public Home HomePage { get; private set; }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            HomePage.MainWindow.Navigate(HomePage);
         }
     }
 }
