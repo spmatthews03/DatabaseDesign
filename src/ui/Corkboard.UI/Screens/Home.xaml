@@ -10,6 +10,30 @@
 
     <Grid>
         <TextBlock x:Name="NameBox" HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="70" Width="344" TextAlignment="Center" FontSize="22"/>
+        <!--<Separator Margin="0,90,0,0"/>-->
+
+        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="51" Margin="114,101,0,0" TextWrapping="Wrap" Text="Search descriptions, tags, and categories." VerticalAlignment="Top" Width="408" TextAlignment="Center" FontSize="16" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+        <Button x:Name="PushpinSearchButton" Content="Search Pushpins" HorizontalAlignment="Left" Margin="581,101,0,0" VerticalAlignment="Top" Width="151" Height="51"/>
+
+        <TextBlock x:Name="RecentCorkboardUpdatesBlock" HorizontalAlignment="Left" Margin="10,176,0,0" TextWrapping="Wrap" Text="Recent CorkBoard Updates" VerticalAlignment="Top" Height="33" Width="270" FontSize="20" TextAlignment="Center"/>
+        <Button x:Name="PopularTagsButton" Content="Popular Tags" HorizontalAlignment="Left" Margin="350,168,0,0" VerticalAlignment="Top" Width="172" Height="48"/>
+        <ListView x:Name="UpdatesView" HorizontalAlignment="Left" Height="324" Margin="114,214,0,0" VerticalAlignment="Top" Width="618">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock x:Name="MyCorkboardsBlock" HorizontalAlignment="Left" Margin="10,570,0,0" TextWrapping="Wrap" Text="My Corkboards" VerticalAlignment="Top" Height="34" Width="270" FontSize="20" TextAlignment="Center"/>
+        <Button x:Name="CreateCorkboardButton" Content="Create Corkboard" HorizontalAlignment="Left" Margin="350,556,0,0" VerticalAlignment="Top" Width="172" Height="48"/>
+        <ListView x:Name="MyCorkboardView" HorizontalAlignment="Left" Height="281" Margin="114,609,0,0" VerticalAlignment="Top" Width="618">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Page>
