@@ -23,6 +23,10 @@ namespace Corkboard.UI.Screens
         public ViewPushpin()
         {
             InitializeComponent();
+            SetTitle();
+            SetImage();
+            SetLikes();
+            DisplayComments();
         }
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
@@ -39,5 +43,29 @@ namespace Corkboard.UI.Screens
         {
             // post comment
         }
+
+        #region private
+
+        private void DisplayComments()
+        {
+
+        }
+
+        private void SetImage()
+        {
+
+        }
+
+        private void SetLikes()
+        {
+
+        }
+
+        private void SetTitle()
+        {
+
+        }
+
+        #endregion
     }
 }
