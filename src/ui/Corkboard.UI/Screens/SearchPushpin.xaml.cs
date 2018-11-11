@@ -20,9 +20,18 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class SearchPushpin : Page
     {
-        public SearchPushpin()
+        public SearchPushpin(Home previousPage, string searchText)
         {
             InitializeComponent();
+            PreviousPage = previousPage;
+            SearchText = searchText;
         }
+
+        #region private
+
+        private Home PreviousPage { get; set; }
+        private string SearchText { get; set; }
+
+        #endregion
     }
 }
