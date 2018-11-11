@@ -19,7 +19,11 @@ namespace Corkboard.UI.Popups
     /// </summary>
     public partial class PasswordProtected : Window
     {
-        public PasswordProtected()
+        /// <summary>
+        /// Represents a password protected popup for a corkboard.
+        /// </summary>
+        /// <param name="previousPage">Page that created this window.</param>
+        public PasswordProtected(Page previousPage)
         {
             InitializeComponent();
         }
@@ -58,6 +62,8 @@ namespace Corkboard.UI.Popups
         #endregion
 
         #region private
+
+        private Page PreviousPage { get; set; }
 
         private bool ValidatePassword(string password)
         {
