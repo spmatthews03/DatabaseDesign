@@ -29,6 +29,26 @@ namespace Corkboard.UI.Screens
             DisplayUserInformation();
         }
 
+        #region focus events
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (SearchBox.Text.Equals("Search descriptions, tags, and categories."))
+            {
+                SearchBox.Text = string.Empty;
+            }
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchBox.Text))
+            {
+                SearchBox.Text = "Search descriptions, tags, and categories.";
+            }
+        }
+
+        #endregion
+
         #region private
 
         private MainWindow MainWindow { get; set; }
