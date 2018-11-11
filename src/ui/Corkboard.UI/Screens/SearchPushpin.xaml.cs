@@ -24,13 +24,17 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
             PreviousPage = previousPage;
-            SearchText = searchText;
+            DisplayResults(searchText);
         }
 
         #region private
 
         private Home PreviousPage { get; set; }
-        private string SearchText { get; set; }
+
+        private void DisplayResults(string search)
+        {
+            // call api, get results
+        }
 
         #endregion
     }
