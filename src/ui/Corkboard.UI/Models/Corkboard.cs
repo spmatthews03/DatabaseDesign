@@ -14,6 +14,11 @@ namespace Corkboard.UI.Models
         public string Category { get; set; }
 
         /// <summary>
+        /// Represents whether or not the corkboard is private.
+        /// </summary>
+        public bool IsPrivate { get; set; }
+
+        /// <summary>
         /// Represents when the corkboard was last updated.
         /// </summary>
         public DateTime LastUpdate { get; set; }
