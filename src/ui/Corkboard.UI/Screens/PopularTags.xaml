@@ -20,7 +20,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="308,648,0,0" VerticalAlignment="Top" Width="180" FontSize="20" Click="CancelButton_Click" Height="44"/>
+        <Button x:Name="CancelButton" Content="Back" HorizontalAlignment="Left" Margin="308,648,0,0" VerticalAlignment="Top" Width="180" FontSize="20" Click="CancelButton_Click" Height="44"/>
 
     </Grid>
 </Page>

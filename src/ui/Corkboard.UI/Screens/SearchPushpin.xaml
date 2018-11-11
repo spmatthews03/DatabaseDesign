@@ -20,7 +20,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="CloseButton" Content="Close" HorizontalAlignment="Left" Margin="240,750,0,0" VerticalAlignment="Top" Width="331" Height="74" FontSize="20" Click="CloseButton_Click"/>
+        <Button x:Name="CloseButton" Content="Back" HorizontalAlignment="Left" Margin="240,750,0,0" VerticalAlignment="Top" Width="331" Height="74" FontSize="20" Click="CloseButton_Click"/>
 
     </Grid>
 </Page>
