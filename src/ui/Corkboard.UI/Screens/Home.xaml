@@ -13,7 +13,7 @@
         <!--<Separator Margin="0,90,0,0"/>-->
 
         <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="51" Margin="114,101,0,0" TextWrapping="Wrap" Text="Search descriptions, tags, and categories." VerticalAlignment="Top" Width="408" TextAlignment="Center" FontSize="16" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
-        <Button x:Name="PushpinSearchButton" Content="Search Pushpins" HorizontalAlignment="Left" Margin="581,101,0,0" VerticalAlignment="Top" Width="151" Height="51"/>
+        <Button x:Name="PushpinSearchButton" Content="Search Pushpins" HorizontalAlignment="Left" Margin="581,101,0,0" VerticalAlignment="Top" Width="151" Height="51" Click="PushpinSearchButton_Click"/>
 
         <TextBlock x:Name="RecentCorkboardUpdatesBlock" HorizontalAlignment="Left" Margin="10,176,0,0" TextWrapping="Wrap" Text="Recent CorkBoard Updates" VerticalAlignment="Top" Height="33" Width="270" FontSize="20" TextAlignment="Center"/>
         <Button x:Name="PopularTagsButton" Content="Popular Tags" HorizontalAlignment="Left" Margin="350,168,0,0" VerticalAlignment="Top" Width="172" Height="48"/>
