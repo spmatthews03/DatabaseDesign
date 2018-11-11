@@ -20,9 +20,21 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class PopularSites : Page
     {
-        public PopularSites()
+        public PopularSites(Home previousPage)
         {
             InitializeComponent();
+            homePage = previousPage;
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            homePage.MainWindow.Navigate(homePage);
+        }
+
+        #region private
+
+        private Home homePage;
+
+        #endregion
     }
 }
