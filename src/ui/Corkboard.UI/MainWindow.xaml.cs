@@ -29,13 +29,7 @@ namespace Corkboard.UI
 
         public void Navigate(Page nextPage)
         {
-            this.Content = nextPage;
-        }
-
-        public void Navigate(Page nextPage, object state)
-        {
-            this.Content = nextPage;
-            // implement state transfer
+            Content = nextPage;
         }
     }
 }
