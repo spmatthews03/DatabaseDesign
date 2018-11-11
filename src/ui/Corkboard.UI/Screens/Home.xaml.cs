@@ -29,6 +29,11 @@ namespace Corkboard.UI.Screens
             DisplayUserInformation();
         }
 
+        private void CreateCorkboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(new AddCorkboard(MainWindow));
+        }
+
         #region focus events
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
