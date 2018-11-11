@@ -36,6 +36,11 @@ namespace Corkboard.UI.Screens
             MainWindow.Navigate(new AddCorkboard(this));
         }
 
+        private void PopularTagsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(new PopularTags(this));
+        }
+
         private void PushpinSearchButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Navigate(new SearchPushpin(this, SearchBox.Text));
