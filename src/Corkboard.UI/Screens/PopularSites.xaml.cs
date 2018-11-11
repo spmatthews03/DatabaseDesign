@@ -51,8 +51,8 @@ namespace Corkboard.UI.Screens
         {
             var view = new GridView();
             SitesView.View = view;
-            view.Columns.Add(CreateGridColumn("Site", 309));
-            view.Columns.Add(CreateGridColumn("Pushpins", 309));
+            view.Columns.Add(CreateGridColumn("Site", 269));
+            view.Columns.Add(CreateGridColumn("Pushpins", 269));
             // call api
             // add result from api
             // maybe api will return the formatted info?
