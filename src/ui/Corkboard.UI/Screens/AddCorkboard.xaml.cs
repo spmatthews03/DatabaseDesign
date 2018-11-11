@@ -10,14 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Corkboard.UI.Popups
+namespace Corkboard.UI.Screens
 {
     /// <summary>
     /// Interaction logic for AddCorkboard.xaml
     /// </summary>
-    public partial class AddCorkboard : Window
+    public partial class AddCorkboard : Page
     {
         public AddCorkboard()
         {
