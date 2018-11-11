@@ -27,6 +27,11 @@ namespace Corkboard.UI.Screens
             DisplayResults(searchText);
         }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            PreviousPage.MainWindow.Navigate(PreviousPage);
+        }
+
         #region private
 
         private Home PreviousPage { get; set; }
