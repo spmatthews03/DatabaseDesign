@@ -20,9 +20,83 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class AddPushpin : Page
     {
-        public AddPushpin()
+        public AddPushpin(ViewCorkboard previousPage)
         {
             InitializeComponent();
+            PreviousPage = previousPage;
+            SetTitle();
         }
+
+        #region event focus
+
+        private void DescriptionBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (DescriptionBox.Text.Equals("Description"))
+            {
+                DescriptionBox.Text = string.Empty;
+            }
+
+            DescriptionBlock.Visibility = Visibility.Visible;
+        }
+
+        private void DescriptionBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (DescriptionBox.Text.Equals(string.Empty))
+            {
+                DescriptionBox.Text = "Description";
+                DescriptionBlock.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void TagsBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (TagsBox.Text.Equals("Tags - Comma Separated"))
+            {
+                TagsBox.Text = string.Empty;
+            }
+
+            TagsBlock.Visibility = Visibility.Visible;
+        }
+
+        private void TagsBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TagsBox.Text.Equals(string.Empty))
+            {
+                TagsBox.Text = "Tags - Comma Separated";
+                TagsBlock.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void UrlBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (UrlBox.Text.Equals("Url"))
+            {
+                UrlBox.Text = string.Empty;
+            }
+
+            UrlBlock.Visibility = Visibility.Visible;
+        }
+
+        private void UrlBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (UrlBox.Text.Equals(string.Empty))
+            {
+                UrlBox.Text = "Url";
+                UrlBlock.Visibility = Visibility.Hidden;
+            }
+        }
+
+        #endregion
+
+        #region private
+
+        private ViewCorkboard PreviousPage { get; set; }
+
+        private void SetTitle()
+        {
+            TitleBlock.Text += PreviousPage.Corkboard.Title;
+        }
+
+        #endregion
     }
 }

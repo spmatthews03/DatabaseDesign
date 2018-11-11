@@ -24,5 +24,7 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
         }
+
+        public Models.Corkboard Corkboard { get; private set; }
     }
 }
