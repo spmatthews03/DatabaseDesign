@@ -65,14 +65,14 @@
     <Compile Include="Models\Corkboard.cs" />
     <Compile Include="Models\Pushpin.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Popups\AddCorkboard.xaml.cs">
-      <DependentUpon>AddCorkboard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Popups\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\PasswordProtected.xaml.cs">
       <DependentUpon>PasswordProtected.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\AddCorkboard.xaml.cs">
+      <DependentUpon>AddCorkboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\AddPushpin.xaml.cs">
       <DependentUpon>AddPushpin.xaml</DependentUpon>
@@ -113,15 +113,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Popups\AddCorkboard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Popups\Error.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\PasswordProtected.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\AddCorkboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
