@@ -3,7 +3,7 @@
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Corkboard.UI.Helpers
+namespace API.Helpers
 {
     public static class DatabaseHelper
     {
@@ -32,7 +32,7 @@ namespace Corkboard.UI.Helpers
         }
 
         /// <summary>
-        /// Gets the value in a data tabe.
+        /// Gets the value in a data table.
         /// </summary>
         /// <param name="dataTable">Data table to get the value from.</param>
         /// <param name="rowIndex">The row to get the value in.</param>

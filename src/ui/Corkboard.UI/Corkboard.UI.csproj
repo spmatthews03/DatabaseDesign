@@ -62,8 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\DatabaseHelper.cs" />
-    <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Models\Corkboard.cs" />
     <Compile Include="Models\Pushpin.cs" />
     <Compile Include="Models\User.cs" />

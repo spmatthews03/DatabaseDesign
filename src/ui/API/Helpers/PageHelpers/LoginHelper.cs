@@ -1,7 +1,7 @@
 ﻿using Corkboard.UI.Models;
 using System;
 
-namespace Corkboard.UI.Helpers
+namespace API.Helpers
 {
     public class LoginHelper
     {
