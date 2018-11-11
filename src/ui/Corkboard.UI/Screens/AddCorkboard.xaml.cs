@@ -37,7 +37,7 @@ namespace Corkboard.UI.Screens
         {
             // call api to see if corkboard with 'title', 'category', 'time?' already exists
             // call api to add corkboard
-            PreviousPage.MainWindow.Navigate(new ViewCorkboard());
+            PreviousPage.MainWindow.Navigate(new ViewCorkboard(PreviousPage, PreviousPage.User, PreviousPage.User));
         }
 
         private void VisibilityButton_Private_Checked(object sender, RoutedEventArgs e)

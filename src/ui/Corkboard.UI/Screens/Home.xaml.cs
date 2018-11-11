@@ -19,7 +19,7 @@ namespace Corkboard.UI.Screens
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : Page
+    public partial class Home : Page, IPage
     {
         public Home(MainWindow window, User user)
         {
@@ -30,6 +30,7 @@ namespace Corkboard.UI.Screens
         }
 
         public MainWindow MainWindow { get; private set; }
+        public User User { get; private set; }
 
         private void CreateCorkboardButton_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +68,6 @@ namespace Corkboard.UI.Screens
         #endregion
 
         #region private
-        private User User { get; set; }
 
         private void DisplayUserInformation()
         {
