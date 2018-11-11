@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.UI.Popups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,30 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class AddPushpin : Page
     {
-        public AddPushpin(ViewCorkboard previousPage)
+        public AddPushpin(MainWindow window, ViewCorkboard previousPage)
         {
             InitializeComponent();
             PreviousPage = previousPage;
             SetTitle();
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateUrl(UrlBox.Text))
+            {
+                return;
+            }
+            // validate pushpin
+            // add to database
+            MainWindow.Navigate(PreviousPage);
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(PreviousPage);
+        }
+
+        public MainWindow MainWindow { get; private set; }
 
         #region event focus
 
@@ -41,7 +60,7 @@ namespace Corkboard.UI.Screens
 
         private void DescriptionBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (DescriptionBox.Text.Equals(string.Empty))
+            if (string.IsNullOrWhiteSpace(DescriptionBox.Text))
             {
                 DescriptionBox.Text = "Description";
                 DescriptionBlock.Visibility = Visibility.Hidden;
@@ -95,6 +114,16 @@ namespace Corkboard.UI.Screens
         private void SetTitle()
         {
             TitleBlock.Text += PreviousPage.Corkboard.Title;
+        }
+
+        private bool ValidateUrl(string url)
+        {
+            // check file extensions .jpg .png .gif
+            // check url is correct
+            // if failed, show error box, return false
+            var error = new Error("Invalid url. Please check format and extension type. Supported types - jpg png gif");
+            error.ShowDialog();
+            return false;
         }
 
         #endregion
