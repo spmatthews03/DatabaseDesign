@@ -23,5 +23,47 @@ namespace Corkboard.UI.Popups
         {
             InitializeComponent();
         }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var isViewable = ValidatePassword(PasswordBox.Text);
+            if (!isViewable)
+            {
+
+                return;
+            }
+
+            // pass success state to previous page
+            Close();
+        }
+
+        #region focus events
+
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBox.Text.Equals("Password"))
+            {
+                PasswordBox.Text = string.Empty;
+            }
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBox.Text.Equals(string.Empty))
+            {
+                PasswordBox.Text = "Password";
+            }
+        }
+
+        #endregion
+
+        #region private
+
+        private bool ValidatePassword(string password)
+        {
+            return false;
+        }
+
+        #endregion
     }
 }
