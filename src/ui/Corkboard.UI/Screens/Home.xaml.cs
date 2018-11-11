@@ -31,7 +31,7 @@ namespace Corkboard.UI.Screens
 
         private void CreateCorkboardButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigate(new AddCorkboard(MainWindow));
+            MainWindow.Navigate(new AddCorkboard(MainWindow, this));
         }
 
         #region focus events

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.UI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,23 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class AddCorkboard : Page
     {
-        public AddCorkboard(MainWindow window)
+        public AddCorkboard(MainWindow window, Home previousPage)
         {
             InitializeComponent();
             MainWindow = window;
+            PreviousPage = previousPage;
             PopulateCategoryDropdown();
         }
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(PreviousPage);
+        }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void VisibilityButton_Private_Checked(object sender, RoutedEventArgs e)
         {
@@ -76,6 +87,7 @@ namespace Corkboard.UI.Screens
 
         #region private
 
+        private Home PreviousPage { get; set; }
         private MainWindow MainWindow { get; set; }
 
         private void PopulateCategoryDropdown()
