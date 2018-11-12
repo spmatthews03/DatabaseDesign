@@ -32,7 +32,7 @@ namespace Corkboard.UI.Screens
             SetWatch();
         }
 
-        public Models.Corkboard Corkboard { get; private set; }
+        public Models.CorkboardModel Corkboard { get; private set; }
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {

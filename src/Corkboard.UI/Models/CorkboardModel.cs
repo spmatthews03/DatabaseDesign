@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Corkboard.UI.Models
 {
-    public class Corkboard
+    public class CorkboardModel
     {
         /// <summary>
         /// Represents the category of the corkboard.
@@ -22,6 +22,11 @@ namespace Corkboard.UI.Models
         /// Represents when the corkboard was last updated.
         /// </summary>
         public DateTime LastUpdate { get; set; }
+
+        /// <summary>
+        /// Represents the owner of the corkboard.
+        /// </summary>
+        public User Owner { get; set; }
 
         /// <summary>
         /// Represents the pushpins on this corkboard.
