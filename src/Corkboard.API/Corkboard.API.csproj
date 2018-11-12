@@ -46,7 +46,6 @@
     <Compile Include="Helpers\PageHelpers\AddCorkboardHelper.cs" />
     <Compile Include="Helpers\PageHelpers\AddPushpinHelper.cs" />
     <Compile Include="Helpers\PageHelpers\HomeHelper.cs" />
-    <Compile Include="Helpers\PageHelpers\HomeScreenHelper.cs" />
     <Compile Include="Helpers\PageHelpers\LoginHelper.cs" />
     <Compile Include="Helpers\PageHelpers\PopularTagsHelper.cs" />
     <Compile Include="Helpers\PageHelpers\SearchPushpinHelper.cs" />
