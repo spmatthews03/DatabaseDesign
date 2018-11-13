@@ -79,7 +79,6 @@ CREATE TABLE PushPin (
 	owner_email varchar(30) NOT NULL,
 	url varchar(300) NOT NULL,
 	description varchar(200) NOT NULL,
-	tags varchar(100) NULL,
 	PRIMARY KEY (url, owner_email, date_time, title)
 );
 
@@ -90,7 +89,12 @@ CREATE TABLE Category (
 
 CREATE TABLE Tags (
 	name varchar(100) NOT NULL,
-	PRIMARY KEY (name)
+	title varchar(30) NOT NULL,
+	date_time datetime NOT NULL,
+	owner_email varchar(30) NOT NULL,
+	url varchar(300) NOT NULL,
+	description varchar(200) NOT NULL,
+	PRIMARY KEY (url, owner_email, date_time, title, description)
 );
 
 

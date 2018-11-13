@@ -39,30 +39,30 @@ INSERT INTO private_corkboard( title, owner_email, password) VALUES ('Artificial
 INSERT INTO private_corkboard( title, owner_email, password) VALUES ('Popular people', 'brian@gt.edu', 'helloworld');
 
 -- Tags
-INSERT INTO Tags(name) VALUES ('cool');
-INSERT INTO Tags(name) VALUES ('great');
-INSERT INTO Tags(name) VALUES ('awesome');
-INSERT INTO Tags(name) VALUES ('pretty');
-INSERT INTO Tags(name) VALUES ('old');
-INSERT INTO Tags(name) VALUES ('pleasing');
-INSERT INTO Tags(name) VALUES ('baseball');
-INSERT INTO Tags(name) VALUES ('palmtree');
-INSERT INTO Tags(name) VALUES ('livingroom');
-INSERT INTO Tags(name) VALUES ('bedroom');
-INSERT INTO Tags(name) VALUES ('bathroom');
-INSERT INTO Tags(name) VALUES ('wishlist');
-INSERT INTO Tags(name) VALUES ('decor');
-INSERT INTO Tags(name) VALUES ('remodel');
-INSERT INTO Tags(name) VALUES ('garden');
-INSERT INTO Tags(name) VALUES ('plantin');
-INSERT INTO Tags(name) VALUES ('stadium');
-INSERT INTO Tags(name) VALUES ('boardgames');
-INSERT INTO Tags(name) VALUES ('escaperoom');
-INSERT INTO Tags(name) VALUES ('football');
-INSERT INTO Tags(name) VALUES ('cards');
-INSERT INTO Tags(name) VALUES ('rummy');
-INSERT INTO Tags(name) VALUES ('drinks');
-INSERT INTO Tags(name) VALUES ('food');
+-- INSERT INTO Tags(name) VALUES ('cool');
+-- INSERT INTO Tags(name) VALUES ('great');
+-- INSERT INTO Tags(name) VALUES ('awesome');
+-- INSERT INTO Tags(name) VALUES ('pretty');
+-- INSERT INTO Tags(name) VALUES ('old');
+-- INSERT INTO Tags(name) VALUES ('pleasing');
+-- INSERT INTO Tags(name) VALUES ('baseball');
+-- INSERT INTO Tags(name) VALUES ('palmtree');
+-- INSERT INTO Tags(name) VALUES ('livingroom');
+-- INSERT INTO Tags(name) VALUES ('bedroom');
+-- INSERT INTO Tags(name) VALUES ('bathroom');
+-- INSERT INTO Tags(name) VALUES ('wishlist');
+-- INSERT INTO Tags(name) VALUES ('decor');
+-- INSERT INTO Tags(name) VALUES ('remodel');
+-- INSERT INTO Tags(name) VALUES ('garden');
+-- INSERT INTO Tags(name) VALUES ('plantin');
+-- INSERT INTO Tags(name) VALUES ('stadium');
+-- INSERT INTO Tags(name) VALUES ('boardgames');
+-- INSERT INTO Tags(name) VALUES ('escaperoom');
+-- INSERT INTO Tags(name) VALUES ('football');
+-- INSERT INTO Tags(name) VALUES ('cards');
+-- INSERT INTO Tags(name) VALUES ('rummy');
+-- INSERT INTO Tags(name) VALUES ('drinks');
+-- INSERT INTO Tags(name) VALUES ('food');
 
 
 
@@ -130,26 +130,24 @@ VALUES ('Popular people', '2018-11-11 00:00:00', 'brian@gt.edu', 'https://www.fo
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
 VALUES ('brian@gt.edu','2018-11-08 00:00:00', 'https://www.mlb.com/', 'Best Sports', 'sean@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('sean@gt.edu','2018-11-08 00:21:00', 'https://www.google.com/', 'meghan@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('brian@gt.edu','2018-11-08 00:05:00', 'https://www.google.com/','Places To Go' 'mary@gt.edu');
+VALUES ('brian@gt.edu','2018-11-08 00:05:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('sean@gt.edu','2018-11-08 00:01:00', 'https://www.google.com/','Places To Go' 'mary@gt.edu');
+VALUES ('sean@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('meghan@gt.edu','2018-11-08 00:01:00', 'https://www.google.com/','Places To Go' 'mary@gt.edu');
+VALUES ('meghan@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('john@gt.edu','2018-11-08 00:01:00', 'https://www.google.com/','Places To Go' 'mary@gt.edu');
+VALUES ('john@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('jake@gt.edu','2018-11-08 00:01:00', 'https://www.google.com/','Places To Go' 'mary@gt.edu');
+VALUES ('jake@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
-VALUES ('chelsea@gt.edu','2018-11-08 00:01:00', 'https://www.google.com/','Places To Go' 'mary@gt.edu');
+VALUES ('chelsea@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
 
 
 
