@@ -94,7 +94,7 @@ CREATE TABLE Tags (
 	owner_email varchar(30) NOT NULL,
 	url varchar(300) NOT NULL,
 	description varchar(200) NOT NULL,
-	PRIMARY KEY (url, owner_email, date_time, title, description)
+	PRIMARY KEY (name, url, owner_email, date_time, title, description)
 );
 
 
