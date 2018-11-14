@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Corkboard.API.Helpers;
+using Corkboard.UI.Popups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,8 +36,21 @@ namespace Corkboard.UI.Screens
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            // call api to see if corkboard with 'title', 'category', 'time?' already exists
-            // call api to add corkboard
+            var newCorkboard = ValidateCorkboard();
+            if (newCorkboard == null)
+            {
+                CreatePopup("Invalid corkboard information supplied.");
+                return;
+            }
+
+            var alreadyExists = AddCorkboardHelper.CheckCorkboardExists(PreviousPage.User, newCorkboard.Title);
+            if (alreadyExists)
+            {
+                CreatePopup("Corkboard already exists with that title from this user.");
+                return;
+            }
+
+            AddCorkboardHelper.AddCorkboard(PreviousPage.User, newCorkboard);
             PreviousPage.MainWindow.Navigate(new ViewCorkboard(PreviousPage, PreviousPage.User, PreviousPage.User));
         }
 
@@ -89,10 +104,51 @@ namespace Corkboard.UI.Screens
 
         private Home PreviousPage { get; set; }
 
+        private void CreatePopup(string message)
+        {
+            var popup = new Error(message);
+            popup.ShowDialog();
+        }
+
         private void PopulateCategoryDropdown()
         {
-            // call api to get categories
-            //CatecoryComboBox.Items = ;
+            var categories = AddCorkboardHelper.GetCategories();
+            CategoryComboBox.ItemsSource = categories;
+        }
+
+        private API.Models.Corkboard ValidateCorkboard()
+        {
+            var title = TitleBox.Text;
+            var category = CategoryComboBox.Text;
+            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(category))
+            {
+                return null;
+            }
+
+            if (VisibilityButton_Private.IsChecked != null && VisibilityButton_Private.IsChecked == true)
+            {
+                var password = PasswordBox.Text;
+                if (string.IsNullOrEmpty(password))
+                {
+                    return null;
+                }
+
+                return new API.Models.Corkboard
+                {
+                    Category = category,
+                    IsPrivate = true,
+                    Owner = PreviousPage.User,
+                    Title = title
+                };
+            }
+
+            return new API.Models.Corkboard
+            {
+                Category = category,
+                IsPrivate = false,
+                Owner = PreviousPage.User,
+                Title = title
+            };
         }
 
         #endregion

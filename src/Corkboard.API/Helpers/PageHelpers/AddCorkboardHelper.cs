@@ -1,21 +1,34 @@
-﻿namespace Corkboard.API.Helpers
+﻿using System.Collections.Generic;
+
+namespace Corkboard.API.Helpers
 {
     public static class AddCorkboardHelper
     {
         /// <summary>
-        /// If a corkboard exists for the current user. 
+        /// Adds a corkboard for a user.
         /// </summary>
-        public static bool CorkboardExistsForUser(string title, Models.User user)
+        /// <param name="owner">User to add the corkboard for.</param>
+        /// <param name="corkboard">Corkboard to add.</param>
+        public static void AddCorkboard(Models.User owner, Models.Corkboard corkboard)
         {
+            DatabaseHelper.ExecuteQuery("ADD CORKBOARD FOR A USER.");
+        }
+
+        /// <summary>
+        /// Returns whether this corkboard already exists for the user. 
+        /// </summary>
+        public static bool CheckCorkboardExists(Models.User user, string title)
+        {
+            // Might be able to remove the check of the owner's email as that should be checked in 'GetUserCorkboards'.
             return CorkboardHelper.GetUserCorkboards(user).Exists(x => x.Title.Equals(title) && x.Owner.Email.Equals(user.Email));
         }
 
         /// <summary>
-        /// Adds a corkboard for a user.
+        /// Gets all the possible categories for a corkboard.
         /// </summary>
-        public static void AddCorkboardForUser()
+        public static List<string> GetCategories()
         {
-            DatabaseHelper.ExecuteQuery("ADD CORKBOARD FOR A USER.");
+            return null;
         }
     }
 }
