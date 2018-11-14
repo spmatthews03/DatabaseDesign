@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.API.Helpers.PageHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,15 +54,10 @@ namespace Corkboard.UI.Screens
             TagView.View = view;
             view.Columns.Add(CreateGridColumn("Tag", 211.333));
             view.Columns.Add(CreateGridColumn("Pushpins", 211.333));
-            view.Columns.Add(CreateGridColumn("Unique Corkboards", 211.333));
-            // call api
-            // add result from api
-            // popular info might be a dynamic object
+            view.Columns.Add(CreateGridColumn("Unique Corkboards", 211.333, "UniqueCorkboards"));
 
-            //foreach (var info in popularInfo)
-            //{
-            //    TagView.Items.Add(new { Title = info.Title, Pushpins = board.info.Count });
-            //}
+            var tags = PopularTagsHelper.GetPopularTags();
+            TagView.ItemsSource = tags;
         }
 
         #endregion
