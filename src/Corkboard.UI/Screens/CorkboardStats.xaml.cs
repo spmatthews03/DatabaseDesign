@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.API.Helpers.ModelHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,18 +52,14 @@ namespace Corkboard.UI.Screens
             var view = new GridView();
             StatsView.View = view;
             view.Columns.Add(CreateGridColumn("User", 269.4));
-            view.Columns.Add(CreateGridColumn("Public Corkboards", 117.9));
-            view.Columns.Add(CreateGridColumn("Private Corkboards", 117.9));
-            view.Columns.Add(CreateGridColumn("Public Pushpins", 117.9));
-            view.Columns.Add(CreateGridColumn("Private Pushpins", 117.9));
+            view.Columns.Add(CreateGridColumn("Public Corkboards", 117.9, "PublicCorkboards"));
+            view.Columns.Add(CreateGridColumn("Private Corkboards", 117.9, "PrivateCorkboards"));
+            view.Columns.Add(CreateGridColumn("Public Pushpins", 117.9, "PublicPushpins"));
+            view.Columns.Add(CreateGridColumn("Private Pushpins", 117.9, "PrivatePushpins"));
             // call api
             // add result from api
-            // maybe api will return exact values
-
-            //foreach (var board in corkboards)
-            //{
-            //    StatsView.Items.Add(new { User = board.Title, Pushpins = board.Pushpins.Count });
-            //}
+            var stats = StatHelper.GetCorkboardStats();
+            StatsView.ItemsSource = stats;
         }
 
         #endregion
