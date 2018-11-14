@@ -1,4 +1,6 @@
-﻿using Corkboard.API.Models;
+﻿using Corkboard.API.Helpers;
+using Corkboard.API.Helpers.PageHelpers;
+using Corkboard.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +23,13 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class ViewCorkboard : Page
     {
-        public ViewCorkboard(IPage previousPage, User owner, User viewer)
+        public ViewCorkboard(IPage previousPage, User owner, User viewer, string title)
         {
             InitializeComponent();
             this.previousPage = previousPage;
             Owner = owner;
             this.viewer = viewer;
-            GetCorkboard();
+            GetCorkboard(title);
             SetTitle();
             SetSwitchButton();
             SetWatch();
@@ -38,7 +40,17 @@ namespace Corkboard.UI.Screens
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
-            // follow owner
+            if (FollowButton.Content.Equals("Follow"))
+            {
+                ViewCorkboardHelper.FollowCorkboard(Owner, viewer);
+            }
+
+            if (FollowButton.Content.Equals("Unfollow"))
+            {
+                ViewCorkboardHelper.UnfollowCorkboard(Owner, viewer);
+            }
+
+            SetSwitchButton_Follow();
         }
 
         private void SwitchButton_Click(object sender, RoutedEventArgs e)
@@ -50,8 +62,19 @@ namespace Corkboard.UI.Screens
 
             if (SwitchButton.Content.Equals("Watch"))
             {
+                ViewCorkboardHelper.WatchCorkboard(Owner, viewer, Corkboard.Title);
+                Corkboard.Watchers.Add(viewer);
                 SetWatch();
             }
+
+            if (SwitchButton.Content.Equals("Unwatch"))
+            {
+                ViewCorkboardHelper.UnwatchCorkboard(Owner, viewer, Corkboard.Title);
+                Corkboard.Watchers.Remove(viewer);
+                SetWatch();
+            }
+
+            SetSwitchButton();
         }
 
         #region private
@@ -59,10 +82,10 @@ namespace Corkboard.UI.Screens
         private IPage previousPage;
         private User viewer;
 
-        private void GetCorkboard()
+        private void GetCorkboard(string title)
         {
-            // set corkboard object
-            // populate ui
+            Corkboard = CorkboardHelper.GetCorkboard(Owner, title);
+            // populate ui (pushpin images)
         }
 
         private void SetTitle()
@@ -72,7 +95,6 @@ namespace Corkboard.UI.Screens
 
         private void SetWatch()
         {
-            // call api
             var watchers = Corkboard.Watchers;
             if (watchers.Count == 0)
             {
@@ -96,7 +118,27 @@ namespace Corkboard.UI.Screens
             }
             else if (!Corkboard.IsPrivate)
             {
-                SwitchButton.Content = "Watch";
+                var alreadyWatching = Corkboard.Watchers.Contains(viewer);
+                if (alreadyWatching)
+                {
+                    SwitchButton.Content = "Unwatch";
+                }
+                else
+                {
+                    SwitchButton.Content = "Watch";
+                }
+            }
+        }
+
+        private void SetSwitchButton_Follow()
+        {
+            if (Owner.Followers.Contains(viewer))
+            {
+                FollowButton.Content = "Unfollow";
+            }
+            else
+            {
+                FollowButton.Content = "Follow";
             }
         }
 
