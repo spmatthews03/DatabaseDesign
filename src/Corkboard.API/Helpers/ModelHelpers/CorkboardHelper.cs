@@ -9,6 +9,17 @@ namespace Corkboard.API.Helpers
     public static class CorkboardHelper
     {
         /// <summary>
+        /// Gets the corkboard.
+        /// </summary>
+        /// <param name="owner">Owner of the corkboard.</param>
+        /// <param name="title">Title of the corkboard.</param>
+        /// <returns>Returns the corkboard if it exists, null otherwise.</returns>
+        public static Models.Corkboard GetCorkboard(User owner, string title)
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Returns the list of recently updated corkboards. This includes strictly includes the corkboards
         /// the current user follows or watches.
         /// </summary>
