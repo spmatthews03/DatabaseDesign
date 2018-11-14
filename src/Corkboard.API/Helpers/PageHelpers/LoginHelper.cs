@@ -4,7 +4,13 @@ namespace Corkboard.API.Helpers
 {
     public static class LoginHelper
     {
-        public static Models.User ValidateLogin(string userName, int pin)
+        /// <summary>
+        /// Attempts to locate the user in the database. Psuedo login.
+        /// </summary>
+        /// <param name="email">Email of the user.</param>
+        /// <param name="pin">Pin of the user.</param>
+        /// <returns>Returns all the user's information from the database, if not found, returns null.</returns>
+        public static Models.User ValidateLogin(string email, int pin)
         {
             var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
             if (userTable.Rows.Count > 0  )
@@ -12,6 +18,7 @@ namespace Corkboard.API.Helpers
                 var actualPin = Convert.ToInt32(userTable.GetValueInTable("Pin"));
                 if (actualPin.Equals(pin))
                 {
+                    // TODO - update to return all info for that user from the table.
                     return new Models.User(userTable.GetValueInTable("Email"), userTable.GetValueInTable("Name"), actualPin);
                 }
             }
