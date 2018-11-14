@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Corkboard.API.Helpers.PageHelpers
 {
-    public class HomeHelper
+    public static class HomeHelper
     {
-        public List<Models.Corkboard> GetRecentlyUpdatedCorkboards()
+        public static List<Models.Corkboard> GetRecentlyUpdatedCorkboards()
         {
             var corkboards = CorkboardHelper.GetUsersCorkboards();
             corkboards.OrderBy(x => x.LastUpdate);

@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Corkboard.API.Helpers.PageHelpers
 {
-    public class SearchPushpinHelper
+    public static class SearchPushpinHelper
     {
-        public List<Models.Pushpin> GetMatchingPushpins(string searchQuery)
+        public static List<Models.Pushpin> GetMatchingPushpins(string searchQuery)
         {
             var matchingPushpins = new List<Models.Pushpin>();
             var publicCorkboards = CorkboardHelper.GetUsersPublicCorkboards();

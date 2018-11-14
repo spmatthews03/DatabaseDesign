@@ -2,9 +2,9 @@
 
 namespace Corkboard.API.Helpers
 {
-    public class LoginHelper
+    public static class LoginHelper
     {
-        public Models.User ValidateLogin(string userName, int pin)
+        public static Models.User ValidateLogin(string userName, int pin)
         {
             var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
             if (userTable.Rows.Count > 0  )

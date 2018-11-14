@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Corkboard.API.Helpers.PageHelpers
 {
-    public class ViewCorkboardHelper
+    public static class ViewCorkboardHelper
     {
-        public void FollowCorkboardOwner()
+        public static void FollowCorkboardOwner()
         {
             DatabaseHelper.ExecuteQuery("SQL TO FOLLOW CORKBOARD OWNER");
         }
 
-        public void WatchCorkboard()
+        public static void WatchCorkboard()
         {
             DatabaseHelper.ExecuteQuery("SQL TO WATCH CORKBOARD");
         }

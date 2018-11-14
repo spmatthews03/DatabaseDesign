@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Corkboard.API.Helpers.PageHelpers
 {
-    public class PopularTagsHelper
+    public static class PopularTagsHelper
     {
     }
 }

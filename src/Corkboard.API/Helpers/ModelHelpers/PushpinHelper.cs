@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Corkboard.API.Helpers
 {
-    public class PushpinHelper
+    public static class PushpinHelper
     {
         public static List<Models.Pushpin> GetPushpinsForCorkboard()
         {

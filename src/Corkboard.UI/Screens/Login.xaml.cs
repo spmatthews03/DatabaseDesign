@@ -1,4 +1,5 @@
-﻿using Corkboard.API.Models;
+﻿using Corkboard.API.Helpers;
+using Corkboard.API.Models;
 using Corkboard.UI.Popups;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,8 @@ namespace Corkboard.UI.Screens
             {
                 return null;
             }
+
+            var user = LoginHelper.
 
             return new User("test@test.com", "Testing Longlastname", 1234);
         }
