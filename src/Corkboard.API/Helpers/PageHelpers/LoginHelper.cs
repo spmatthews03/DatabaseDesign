@@ -10,7 +10,7 @@ namespace Corkboard.API.Helpers
         /// <param name="email">Email of the user.</param>
         /// <param name="pin">Pin of the user.</param>
         /// <returns>Returns all the user's information from the database, if not found, returns null.</returns>
-        public static Models.User ValidateLogin(string email, int pin)
+        public static Models.User Login(string email, int pin)
         {
             var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
             if (userTable.Rows.Count > 0  )
