@@ -7,7 +7,7 @@
         /// </summary>
         public static bool CorkboardExistsForUser(string title, Models.User user)
         {
-            return CorkboardHelper.GetUsersCorkboards().Exists(x => x.Title.Equals(title) && x.Owner.Email.Equals(user.Email));
+            return CorkboardHelper.GetUserCorkboards(user).Exists(x => x.Title.Equals(title) && x.Owner.Email.Equals(user.Email));
         }
 
         /// <summary>
