@@ -16,7 +16,6 @@ namespace Corkboard.API.Helpers.PageHelpers
             var corkboards = CorkboardHelper.GetRecentUpdatedCorkboards(currentUser);
             corkboards.OrderBy(x => x.LastUpdate);
             return corkboards.GetRange(0, 4);
-
         }
     }
 }
