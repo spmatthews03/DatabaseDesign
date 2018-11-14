@@ -24,7 +24,7 @@ namespace Corkboard.API.Helpers
         /// </summary>
         /// <param name="currentUser">User to retrieve corkboards for.</param>
         /// <returns></returns>
-        public static List<Models.Corkboard> GetUsersCorkboards(User currentUser)
+        public static List<Models.Corkboard> GetUserCorkboards(User currentUser)
         {
             var corkboardRows = DatabaseHelper.ExecuteQuery("GET ALL CORKBOARDS FOR USER");
             var corkboardList = new List<Models.Corkboard>();
@@ -41,9 +41,13 @@ namespace Corkboard.API.Helpers
             return corkboardList;
         }
 
-        public static List<Models.Corkboard> GetUsersPublicCorkboards(User user)
+        /// <summary>
+        /// Gets the user's public corkboards.
+        /// </summary>
+        /// <param name="user">User to retrieve public corkboards for.</param>
+        public static List<Models.Corkboard> GetUserPublicCorkboards(User user)
         {
-            return GetUsersCorkboards(user).Where(x => x.IsPrivate.Equals(false)).ToList();
+            return GetUserCorkboards(user).Where(x => x.IsPrivate.Equals(false)).ToList();
         }
     }
 }
