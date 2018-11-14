@@ -42,7 +42,7 @@ namespace Corkboard.UI.Screens
                 return;
             }
 
-            var user = Authenticate(email, pin);
+            var user = LoginHelper.ValidateLogin(email, Convert.ToInt32(pin));
             if (user == null)
             {
                 CreatePopup("Invalid credentials. Close this window to update your credentials.");
@@ -103,20 +103,6 @@ namespace Corkboard.UI.Screens
         #endregion
 
         #region private
-
-        private User Authenticate(string email, string pin)
-        {
-            // call api to validate user, expect api to return all user details
-            var exists = true;
-            if (!exists)
-            {
-                return null;
-            }
-
-            var user = LoginHelper.
-
-            return new User("test@test.com", "Testing Longlastname", 1234);
-        }
 
         private void CreatePopup(string message)
         {
