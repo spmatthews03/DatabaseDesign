@@ -21,6 +21,11 @@ namespace Corkboard.API.Models
         public string Email { get; set; }
 
         /// <summary>
+        /// Represents the user's followers.
+        /// </summary>
+        public List<User> Followers { get; set; }
+
+        /// <summary>
         /// Represents the user's name.
         /// </summary>
         public string Name { get; set; }
