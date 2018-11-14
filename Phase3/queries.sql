@@ -90,14 +90,45 @@ Where User.email='$Owner'
 -- enable 'Add PushPin' button
 
 Select category_type, Corkboard.title, date_time, url
-FROM Corkboard INNER JOIN PushPin ON Corkboard.owner_email=PushPin.owner_email
-WHERE Corkboard.owner_email = '$Owner' AND Corkboard.title = '$Title'
+FROM Corkboard NATURAL JOIN PushPin
+WHERE owner_email = '$Owner' AND title = '$Title'
 ORDER BY PushPin.date_time DESC
 
 -- Number of watchers
 SELECT COUNT(*)
 FROM Corkboard NATURAL JOIN Watch
 WHERE title='$Title'
+
+
+-- ========================================================================
+-- ========================================================================
+-- View PushPin
+-- ========================================================================
+-- Save Pushpin Info into variabls
+-- $date_timte
+-- $owner_email
+-- $title
+-- $url
+
+
+-- Retrieve Likes
+SELECT name
+FROM PushPin AS p NATURAL JOIN User NATURAL JOIN Corkboard AS c NATURAL JOIN `Like` AS l 
+WHERE '$owner_email'=l.owner_email AND '$url'=l.url AND '$date_time'=l.date_time AND '$title'=l.title
+
+-- Retrieve Comments
+SELECT name, text
+FROM (PushPin AS p INNER JOIN `Comment`AS c ON '$owner_email'=c.owner_email) INNER JOIN User ON User.email=c.owner_email
+WHERE '$owner_email'=c.owner_email AND '$url'=c.url AND '$date_time'=c.pushpin_date_time AND '$title'=c.title
+ORDER BY c.date_time DESC
+
+-- Retrieve Tags
+SELECT DISTINCT name
+FROM Tags
+WHERE '$owner_email'=Tags.owner_email AND '$url'=Tags.url AND '$date_time'=Tags.date_time AND '$title'=Tags.title
+ORDER BY name ASC
+
+
 
 -- ==============================
 -- validating corkboard password

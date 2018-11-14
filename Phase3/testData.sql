@@ -152,6 +152,8 @@ VALUES ('Popular people', '2018-11-11 00:00:00', 'brian@gt.edu', 'https://www.fo
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
 VALUES ('brian@gt.edu','2018-11-08 00:00:00', 'https://www.mlb.com/', 'Best Sports', 'sean@gt.edu');
 
+INSERT INTO `Like` (email, date_time, url, title, owner_email)
+VALUES ('brian@gt.edu','2018-11-08 02:00:00', 'https://www.nursery.com/', 'Stuff For Home', 'sean@gt.edu');
 
 INSERT INTO `Like` (email, date_time, url, title, owner_email)
 VALUES ('brian@gt.edu','2018-11-08 00:05:00', 'https://www.travel.com/','Places To Go', 'mary@gt.edu');
@@ -176,9 +178,9 @@ VALUES ('chelsea@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Place
 
 
 
-
 -- Comments
-
+INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_time) 
+VALUES ('2018-11-10 00:01:00','This is great!','brian@gt.edu','https://www.nursery.com/','Stuff For Home', 'sean@gt.edu','2018-11-08 02:00:00');
 
 
 -- Follows
@@ -190,11 +192,10 @@ INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'meghan@gt.e
 INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'sean@gt.edu');
 
 -- Watch
-INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Other', 'meghan@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Travel', 'brian@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Home & Garden', 'meghan@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Home & Garden', 'sean@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Sports', 'sean@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Sports', 'sean@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Other', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Places To Go', 'brian@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Stuff For Home', 'sean@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Places To Go', 'brian@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Stuff For Home', 'sean@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
 
