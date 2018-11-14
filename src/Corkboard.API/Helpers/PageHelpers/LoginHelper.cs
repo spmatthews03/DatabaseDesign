@@ -12,8 +12,9 @@ namespace Corkboard.API.Helpers
         /// <returns>Returns all the user's information from the database, if not found, returns null.</returns>
         public static Models.User Login(string email, int pin)
         {
+            // TODO - fill in query.
             var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
-            if (userTable.Rows.Count > 0  )
+            if (userTable.Rows.Count > 0)
             {
                 var actualPin = Convert.ToInt32(userTable.GetValueInTable("Pin"));
                 if (actualPin.Equals(pin))
