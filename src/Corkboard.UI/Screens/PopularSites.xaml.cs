@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.API.Helpers.PageHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,14 +54,9 @@ namespace Corkboard.UI.Screens
             SitesView.View = view;
             view.Columns.Add(CreateGridColumn("Site", 269));
             view.Columns.Add(CreateGridColumn("Pushpins", 269));
-            // call api
-            // add result from api
-            // maybe api will return the formatted info?
 
-            //foreach (var pushpin in pushpins)
-            //{
-            //    SitesView.Items.Add(new { Site = pushpin.Url, Pushpins = board.Pushpins.Count });
-            //}
+            var sites = PopularSitesHelper.GetPopularSites();
+            SitesView.ItemsSource = sites;
         }
 
         #endregion
