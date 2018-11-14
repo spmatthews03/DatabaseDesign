@@ -20,11 +20,11 @@ namespace Corkboard.API.Helpers
         }
 
         /// <summary>
-        /// Returns the list of corkboards the current user created.
+        /// Returns the list of corkboards the user created.
         /// </summary>
-        /// <param name="currentUser">User to retrieve corkboards for.</param>
+        /// <param name="user">User to retrieve corkboards for.</param>
         /// <returns></returns>
-        public static List<Models.Corkboard> GetUserCorkboards(User currentUser)
+        public static List<Models.Corkboard> GetUserCorkboards(User user)
         {
             var corkboardRows = DatabaseHelper.ExecuteQuery("GET ALL CORKBOARDS FOR USER");
             var corkboardList = new List<Models.Corkboard>();
