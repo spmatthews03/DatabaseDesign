@@ -1,18 +1,13 @@
-﻿using Corkboad.API.Helpers;
-using Corkboard.UI.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Corkboard.API.Helpers.PageHelpers
 {
     public class SearchPushpinHelper
     {
-        public List<Pushpin> GetMatchingPushpins(string searchQuery)
+        public List<Models.Pushpin> GetMatchingPushpins(string searchQuery)
         {
-            var matchingPushpins = new List<Pushpin>();
+            var matchingPushpins = new List<Models.Pushpin>();
             var publicCorkboards = CorkboardHelper.GetUsersPublicCorkboards();
 
             foreach (var corkboard in publicCorkboards)

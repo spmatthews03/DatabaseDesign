@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Corkboard.UI.Models
+namespace Corkboard.API.Models
 {
-    public class CorkboardModel
+    public class Corkboard
     {
         /// <summary>
         /// Represents the category of the corkboard.

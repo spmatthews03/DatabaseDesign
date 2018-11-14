@@ -1,4 +1,4 @@
-﻿using Corkboard.UI.Models;
+﻿using Corkboard.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

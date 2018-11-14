@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class ViewCorkboard : Page
     {
-        public ViewCorkboard(IPage previousPage, Models.User owner, Models.User viewer)
+        public ViewCorkboard(IPage previousPage, User owner, User viewer)
         {
             InitializeComponent();
             this.previousPage = previousPage;
@@ -32,7 +33,7 @@ namespace Corkboard.UI.Screens
             SetWatch();
         }
 
-        public Models.CorkboardModel Corkboard { get; private set; }
+        public API.Models.Corkboard Corkboard { get; private set; }
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
@@ -54,9 +55,9 @@ namespace Corkboard.UI.Screens
 
         #region private
 
-        private Models.User owner;
+        private User owner;
         private IPage previousPage;
-        private Models.User viewer;
+        private User viewer;
 
         private void GetCorkboard()
         {

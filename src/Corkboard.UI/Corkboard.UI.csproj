@@ -63,9 +63,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IPage.cs" />
-    <Compile Include="Models\CorkboardModel.cs" />
-    <Compile Include="Models\Pushpin.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Popups\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
@@ -189,6 +186,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Corkboard.API\Corkboard.API.csproj">
+      <Project>{a820efc2-cbae-4f93-a8db-63eb1b0e159c}</Project>
+      <Name>Corkboard.API</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

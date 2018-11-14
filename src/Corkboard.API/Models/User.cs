@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Corkboard.UI.Models
+namespace Corkboard.API.Models
 {
     public class User
     {

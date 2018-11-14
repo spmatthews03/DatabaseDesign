@@ -1,11 +1,10 @@
-﻿using Corkboard.UI.Models;
-using System;
+﻿using System;
 
 namespace Corkboard.API.Helpers
 {
     public class LoginHelper
     {
-        public User ValidateLogin(string userName, int pin)
+        public Models.User ValidateLogin(string userName, int pin)
         {
             var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
             if (userTable.Rows.Count > 0  )
@@ -13,7 +12,7 @@ namespace Corkboard.API.Helpers
                 var actualPin = Convert.ToInt32(userTable.GetValueInTable("Pin"));
                 if (actualPin.Equals(pin))
                 {
-                    return new User(userTable.GetValueInTable("Email"), userTable.GetValueInTable("Name"), actualPin);
+                    return new Models.User(userTable.GetValueInTable("Email"), userTable.GetValueInTable("Name"), actualPin);
                 }
             }
 

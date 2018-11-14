@@ -1,4 +1,4 @@
-﻿using Corkboard.UI.Models;
+﻿using Corkboard.API.Models;
 using Corkboard.UI.Popups;
 using System;
 using System.Collections.Generic;
@@ -112,12 +112,7 @@ namespace Corkboard.UI.Screens
                 return null;
             }
 
-            return new User
-            {
-                Email = "test@test.com",
-                Name = "Testing Longlastname",
-                Pin = 1234
-            };
+            return new User("test@test.com", "Testing Longlastname", 1234);
         }
 
         private void CreatePopup(string message)

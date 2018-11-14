@@ -1,23 +1,17 @@
-﻿using API.Helpers;
-using Corkboard.UI.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Corkboard.API.Helpers
 {
     public class PushpinHelper
     {
-        public static List<Pushpin> GetPushpinsForCorkboard()
+        public static List<Models.Pushpin> GetPushpinsForCorkboard()
         {
             var pushpinRows = DatabaseHelper.ExecuteQuery("GET ALL PUSHPINS FOR CORKBOARD");
-            var pushpinsList = new List<Pushpin>();
+            var pushpinsList = new List<Models.Pushpin>();
             foreach (DataRow row in pushpinRows.Rows)
             {
-                var pushpin = new Pushpin();
+                var pushpin = new Models.Pushpin();
                 pushpin.Description = row.GetValueInRow("Description");
                 pushpin.Url = row.GetValueInRow("Url");
                 pushpinsList.Add(pushpin);

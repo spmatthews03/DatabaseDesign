@@ -50,13 +50,10 @@
     <Compile Include="Helpers\PageHelpers\PopularTagsHelper.cs" />
     <Compile Include="Helpers\PageHelpers\SearchPushpinHelper.cs" />
     <Compile Include="Helpers\PageHelpers\ViewCorkboardHelper.cs" />
+    <Compile Include="Models\Corkboard.cs" />
+    <Compile Include="Models\Pushpin.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Corkboard.UI\Corkboard.UI.csproj">
-      <Project>{00FE2176-564B-4BAC-AFE3-33A0BCF4B738}</Project>
-      <Name>Corkboard.UI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
