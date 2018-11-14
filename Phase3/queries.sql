@@ -31,22 +31,23 @@ SELECT pin FROM User WHERE User.email='$Email'; -- check if entered password is 
 -- ========================================================================
 -- Populating Home Screen
 -- ========================================================================
-Select name FROM User WHERE User.email='$Email';
+Select name FROM User WHERE User.email='$Email'; -- OR SAVE name in $Name during login
 
 -- Recent Updates
-SELECT *
-FROM (Corkboard NATURAL JOIN PushPin)
-WHERE Corkboard.owner_email IN 
-(SELECT Follows.follower_email 
-FROM Follows
-WHERE Follows.email='$Email'
-UNION 
-SELECT Watch.owner_email
-FROM Watch
-WHERE Watch.email='$Email') 
-OR Corkboard.owner_email='$Email'
+SELECT title, name, visibility, date_time
+FROM (Corkboard NATURAL JOIN User) NATURAL JOIN PushPin
+WHERE (Corkboard.owner_email IN 
+        (SELECT Follows.follower_email 
+        FROM Follows
+        WHERE Follows.email='sean@gt.edu'
+        UNION 
+        SELECT Watch.owner_email
+        FROM Watch
+        WHERE Watch.email='sean@gt.edu') 
+    OR Corkboard.owner_email='sean@gt.edu') 
+    AND Corkboard.owner_email=User.email
 GROUP BY Corkboard.title
-ORDER BY PushPin.date_time DESC;
+ORDER BY PushPin.date_time DESC Limit 4
 
 -- My Corkboards
 SELECT DISTINCT Corkboard.title AS Corkboard,
@@ -59,8 +60,8 @@ ORDER BY Corkboard.title;
 
 -- Searching for PushPin
 SELECT description AS 'PushPin Description', category_type AS CorkBoard, owner_email AS Owner
-FROM PushPin NATURAL JOIN Corkboard
-WHERE description LIKE '%$Entry%' OR tags LIKE '%$Entry%' OR category_type LIKE '%$Entry%'
+FROM Tags NATURAL JOIN Corkboard
+WHERE description LIKE '%$Entry%' OR name LIKE '%$Entry%' OR category_type LIKE '%$Entry%'
 ORDER BY description ASC;
 -- ========================================================================
 -- ========================================================================
@@ -76,10 +77,38 @@ ORDER BY type ASC;
 
 -- ========================================================================
 -- ========================================================================
--- Populating Corkboard
+-- View Corkboard
 -- ========================================================================
+-- Given the user must have clicked on the Hyperlinked Corkboard there should be
+-- a '$Title' and a '$Owner'
+-- We will perform numerous queries to simplify this page
+SELECT name 
+FROM User
+Where User.email='$Owner'
 
+-- if $owner=$Email from sessionID
+-- enable 'Add PushPin' button
 
+Select category_type, Corkboard.title, date_time, url
+FROM Corkboard INNER JOIN PushPin ON Corkboard.owner_email=PushPin.owner_email
+WHERE Corkboard.owner_email = '$Owner' AND Corkboard.title = '$Title'
+ORDER BY PushPin.date_time DESC
 
+-- Number of watchers
+SELECT COUNT(*)
+FROM Corkboard NATURAL JOIN Watch
+WHERE title='$Title'
 
+-- ==============================
+-- validating corkboard password
+-- ==============================
+SELECT password
+FROM Private_Corkboard
+WHERE title='$Title'
 
+-- ==============================
+-- Add a Corkboard
+-- ==============================
+-- must first create a corkboard, and then a private corkboard referencing the corkboard
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('This is my title', 1, 'sean@gt.edu', 'Other');
+INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('This is my title', 'sean@gt.edu', 'newpassword');

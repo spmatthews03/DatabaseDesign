@@ -57,10 +57,19 @@ INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Popular pe
 
 -- Pushpin
 INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
-VALUES ('Stuff For Home', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.fox.com/', 'Here are some of my favorite plants!');
+VALUES ('Stuff For Home', '2018-11-08 01:00:00', 'sean@gt.edu', 'https://www.nursery.com/', 'Sod');
 
 INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
-VALUES ('Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/', 'Here are some of my favorite Sports!');
+VALUES ('Stuff For Home', '2018-11-08 02:00:00', 'sean@gt.edu', 'https://www.nursery.com/', 'Succulents');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Stuff For Home', '2018-11-08 03:00:00', 'sean@gt.edu', 'https://www.nursery.com/', 'Roses');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Stuff For Home', '2018-11-08 04:00:00', 'sean@gt.edu', 'https://www.nursery.com/', 'Orchids');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Stuff For Home', '2018-11-08 03:20:00', 'sean@gt.edu', 'https://www.nursery.com/', 'Palm Trees');
 
 INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
 VALUES ('Random Cool Stuff', '2018-11-08 00:00:00', 'meghan@gt.edu', 'https://www.cnn.com/', 'Here are some of my favorite games!');
@@ -95,15 +104,6 @@ VALUES ('Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.trave
 INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
 VALUES ('Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
 
-CREATE TABLE Tags (
-	name varchar(100) NOT NULL,
-	title varchar(30) NOT NULL,
-	date_time datetime NOT NULL,
-	owner_email varchar(30) NOT NULL,
-	url varchar(300) NOT NULL,
-	description varchar(200) NOT NULL,
-	PRIMARY KEY (url, owner_email, date_time, title, description)
-);
 -- Tags
 INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Stuff For Home', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.fox.com/', 'Here are some of my favorite plants!');
 INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/', 'Here are some of my favorite Sports!');
@@ -131,37 +131,7 @@ INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES (
 INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Man Cave', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
 INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Wedding DIY', '2018-11-08 00:02:00', 'chelsea@gt.edu', 'https://www.hobbylobby.com/', 'DIY Projects');
 INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Man Cave', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
 INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/', 'Mediteranean Cruise');
-
-
--- INSERT INTO Tags(name) VALUES ('great');
--- INSERT INTO Tags(name) VALUES ('awesome');
--- INSERT INTO Tags(name) VALUES ('pretty');
--- INSERT INTO Tags(name) VALUES ('old');
--- INSERT INTO Tags(name) VALUES ('pleasing');
--- INSERT INTO Tags(name) VALUES ('baseball');
--- INSERT INTO Tags(name) VALUES ('palmtree');
--- INSERT INTO Tags(name) VALUES ('livingroom');
--- INSERT INTO Tags(name) VALUES ('bedroom');
--- INSERT INTO Tags(name) VALUES ('bathroom');
--- INSERT INTO Tags(name) VALUES ('wishlist');
--- INSERT INTO Tags(name) VALUES ('decor');
--- INSERT INTO Tags(name) VALUES ('remodel');
--- INSERT INTO Tags(name) VALUES ('garden');
--- INSERT INTO Tags(name) VALUES ('plantin');
--- INSERT INTO Tags(name) VALUES ('stadium');
--- INSERT INTO Tags(name) VALUES ('boardgames');
--- INSERT INTO Tags(name) VALUES ('escaperoom');
--- INSERT INTO Tags(name) VALUES ('football');
--- INSERT INTO Tags(name) VALUES ('cards');
--- INSERT INTO Tags(name) VALUES ('rummy');
--- INSERT INTO Tags(name) VALUES ('drinks');
--- INSERT INTO Tags(name) VALUES ('food');
-
-
-
-
 
 
 -- Private Pushpin
