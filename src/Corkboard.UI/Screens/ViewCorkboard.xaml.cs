@@ -25,7 +25,7 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
             this.previousPage = previousPage;
-            this.owner = owner;
+            Owner = owner;
             this.viewer = viewer;
             GetCorkboard();
             SetTitle();
@@ -34,6 +34,7 @@ namespace Corkboard.UI.Screens
         }
 
         public API.Models.Corkboard Corkboard { get; private set; }
+        public User Owner { get; private set; }
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
@@ -55,7 +56,6 @@ namespace Corkboard.UI.Screens
 
         #region private
 
-        private User owner;
         private IPage previousPage;
         private User viewer;
 
@@ -67,7 +67,7 @@ namespace Corkboard.UI.Screens
 
         private void SetTitle()
         {
-            TitleBlock.Text = $"{Corkboard.Title} by {owner.Name} - {Corkboard.Category} - Latest update: {Corkboard.LastUpdate}";
+            TitleBlock.Text = $"{Corkboard.Title} by {Owner.Name} - {Corkboard.Category} - Latest update: {Corkboard.LastUpdate}";
         }
 
         private void SetWatch()
@@ -90,7 +90,7 @@ namespace Corkboard.UI.Screens
 
         private void SetSwitchButton()
         {
-            if (owner.Name.Equals(viewer.Name))
+            if (Owner.Name.Equals(viewer.Name))
             {
                 SwitchButton.Content = "Add PushPin";
             }
