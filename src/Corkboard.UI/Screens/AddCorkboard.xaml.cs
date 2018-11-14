@@ -51,7 +51,7 @@ namespace Corkboard.UI.Screens
             }
 
             AddCorkboardHelper.AddCorkboard(PreviousPage.User, newCorkboard);
-            PreviousPage.MainWindow.Navigate(new ViewCorkboard(PreviousPage, PreviousPage.User, PreviousPage.User));
+            PreviousPage.MainWindow.Navigate(new ViewCorkboard(PreviousPage, PreviousPage.User, PreviousPage.User, newCorkboard.Title));
         }
 
         private void VisibilityButton_Private_Checked(object sender, RoutedEventArgs e)
