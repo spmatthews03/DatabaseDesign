@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.API.Helpers.PageHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,17 +50,14 @@ namespace Corkboard.UI.Screens
 
         private void DisplayResults(string search)
         {
-            // call api
-            // display results in listview
             var view = new GridView();
             SearchResultsView.View = view;
             view.Columns.Add(CreateGridColumn("Description", 243.667));
             view.Columns.Add(CreateGridColumn("Corkboard", 243.667));
             view.Columns.Add(CreateGridColumn("Owner", 243.667));
 
-            // call api
-            // add result from api
-            //SearchResultsView.ItemsSource = from api;
+            var results = SearchPushpinHelper.GetResults(search);
+            SearchResultsView.ItemsSource = results;
         }
 
         #endregion
