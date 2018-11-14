@@ -1,4 +1,6 @@
-﻿using Corkboard.API.Models;
+﻿using Corkboard.API.Helpers;
+using Corkboard.API.Helpers.PageHelpers;
+using Corkboard.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,13 +90,12 @@ namespace Corkboard.UI.Screens
             MyCorkboardView.View = view;
             view.Columns.Add(CreateGridColumn("Title", 309));
             view.Columns.Add(CreateGridColumn("Pushpins", 309));
-            // call api
-            // add result from api
 
-            //foreach (var board in corkboards)
-            //{
-            //    MyCorkboardView.Items.Add(new { Title = board.Title, Pushpins = board.Pushpins.Count });
-            //}
+            var corkboards = CorkboardHelper.GetUserPublicCorkboards(User);
+            foreach (var board in corkboards)
+            {
+                MyCorkboardView.Items.Add(new { Title = board.Title, Pushpins = board.Pushpins.Count });
+            }
         }
 
         private void DisplayRecentCorkboardUpdates()
@@ -103,11 +104,10 @@ namespace Corkboard.UI.Screens
             UpdatesView.View = view;
             view.Columns.Add(CreateGridColumn("Title", 206));
             view.Columns.Add(CreateGridColumn("Owner", 206));
-            view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 206));
+            view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 206, "LastUpdate"));
 
-            // call api
-            // add result from api
-            //UpdatesView.ItemsSource = from api;
+            var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(User);
+            UpdatesView.ItemsSource = corkboards;
         }
 
         private void DisplayUserInformation()
