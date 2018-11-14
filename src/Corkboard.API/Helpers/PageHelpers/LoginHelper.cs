@@ -16,6 +16,7 @@ namespace Corkboard.API.Helpers
             var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
             if (userTable.Rows.Count > 0)
             {
+                // BUG - this will return the first row's pin value. Maybe convert the datarow collection to a list of Models.User.
                 var actualPin = Convert.ToInt32(userTable.GetValueInTable("Pin"));
                 if (actualPin.Equals(pin))
                 {
