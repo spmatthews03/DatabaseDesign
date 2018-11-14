@@ -85,7 +85,7 @@ namespace Corkboard.UI.Screens
         private void GetCorkboard(string title)
         {
             Corkboard = CorkboardHelper.GetCorkboard(Owner, title);
-            // populate ui (pushpin images)
+            // TODO - populate ui (pushpin images)
         }
 
         private void SetTitle()
