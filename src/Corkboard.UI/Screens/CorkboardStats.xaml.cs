@@ -56,8 +56,7 @@ namespace Corkboard.UI.Screens
             view.Columns.Add(CreateGridColumn("Private Corkboards", 117.9, "PrivateCorkboards"));
             view.Columns.Add(CreateGridColumn("Public Pushpins", 117.9, "PublicPushpins"));
             view.Columns.Add(CreateGridColumn("Private Pushpins", 117.9, "PrivatePushpins"));
-            // call api
-            // add result from api
+
             var stats = StatHelper.GetCorkboardStats();
             StatsView.ItemsSource = stats;
         }
