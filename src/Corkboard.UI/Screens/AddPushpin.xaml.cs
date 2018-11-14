@@ -1,4 +1,5 @@
-﻿using Corkboard.UI.Popups;
+﻿using Corkboard.API.Helpers.PageHelpers;
+using Corkboard.UI.Popups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,20 @@ namespace Corkboard.UI.Screens
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!ValidateUrl(UrlBox.Text))
+            var newPushpin = ValidatePushpin();
+            if (newPushpin == null)
             {
+                CreatePopup("Invalid pushpin information supplied.");
                 return;
             }
-            // validate pushpin
-            // add to database
+
+            if (!AddPushpinHelper.IsValidFileType(newPushpin.Url))
+            {
+                CreatePopup("Invalid url. Please check format and extension type. Supported types - jpg png gif");
+                return;
+            }
+
+            AddPushpinHelper.AddPushpin(PreviousPage.Owner, newPushpin);
             MainWindow.Navigate(PreviousPage);
         }
 
@@ -111,19 +120,51 @@ namespace Corkboard.UI.Screens
 
         private ViewCorkboard PreviousPage { get; set; }
 
+        private void CreatePopup(string message)
+        {
+            var popup = new Error(message);
+            popup.ShowDialog();
+        }
+
+        private List<string> ParseTags(string tags)
+        {
+            var tagList = new List<string>();
+            if (string.IsNullOrEmpty(tags))
+            {
+                return tagList;
+            }
+
+            var split = tags.Split(',');
+            foreach (var tag in split)
+            {
+                tagList.Add(tag.Trim());
+            }
+
+            return tagList;
+        }
+
         private void SetTitle()
         {
             TitleBlock.Text += PreviousPage.Corkboard.Title;
         }
 
-        private bool ValidateUrl(string url)
+        private API.Models.Pushpin ValidatePushpin()
         {
-            // check file extensions .jpg .png .gif
-            // check url is correct
-            // if failed, show error box, return false
-            var error = new Error("Invalid url. Please check format and extension type. Supported types - jpg png gif");
-            error.ShowDialog();
-            return false;
+            var url = UrlBox.Text;
+            var description = DescriptionBox.Text;
+            var tags = TagsBox.Text;
+
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(description))
+            {
+                return null;
+            }
+
+            return new API.Models.Pushpin
+            {
+                Description = description,
+                Tags = ParseTags(tags),
+                Url = url
+            };
         }
 
         #endregion
