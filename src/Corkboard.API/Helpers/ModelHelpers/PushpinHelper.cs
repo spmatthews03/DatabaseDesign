@@ -19,5 +19,14 @@ namespace Corkboard.API.Helpers
 
             return pushpinsList;
         }
+
+        /// <summary>
+        /// Gets all the pushpins where the description OR tags OR category CONTAINS the query.
+        /// Does not need to be an exact match.
+        /// </summary>
+        public static List<Models.Pushpin> GetPushpins(string query)
+        {
+            return null;
+        }
     }
 }
