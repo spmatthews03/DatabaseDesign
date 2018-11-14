@@ -43,15 +43,21 @@
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\ModelHelpers\CorkboardHelper.cs" />
     <Compile Include="Helpers\ModelHelpers\PushpinHelper.cs" />
+    <Compile Include="Helpers\ModelHelpers\StatHelper.cs" />
     <Compile Include="Helpers\PageHelpers\AddCorkboardHelper.cs" />
     <Compile Include="Helpers\PageHelpers\AddPushpinHelper.cs" />
     <Compile Include="Helpers\PageHelpers\HomeHelper.cs" />
     <Compile Include="Helpers\PageHelpers\LoginHelper.cs" />
+    <Compile Include="Helpers\PageHelpers\PopularSitesHelper.cs" />
     <Compile Include="Helpers\PageHelpers\PopularTagsHelper.cs" />
     <Compile Include="Helpers\PageHelpers\SearchPushpinHelper.cs" />
     <Compile Include="Helpers\PageHelpers\ViewCorkboardHelper.cs" />
     <Compile Include="Models\Corkboard.cs" />
+    <Compile Include="Models\PopularTags.cs" />
     <Compile Include="Models\Pushpin.cs" />
+    <Compile Include="Models\SearchResults.cs" />
+    <Compile Include="Models\Sites.cs" />
+    <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
