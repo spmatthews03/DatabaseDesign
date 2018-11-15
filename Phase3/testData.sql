@@ -45,14 +45,29 @@ INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('
 INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Basement Todos', 0, 'john@gt.edu', 'Architecture');
 INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Wedding DIY', 0, 'chelsea@gt.edu', 'Art');
 INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Cool Cars', 0, 'jake@gt.edu', 'Technology');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Places To Go', 0, 'mary@gt.edu', 'Travel');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Delicious Burgers', 0, 'mary@gt.edu', 'Food & Drink');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Beer & Wine', 0, 'meghan@gt.edu', 'Food & Drink');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Sandwich Shops', 0, 'chelsea@gt.edu', 'Food & Drink');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Best Breweries', 0, 'brian@gt.edu', 'Food & Drink');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Burgers & Beer', 0, 'jake@gt.edu', 'Food & Drink');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Puppies', 0, 'john@gt.edu', 'Pets');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Kittens', 1, 'sean@gt.edu', 'Pets');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Australian Shepherds', 0, 'brian@gt.edu', 'Pets');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Pets I want!', 0, 'chelsea@gt.edu', 'Pets');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Ansel Adams', 0, 'chelsea@gt.edu', 'Photography');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('National Geographic', 0, 'jake@gt.edu', 'Photography');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Yosemite Pictures', 0, 'mary@gt.edu', 'Photography');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Yellowstone', 0, 'mary@gt.edu', 'Travel');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Yosemite', 0, 'chelsea@gt.edu', 'Travel');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Down the Coast', 0, 'sean@gt.edu', 'Travel');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Places To Go', 0, 'jake@gt.edu', 'Travel');
 
 
 -- Private Corkboard
 INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Best Sports', 'sean@gt.edu', 'secret');
 INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Artificial Intelligence', 'meghan@gt.edu', 'password123');
 INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Popular people', 'brian@gt.edu', 'helloworld');
-
+INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Kittens', 'sean@gt.edu', 'Pets');
 
 
 -- Pushpin
@@ -182,6 +197,8 @@ VALUES ('chelsea@gt.edu','2018-11-08 00:01:00', 'https://www.travel.com/','Place
 INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_time) 
 VALUES ('2018-11-10 00:01:00','This is great!','brian@gt.edu','https://www.nursery.com/','Stuff For Home', 'sean@gt.edu','2018-11-08 02:00:00');
 
+INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_time) 
+VALUES ('2018-11-10 00:03:00','Dude this is so cool','meghan@gt.edu','https://www.nursery.com/','Stuff For Home', 'sean@gt.edu','2018-11-08 02:00:00');
 
 -- Follows
 INSERT INTO Follows (email, follower_email) VALUES ('sean@gt.edu', 'meghan@gt.edu');
@@ -189,13 +206,27 @@ INSERT INTO Follows (email, follower_email) VALUES ('sean@gt.edu', 'brian@gt.edu
 INSERT INTO Follows (email, follower_email) VALUES ('meghan@gt.edu', 'brian@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('meghan@gt.edu', 'sean@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'meghan@gt.edu');
-INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'sean@gt.edu');
-
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'jake@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'john@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'chelsea@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'mary@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('jake@gt.edu', 'meghan@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('jake@gt.edu', 'sean@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('john@gt.edu', 'jake@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('chelsea@gt.edu', 'sean@gt.edu');
 -- Watch
 INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Places To Go', 'brian@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Stuff For Home', 'sean@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Places To Go', 'brian@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Stuff For Home', 'sean@gt.edu');
-INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('john@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('chelsea@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('jake@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('mary@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('jake@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('john@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
 
