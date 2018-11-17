@@ -27,7 +27,21 @@ namespace Corkboard.API.Helpers
         /// <returns>Returns the list of corkboards, or an empty list.</returns>
         public static List<Models.Corkboard> GetRecentUpdatedCorkboards(User currentUser)
         {
-            return null;
+            var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from (corkboard NATURAL JOIN User) " +
+                $"NATURAL JOIN pushpin where (corkboard.owner_email IN (Select Follows.follower_email from Follows WHERE Follows.email='{currentUser.Email}' " +
+                $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR corkboard.owner_email='{currentUser.Email}') AND corkboard.owner_email=User.email " +
+                $"Group By corkboard.title Order By pushpin.date_time DESC Limit 4");
+
+
+            var corkboardList = new List<Models.Corkboard>();
+            foreach (DataRow row in recentUpdates.Rows)
+            {
+                // TODO: fix this... shouldn't call CreateCorkboard
+                // corkboardList.Add(CreateCorkboardFromDataRow(row));
+                corkboardList.Add(CreateCorkboardFromDataRow(row));
+
+            }
+            return corkboardList;
         }
 
         /// <summary>
@@ -59,10 +73,11 @@ namespace Corkboard.API.Helpers
         public static Models.Corkboard CreateCorkboardFromDataRow(DataRow row)
         {
             var corkboard = new Models.Corkboard();
-            corkboard.Category = row.GetValueInRow("category");
-            corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
+            corkboard.Category = row.GetValueInRow("category_type");
+            // corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
             corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
             corkboard.Title = row.GetValueInRow("title");
+            corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
             corkboard.Pushpins = PushpinHelper.GetPushpinsForCorkboard(corkboard);
 
             return corkboard;

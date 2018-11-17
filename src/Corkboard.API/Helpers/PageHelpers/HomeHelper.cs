@@ -14,8 +14,9 @@ namespace Corkboard.API.Helpers.PageHelpers
         public static List<Models.Corkboard> GetRecentlyUpdatedCorkboards(User currentUser)
         {
             var corkboards = CorkboardHelper.GetRecentUpdatedCorkboards(currentUser);
-            corkboards.OrderBy(x => x.LastUpdate);
-            return corkboards.GetRange(0, 4);
+            // corkboards.OrderBy(x => x.LastUpdate);
+            // return corkboards.GetRange(0, 4);
+            return corkboards;
         }
     }
 }

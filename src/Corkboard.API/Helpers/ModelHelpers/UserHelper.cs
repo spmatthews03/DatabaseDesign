@@ -38,7 +38,7 @@ namespace Corkboard.API.Helpers
             {
                 var user = new Models.User(
                     userResults.GetValueInTable("Email"),
-                    GetUserFollowers(userEmail),
+                    null,
                     userResults.GetValueInTable("Name"),
                     userResults.GetValueInTable("Pin"));
 

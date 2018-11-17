@@ -11,7 +11,7 @@ namespace Corkboard.API.Models
         public User(string email, List<User> followers, string name,  string pin)
         {
             Email = email;
-            Followers = followers;
+            // Followers = followers;
             Name = name;
             Pin = pin;
         }
