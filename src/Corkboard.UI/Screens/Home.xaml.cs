@@ -107,7 +107,10 @@ namespace Corkboard.UI.Screens
             view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 206, "LastUpdate"));
 
             var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(User);
-            UpdatesView.ItemsSource = corkboards;
+            foreach (var board in corkboards)
+            {
+                UpdatesView.Items.Add(new { Title = board.Title, Owner = board.Owner.Name, LastUpdate = board.LastUpdate });
+            }
         }
 
         private void DisplayUserInformation()
