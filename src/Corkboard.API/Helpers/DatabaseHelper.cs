@@ -22,7 +22,8 @@ namespace Corkboard.API.Helpers
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("Could not connect to database.");
+                    Console.WriteLine("Could not connect to database.");
+                    return null;
                 }
 
             }
@@ -32,12 +33,19 @@ namespace Corkboard.API.Helpers
 
         public static DataTable ExecuteQuery(string sqlQuery)
         {
-            var connection = ConnectToDB();
-            var command = new MySqlCommand(sqlQuery, connection);
-            var dataAdapter = new MySqlDataAdapter(command);
-            var resultDataSet = new DataTable();
-            dataAdapter.Fill(resultDataSet);
-            return resultDataSet;
+            try
+            {
+                var connection = ConnectToDB();
+                var command = new MySqlCommand(sqlQuery, connection);
+                var dataAdapter = new MySqlDataAdapter(command);
+                var resultDataSet = new DataTable();
+                dataAdapter.Fill(resultDataSet);
+                return resultDataSet;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         /// <summary>

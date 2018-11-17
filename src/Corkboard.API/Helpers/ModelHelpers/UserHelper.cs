@@ -34,7 +34,7 @@ namespace Corkboard.API.Helpers
         public static User GetUserByEmail(string userEmail)
         {
             var userResults = DatabaseHelper.ExecuteQuery($"SELECT * FROM user WHERE email = '{userEmail}'");
-            if (userResults.Rows.Count > 0)
+            if (userResults?.Rows.Count > 0)
             {
                 var user = new Models.User(
                     userResults.GetValueInTable("Email"),
