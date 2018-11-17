@@ -1,8 +1,5 @@
 ﻿using Corkboard.API.Models;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 
 namespace Corkboard.API.Helpers
 {
@@ -36,7 +33,7 @@ namespace Corkboard.API.Helpers
             var userResults = DatabaseHelper.ExecuteQuery($"SELECT * FROM user WHERE email = '{userEmail}'");
             if (userResults?.Rows.Count > 0)
             {
-                var user = new Models.User(
+                var user = new User(
                     userResults.GetValueInTable("Email"),
                     null,
                     userResults.GetValueInTable("Name"),
