@@ -61,13 +61,27 @@ namespace Corkboard.API.Helpers
             return corkboardList;
         }
 
+
+        public static List<Models.User> GetNumberOfWatchersCorkboards(Models.Corkboard corkboard)
+        {
+            var watchers = DatabaseHelper.ExecuteQuery($"Select * from Corkboard NATURAL JOIN Watch WHERE owner_email='{corkboard.Owner.Email}' AND title='{corkboard.Title}'");
+            var watchersList = new List<Models.User>();
+            foreach (DataRow row in watchers.Rows)
+            {
+                watchersList.Add(UserHelper.GetUserByEmail(row.GetValueInRow("email")));
+            }
+            return watchersList;
+        }
+
+
         /// <summary>
         /// Gets the user's public corkboards.
         /// </summary>
         /// <param name="user">User to retrieve public corkboards for.</param>
         public static List<Models.Corkboard> GetUserPublicCorkboards(User user)
         {
-            return GetUserCorkboards(user).Where(x => x.IsPrivate.Equals(false)).ToList();
+            // return GetUserCorkboards(user).Where(x => x.IsPrivate.Equals(false)).ToList();
+            return GetUserCorkboards(user);
         }
 
         public static Models.Corkboard CreateCorkboardFromDataRow(DataRow row)
@@ -79,6 +93,7 @@ namespace Corkboard.API.Helpers
             corkboard.Title = row.GetValueInRow("title");
             corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
             corkboard.Pushpins = PushpinHelper.GetPushpinsForCorkboard(corkboard);
+            corkboard.Watchers = GetNumberOfWatchersCorkboards(corkboard);
 
             return corkboard;
         }
