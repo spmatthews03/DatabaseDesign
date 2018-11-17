@@ -42,7 +42,7 @@ namespace Corkboard.UI.Screens
                 return;
             }
 
-            var user = LoginHelper.Login(email, Convert.ToInt32(pin));
+            var user = LoginHelper.Login(email, pin);
             if (user == null)
             {
                 CreatePopup("Invalid credentials. Close this window to update your credentials.");

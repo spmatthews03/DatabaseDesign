@@ -2,6 +2,12 @@
 {
     public class Sites
     {
+        public Sites(int pushpins, string site)
+        {
+            Pushpins = pushpins;
+            Site = site;
+        }
+
         /// <summary>
         /// Represents the pushpins that have the base site url.
         /// </summary>

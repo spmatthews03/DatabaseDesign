@@ -5,6 +5,13 @@
     /// </summary>
     public class SearchResults
     {
+        public SearchResults(string corkboard, string description, string owner)
+        {
+            Corkboard = corkboard;
+            Description = description;
+            Owner = owner;
+        }
+
         /// <summary>
         /// Represents the corkboards title.
         /// </summary>

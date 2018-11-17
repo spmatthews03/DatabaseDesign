@@ -11,7 +11,7 @@ namespace Corkboard.API.Helpers
         /// <param name="corkboard">Corkboard to add.</param>
         public static void AddCorkboard(Models.User owner, Models.Corkboard corkboard)
         {
-            DatabaseHelper.ExecuteQuery("ADD CORKBOARD FOR A USER.");
+            DatabaseHelper.ExecuteQuery($"INSERT INTO corkboard ( title, visibility, owner_email, category_type) VALUES ('{corkboard.Title}', {GetCorkboardVisibility(corkboard.IsPrivate)}, '{owner.Email}', '{corkboard.Category}');");
         }
 
         /// <summary>
@@ -19,8 +19,7 @@ namespace Corkboard.API.Helpers
         /// </summary>
         public static bool CheckCorkboardExists(Models.User user, string title)
         {
-            // Might be able to remove the check of the owner's email as that should be checked in 'GetUserCorkboards'.
-            return CorkboardHelper.GetUserCorkboards(user).Exists(x => x.Title.Equals(title) && x.Owner.Email.Equals(user.Email));
+            return CorkboardHelper.GetUserCorkboards(user).Exists(x => x.Title.Equals(title));
         }
 
         /// <summary>
@@ -28,7 +27,18 @@ namespace Corkboard.API.Helpers
         /// </summary>
         public static List<string> GetCategories()
         {
-            return null;
+            var categoryResult = DatabaseHelper.ExecuteQuery("Select * from category");
+            return categoryResult.Rows.GetValueInRows("type");
+        }
+
+        private static int GetCorkboardVisibility(bool isPrivate)
+        {
+            if (isPrivate)
+            {
+                return 1;
+            }
+
+            return 0;
         }
     }
 }

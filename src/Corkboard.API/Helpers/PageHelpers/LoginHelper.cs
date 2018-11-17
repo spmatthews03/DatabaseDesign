@@ -10,19 +10,12 @@ namespace Corkboard.API.Helpers
         /// <param name="email">Email of the user.</param>
         /// <param name="pin">Pin of the user.</param>
         /// <returns>Returns all the user's information from the database, if not found, returns null.</returns>
-        public static Models.User Login(string email, int pin)
+        public static Models.User Login(string email, string pin)
         {
-            // TODO - fill in query.
-            var userTable = DatabaseHelper.ExecuteQuery("QUERY TO GET USER WITH USERNAME");
-            if (userTable.Rows.Count > 0)
+            var user = UserHelper.GetUserByEmail(email);
+            if(user != null && user.Pin.Equals(pin))
             {
-                // BUG - this will return the first row's pin value. Maybe convert the datarow collection to a list of Models.User.
-                var actualPin = Convert.ToInt32(userTable.GetValueInTable("Pin"));
-                if (actualPin.Equals(pin))
-                {
-                    // TODO - update to return all info for that user from the table.
-                    return new Models.User(userTable.GetValueInTable("Email"), userTable.GetValueInTable("Name"), actualPin);
-                }
+                return user;
             }
 
             return null;

@@ -16,7 +16,8 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// <param name="pushpin">Pushpin to add.</param>
         public static void AddPushpin(User owner, Pushpin pushpin)
         {
-            DatabaseHelper.ExecuteQuery("ADD PUSHPIN TO CORKBOARD");
+            DatabaseHelper.ExecuteQuery($"INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`) " +
+                $"VALUES ('{pushpin.Title}', '{pushpin.DateTime}', '{owner.Email}', '{pushpin.Url}', '{pushpin.Description}');");
         }
 
         /// <summary>
@@ -26,7 +27,10 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// <returns>Returns true for a supported type, false otherwise.</returns>
         public static bool IsValidFileType(string url)
         {
-            return false;
+            var acceptableFileTypes = new string[] { "jpg", "png", "gif" };
+            var fileExtension = url.Split('.').Last();
+
+            return acceptableFileTypes.Contains(fileExtension);
         }
     }
 }

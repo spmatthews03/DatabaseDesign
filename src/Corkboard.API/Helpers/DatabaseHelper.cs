@@ -1,21 +1,30 @@
 ﻿using System;
-
+using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.Generic;
 
 namespace Corkboard.API.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string connectionString =  "";
-        private static SqlConnection sqlConnection;
+        private static string connectionString = "server=localhost;uid=gatech;database=cb_db;pwd=gatechpassword";
+        private static MySqlConnection sqlConnection;
 
-        public static SqlConnection ConnectToDB()
+        public static MySqlConnection ConnectToDB()
         {
-            if(sqlConnection == null)
+            if (sqlConnection == null)
             {
-                sqlConnection = new SqlConnection(connectionString);
-                sqlConnection.Open();
+                try
+                {
+                    sqlConnection = new MySqlConnection(connectionString);
+                    sqlConnection.Open();
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Could not connect to database.");
+                }
+
             }
 
             return sqlConnection;
@@ -24,8 +33,8 @@ namespace Corkboard.API.Helpers
         public static DataTable ExecuteQuery(string sqlQuery)
         {
             var connection = ConnectToDB();
-            var command = new SqlCommand(sqlQuery, connection);
-            var dataAdapter = new SqlDataAdapter(command);
+            var command = new MySqlCommand(sqlQuery, connection);
+            var dataAdapter = new MySqlDataAdapter(command);
             var resultDataSet = new DataTable();
             dataAdapter.Fill(resultDataSet);
             return resultDataSet;
@@ -48,10 +57,31 @@ namespace Corkboard.API.Helpers
         /// </summary>
         /// <param name="dataRow">Data row to get the value from.</param>
         /// <param name="columnName">The name of the column to get the value in.</param>
-        /// <returns></returns>
         public static string GetValueInRow(this DataRow dataRow, string columnName)
         {
-            return dataRow[columnName].ToString();
+            var value = dataRow[columnName];
+            if (dataRow == null)
+            {
+                return string.Empty;
+            }
+
+            return value.ToString();
+        }
+
+        /// <summary>
+        /// Gets the value in all the rows of a data table.
+        /// </summary>
+        /// <param name="dataRow">Data row to get the values from.</param>
+        /// <param name="columnName">The name of the column to get the value in.</param>
+        public static List<string> GetValueInRows(this DataRowCollection rows, string columnName)
+        {
+            var values = new List<string>();
+            foreach (DataRow row in rows)
+            {
+                values.Add(GetValueInRow(row, columnName));
+            }
+
+            return values;
         }
     }
 }

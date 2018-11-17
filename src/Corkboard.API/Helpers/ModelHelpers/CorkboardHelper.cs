@@ -16,7 +16,7 @@ namespace Corkboard.API.Helpers
         /// <returns>Returns the corkboard if it exists, null otherwise.</returns>
         public static Models.Corkboard GetCorkboard(User owner, string title)
         {
-            return null;
+            return GetUserCorkboards(owner).FirstOrDefault(x => x.Title.Equals(title));
         }
 
         /// <summary>
@@ -37,16 +37,11 @@ namespace Corkboard.API.Helpers
         /// <returns></returns>
         public static List<Models.Corkboard> GetUserCorkboards(User user)
         {
-            var corkboardRows = DatabaseHelper.ExecuteQuery("GET ALL CORKBOARDS FOR USER");
+            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from corkboard where owner_email = '{user.Email}'");
             var corkboardList = new List<Models.Corkboard>();
             foreach (DataRow row in corkboardRows.Rows)
             {
-                var newCorkboad = new Models.Corkboard();
-                newCorkboad.Category = row.GetValueInRow("Category");
-                newCorkboad.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
-                newCorkboad.Title = row.GetValueInRow("Title");
-                newCorkboad.Pushpins = PushpinHelper.GetPushpinsForCorkboard();
-                corkboardList.Add(newCorkboad);
+                corkboardList.Add(CreateCorkboardFromDataRow(row));
             }
 
             return corkboardList;
@@ -60,5 +55,31 @@ namespace Corkboard.API.Helpers
         {
             return GetUserCorkboards(user).Where(x => x.IsPrivate.Equals(false)).ToList();
         }
+
+        public static Models.Corkboard CreateCorkboardFromDataRow(DataRow row)
+        {
+            var corkboard = new Models.Corkboard();
+            corkboard.Category = row.GetValueInRow("category");
+            corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
+            corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
+            corkboard.Title = row.GetValueInRow("title");
+            corkboard.Pushpins = PushpinHelper.GetPushpinsForCorkboard(corkboard);
+
+            return corkboard;
+        }
+
+        #region Private
+
+        private static bool GetCorkboardVisibility(string isPrivate)
+        {
+            if (isPrivate.Equals("0"))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 }

@@ -11,22 +11,23 @@ namespace Corkboard.API.Helpers.PageHelpers
     {
         public static void FollowCorkboard(User owner, User follower)
         {
-            DatabaseHelper.ExecuteQuery("SQL TO FOLLOW CORKBOARD OWNER");
+            DatabaseHelper.ExecuteQuery($"INSERT INTO follows ( email, follower_email) VALUES ('{owner.Email}', '{follower.Email}');");
         }
 
         public static void UnfollowCorkboard(User owner, User follower)
         {
-
+            DatabaseHelper.ExecuteQuery($"DELETE FROM follows WHERE email = '{owner.Email}' AND follower_email = '{follower.Email}'");
         }
 
         public static void UnwatchCorkboard(User owner, User follower, string title)
         {
+            DatabaseHelper.ExecuteQuery($"DELETE FROM watch WHERE email = '{follower.Email}' AND title = '{title}' AND owner_email = '{owner.Email}'");
 
         }
 
         public static void WatchCorkboard(User owner, User follower, string title)
         {
-            DatabaseHelper.ExecuteQuery("SQL TO WATCH CORKBOARD");
+            DatabaseHelper.ExecuteQuery($"INSERT INTO Watch(email, title, owner_email) VALUES('{follower.Email}', '{title}', '{owner.Email}');");
         }
     }
 }
