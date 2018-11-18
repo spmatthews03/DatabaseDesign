@@ -59,6 +59,14 @@ namespace Corkboard.API.Helpers
         }
 
         /// <summary>
+        /// Gets the pushpin.
+        /// </summary>
+        public static Pushpin GetPushpin(string title, string ownerEmail, string url, string dateTime)
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Likes the pushpin.
         /// </summary>
         /// <param name="pushpin">Pushpin to like.</param>
