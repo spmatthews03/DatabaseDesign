@@ -76,16 +76,6 @@ namespace Corkboard.API.Helpers
         }
 
         /// <summary>
-        /// Gets a corkboard from it's pushpin.
-        /// </summary>
-        /// <param name="pushpin">Pushpin of the corkboard.</param>
-        public static Models.Corkboard GetCorkboardFromPushpin(Pushpin pushpin)
-        {
-            return null;
-        }
-
-
-        /// <summary>
         /// Gets the user's public corkboards.
         /// </summary>
         /// <param name="user">User to retrieve public corkboards for.</param>
