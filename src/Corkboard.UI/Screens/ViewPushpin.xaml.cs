@@ -51,7 +51,19 @@ namespace Corkboard.UI.Screens
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
         {
-            // like/unlike pushpin
+            if (LikeButton.Content.Equals("Like"))
+            {
+                PushpinHelper.LikePushpin(pushpin, currentUser);
+                pushpin.Likes.Add(currentUser);
+            }
+
+            if (LikeButton.Content.Equals("Unlike"))
+            {
+                PushpinHelper.UnlikePushpin(pushpin, currentUser);
+                pushpin.Likes.Remove(currentUser);
+            }
+
+            SetSwitchButton_Like();
         }
 
         private void PostButton_Click(object sender, RoutedEventArgs e)
@@ -136,6 +148,18 @@ namespace Corkboard.UI.Screens
         {
             // TODO - hyperlink to corkboard
             TitleBlock.Text = $"{pushpin.Title} - {pushpin.DateTime}";
+        }
+
+        private void SetSwitchButton_Like()
+        {
+            if (pushpin.Likes.Contains(currentUser))
+            {
+                LikeButton.Content = "Unlike";
+            }
+            else
+            {
+                LikeButton.Content = "Like";
+            }
         }
 
         #endregion
