@@ -16,7 +16,7 @@ namespace Corkboard.API.Helpers
             // TODO create private corkboard if private, needs password to be passed
             //if (GetCorkboardVisibility(corkboard.IsPrivate) == 1)
             //{
-            //    DatabaseHelper.ExecuteQuery($"INSERT INTO private_corkboard ( title, owner_email, password) VALUES ('{corkboard.Title}', '{owner.Email}', '{corkboard.password}');");
+                    //AddPrivateCorkboard(owner, corkboard);
 
             //}
         }
