@@ -11,6 +11,7 @@ namespace Corkboard.API.Helpers.PageHelpers
     {
         /// <summary>
         /// Adds a pushpin to the corkboard. 
+        /// Adds a tag for the pushpin
         /// </summary>
         /// <param name="owner">User adding the pushpin.</param>
         /// <param name="pushpin">Pushpin to add.</param>
@@ -18,6 +19,12 @@ namespace Corkboard.API.Helpers.PageHelpers
         {
             DatabaseHelper.ExecuteQuery($"INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`) " +
                 $"VALUES ('{corkboard}', NOW(), '{owner.Email}', '{pushpin.Url}', '{pushpin.Description}');");
+
+            foreach (var tag in pushpin.Tags)
+            {
+                DatabaseHelper.ExecuteQuery($"INSERT INTO Tags (name, title, date_time, owner_email, url) " +
+                $"VALUES ('{tag}', '{corkboard}', NOW(), '{owner.Email}', '{pushpin.Url}');");
+            }
         }
 
         /// <summary>
