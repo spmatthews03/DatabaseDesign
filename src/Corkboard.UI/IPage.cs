@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Corkboard.UI
 {
@@ -12,5 +13,10 @@ namespace Corkboard.UI
         ///  Represents the main window containing the page.
         /// </summary>
         MainWindow MainWindow { get; }
+
+        /// <summary>
+        /// Current page.
+        /// </summary>
+        Page Self { get; }
     }
 }
