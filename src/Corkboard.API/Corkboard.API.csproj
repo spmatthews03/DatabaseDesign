@@ -69,6 +69,7 @@
     <Compile Include="Helpers\PageHelpers\PopularTagsHelper.cs" />
     <Compile Include="Helpers\PageHelpers\SearchPushpinHelper.cs" />
     <Compile Include="Helpers\PageHelpers\ViewCorkboardHelper.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Corkboard.cs" />
     <Compile Include="Models\PopularTags.cs" />
     <Compile Include="Models\Pushpin.cs" />
