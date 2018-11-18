@@ -35,6 +35,7 @@ namespace Corkboard.UI.Screens
 
         public MainWindow MainWindow { get; private set; }
         public User User { get; private set; }
+        public Page Self => this;
 
         private void CreateCorkboardButton_Click(object sender, RoutedEventArgs e)
         {
