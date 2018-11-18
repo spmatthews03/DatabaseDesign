@@ -51,7 +51,7 @@ namespace Corkboard.API.Helpers
         /// <returns></returns>
         public static List<Models.Corkboard> GetUserCorkboards(User user)
         {
-            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from corkboard where owner_email = '{user.Email}'");
+            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from corkboard NATURAL LEFT OUTER JOIN pushpin where owner_email = '{user.Email}' GROUP BY title");
             var corkboardList = new List<Models.Corkboard>();
             foreach (DataRow row in corkboardRows.Rows)
             {
@@ -89,7 +89,10 @@ namespace Corkboard.API.Helpers
             var corkboard = new Models.Corkboard();
             corkboard.Category = row.GetValueInRow("category_type");
             // corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
-
+            if(!row.GetValueInRow("date_time").Equals(""))
+            {
+                corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("date_time"));
+            }
             corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
             corkboard.Title = row.GetValueInRow("title");
             corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
