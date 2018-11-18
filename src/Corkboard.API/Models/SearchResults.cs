@@ -23,8 +23,23 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// Represent's the corkboards owner.
+        /// Represents the corkboards owner.
         /// </summary>
         public string Owner { get; set; }
+
+        /// <summary>
+        /// Represents the url of the pushpin.
+        /// </summary>
+        public string Url { get; set; }
+
+        /// <summary>
+        /// Represents the date/time for the pushpin.
+        /// </summary>
+        public string DateTime { get; set; }
+
+        /// <summary>
+        /// Represents the title of the pushpin.
+        /// </summary>
+        public string Title { get; set; }
     }
 }
