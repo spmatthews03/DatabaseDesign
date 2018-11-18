@@ -58,6 +58,26 @@ namespace Corkboard.API.Helpers
             return tagResults.Rows.GetValueInRows("Name");
         }
 
+        /// <summary>
+        /// Likes the pushpin.
+        /// </summary>
+        /// <param name="pushpin">Pushpin to like.</param>
+        /// <param name="user">User to add to the like table.</param>
+        public static void LikePushpin(Pushpin pushpin, User user)
+        {
+
+        }
+
+        /// <summary>
+        /// Unlikes the pushpin.
+        /// </summary>
+        /// <param name="pushpin">Pushpin to unlike.</param>
+        /// <param name="user">User to remove from the likes table.</param>
+        public static void UnlikePushpin(Pushpin pushpin, User user)
+        {
+
+        }
+
         #region Private
 
         private static Models.Pushpin CreatePushpinFromDataRow(DataRow row)
