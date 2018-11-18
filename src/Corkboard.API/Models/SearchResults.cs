@@ -26,6 +26,11 @@
         /// Represents the corkboards owner.
         /// </summary>
         public string Owner { get; set; }
+        
+        /// <summary>
+        /// Represents the owner's email.
+        /// </summary>
+        public string OwnerEmail { get; set; }
 
         /// <summary>
         /// Represents the url of the pushpin.
