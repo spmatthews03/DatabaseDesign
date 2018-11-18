@@ -9,12 +9,12 @@ namespace Corkboard.API.Helpers.PageHelpers
 {
     public static class ViewCorkboardHelper
     {
-        public static void FollowCorkboard(User owner, User follower)
+        public static void FollowUser(User owner, User follower)
         {
             DatabaseHelper.ExecuteQuery($"INSERT INTO follows ( email, follower_email) VALUES ('{owner.Email}', '{follower.Email}');");
         }
 
-        public static void UnfollowCorkboard(User owner, User follower)
+        public static void UnfollowUser(User owner, User follower)
         {
             DatabaseHelper.ExecuteQuery($"DELETE FROM follows WHERE email = '{owner.Email}' AND follower_email = '{follower.Email}'");
         }
