@@ -78,6 +78,17 @@ namespace Corkboard.API.Helpers
 
         }
 
+        /// <summary>
+        /// Adds a comment to the pushpin. Date/Time needs to be recorded.
+        /// </summary>
+        /// <param name="pushpin">Pushpin to add the comment to.</param>
+        /// <param name="user">User adding the comment.</param>
+        /// <param name="comment">Comment being added.</param>
+        public static void AddComment(Pushpin pushpin, User user, string comment)
+        {
+
+        }
+
         #region Private
 
         private static Models.Pushpin CreatePushpinFromDataRow(DataRow row)
