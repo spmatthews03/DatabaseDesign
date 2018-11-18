@@ -48,5 +48,15 @@ namespace Corkboard.API.Models
         /// Represents the tags for the pushpin.
         /// </summary>
         public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// Represents the users that have liked the pushpin.
+        /// </summary>
+        public List<User> Likes { get; set; }
+
+        /// <summary>
+        /// Represents the comments on the pushpin.
+        /// </summary>
+        public List<Comment> Comments { get; set; }
     }
 }
