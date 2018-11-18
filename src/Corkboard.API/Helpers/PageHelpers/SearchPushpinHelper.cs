@@ -18,6 +18,7 @@ namespace Corkboard.API.Helpers.PageHelpers
             var searchResults = new List<SearchResults>();
             foreach (DataRow row in searchedPushpinRows.Rows)
             {
+                // TODO - please update to contain the other properties within 'SearchResults'.
                 searchResults.Add(new SearchResults(row.GetValueInRow("description"),
                     row.GetValueInRow("title"), row.GetValueInRow("name")));
             }
