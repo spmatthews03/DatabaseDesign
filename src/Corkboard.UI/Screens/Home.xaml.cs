@@ -47,9 +47,19 @@ namespace Corkboard.UI.Screens
             MainWindow.Navigate(new PopularTags(this));
         }
 
+        private void PopularSites_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(new PopularSites(this));
+        }
+
         private void PushpinSearchButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Navigate(new SearchPushpin(this, SearchBox.Text));
+        }
+
+        private void Stats_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigate(new CorkboardStats(this));
         }
 
         private void NavigateToCorkboard(object sender, SelectionChangedEventArgs e)
@@ -130,7 +140,7 @@ namespace Corkboard.UI.Screens
             UpdatesView.View = view;
             view.Columns.Add(CreateGridColumn("Title", 206));
             view.Columns.Add(CreateGridColumn("Owner", 206));
-            view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 206, "LastUpdate"));
+            view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 188, "LastUpdate"));
             view.Columns.Add(CreateGridColumn("Email", 0));
 
             var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(User);
