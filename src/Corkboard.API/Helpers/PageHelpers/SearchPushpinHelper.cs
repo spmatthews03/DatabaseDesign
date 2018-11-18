@@ -20,17 +20,9 @@ namespace Corkboard.API.Helpers.PageHelpers
             {
                 // TODO - please update to contain the other properties within 'SearchResults'.
                 searchResults.Add(new SearchResults(row.GetValueInRow("description"),
-                    row.GetValueInRow("title"), row.GetValueInRow("name")));
+                    row.GetValueInRow("title"), row.GetValueInRow("name"), row.GetValueInRow("owner_email"), 
+                    row.GetValueInRow("url"), row.GetValueInRow("date_time"), row.GetValueInRow("title")));
             }
-
-            //var matchingPushpins = GetMatchingPushpins(query);
-
-            //var searchResults = new List<SearchResults>();
-            //foreach (var pushpin in matchingPushpins)
-            //{
-            //    var corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
-            //    searchResults.Add(new SearchResults(pushpin.Description, corkboard.Title, corkboard.Owner.Name));
-            //}
 
             return searchResults;
         }

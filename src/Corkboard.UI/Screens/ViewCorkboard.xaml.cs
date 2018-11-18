@@ -36,12 +36,12 @@ namespace Corkboard.UI.Screens
         {
             if (FollowButton.Content.Equals("Follow"))
             {
-                ViewCorkboardHelper.FollowCorkboard(Owner, viewer);
+                ViewCorkboardHelper.FollowUser(Owner, viewer);
             }
 
             if (FollowButton.Content.Equals("Unfollow"))
             {
-                ViewCorkboardHelper.UnfollowCorkboard(Owner, viewer);
+                ViewCorkboardHelper.UnfollowUser(Owner, viewer);
             }
 
             SetSwitchButton_Follow();
