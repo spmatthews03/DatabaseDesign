@@ -111,12 +111,12 @@ namespace Corkboard.UI.Screens
 
         private void DisplayDescription()
         {
-            DescriptionBlock.Text = pushpin.Description;
+            DescriptionBlock.Text = $"Description - {pushpin.Description}";
         }
 
         private void DisplayTags()
         {
-            TagsBlock.Text = pushpin.Tags.Aggregate((x, y) => $"{x}, {y}");
+            TagsBlock.Text = $"Tags - {pushpin.Tags.Aggregate((x, y) => $"{x}, {y}")}";
         }
 
         private void GetCorkboard()
