@@ -14,10 +14,10 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// </summary>
         /// <param name="owner">User adding the pushpin.</param>
         /// <param name="pushpin">Pushpin to add.</param>
-        public static void AddPushpin(User owner, Pushpin pushpin)
+        public static void AddPushpin(User owner, string corkboard, Pushpin pushpin)
         {
             DatabaseHelper.ExecuteQuery($"INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`) " +
-                $"VALUES ('{pushpin.Title}', '{pushpin.DateTime}', '{owner.Email}', '{pushpin.Url}', '{pushpin.Description}');");
+                $"VALUES ('{corkboard}', NOW(), '{owner.Email}', '{pushpin.Url}', '{pushpin.Description}');");
         }
 
         /// <summary>

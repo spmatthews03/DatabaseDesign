@@ -44,7 +44,7 @@ namespace Corkboard.UI.Screens
                 return;
             }
 
-            AddPushpinHelper.AddPushpin(PreviousPage.Owner, newPushpin);
+            AddPushpinHelper.AddPushpin(PreviousPage.Owner, PreviousPage.Corkboard.Title, newPushpin);
             MainWindow.Navigate(PreviousPage);
         }
 
