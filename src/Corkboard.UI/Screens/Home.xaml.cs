@@ -51,6 +51,29 @@ namespace Corkboard.UI.Screens
             MainWindow.Navigate(new SearchPushpin(this, SearchBox.Text));
         }
 
+        private void NavigateToCorkboard(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count < 1)
+            {
+                return;
+            }
+
+            var view = sender as ListView;
+            var properties = ConvertSelectedItem(view.SelectedItem);
+
+            if (view.Name.Equals("UpdatesView"))
+            {
+                var owner = UserHelper.GetUserByEmail(properties["Email"]);
+                MainWindow.Navigate(new ViewCorkboard(this, owner, User, properties["Title"]));
+            }
+            else
+            {
+                MainWindow.Navigate(new ViewCorkboard(this, User, User, properties["Title"]));
+            }
+
+            view.SelectedItem = null;
+        }
+
         #region focus events
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
@@ -86,6 +109,7 @@ namespace Corkboard.UI.Screens
 
         private void DisplayMyCorkboards()
         {
+            MyCorkboardView.SelectionMode = SelectionMode.Single;
             var view = new GridView();
             MyCorkboardView.View = view;
             view.Columns.Add(CreateGridColumn("Title", 309));
@@ -100,22 +124,36 @@ namespace Corkboard.UI.Screens
 
         private void DisplayRecentCorkboardUpdates()
         {
+            UpdatesView.SelectionMode = SelectionMode.Single;
             var view = new GridView();
             UpdatesView.View = view;
             view.Columns.Add(CreateGridColumn("Title", 206));
             view.Columns.Add(CreateGridColumn("Owner", 206));
             view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 206, "LastUpdate"));
+            view.Columns.Add(CreateGridColumn("Email", 0));
 
             var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(User);
             foreach (var board in corkboards)
             {
-                UpdatesView.Items.Add(new { Title = board.Title, Owner = board.Owner.Name, LastUpdate = board.LastUpdate });
+                UpdatesView.Items.Add(new { Title = board.Title, Owner = board.Owner.Name, LastUpdate = board.LastUpdate, Email = board.Owner.Email });
             }
         }
 
         private void DisplayUserInformation()
         {
             NameBox.Text = $"Welcome {User.Name}";
+        }
+
+        private Dictionary<string, string> ConvertSelectedItem(object item)
+        {
+            var properties = item.GetType().GetProperties();
+            var dictionary = new Dictionary<string, string>();
+            foreach (var prop in properties)
+            {
+                dictionary.Add(prop.Name, prop.GetValue(item, null).ToString());
+            }
+
+            return dictionary;
         }
 
         #endregion
