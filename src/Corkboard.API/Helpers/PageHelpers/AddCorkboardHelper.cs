@@ -12,6 +12,23 @@ namespace Corkboard.API.Helpers
         public static void AddCorkboard(Models.User owner, Models.Corkboard corkboard)
         {
             DatabaseHelper.ExecuteQuery($"INSERT INTO corkboard ( title, visibility, owner_email, category_type) VALUES ('{corkboard.Title}', {GetCorkboardVisibility(corkboard.IsPrivate)}, '{owner.Email}', '{corkboard.Category}');");
+
+            // TODO create private corkboard if private, needs password to be passed
+            //if (GetCorkboardVisibility(corkboard.IsPrivate) == 1)
+            //{
+            //    DatabaseHelper.ExecuteQuery($"INSERT INTO private_corkboard ( title, owner_email, password) VALUES ('{corkboard.Title}', '{owner.Email}', '{corkboard.password}');");
+
+            //}
+        }
+
+        /// <summary>
+        /// Adds a private corkboard for a user.
+        /// </summary>
+        /// <param name="owner">User to add the corkboard for.</param>
+        /// <param name="corkboard">Corkboard to add.</param>
+        public static void AddPrivateCorkboard(Models.User owner, Models.Corkboard corkboard)
+        {
+            DatabaseHelper.ExecuteQuery($"INSERT INTO corkboard ( title, visibility, owner_email, category_type) VALUES ('{corkboard.Title}', {GetCorkboardVisibility(corkboard.IsPrivate)}, '{owner.Email}', '{corkboard.Category}');");
         }
 
         /// <summary>
