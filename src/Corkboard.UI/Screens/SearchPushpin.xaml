@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="36,32,0,0" TextWrapping="Wrap" Text="Search results for - " VerticalAlignment="Top" Height="38" Width="731" FontSize="24" TextAlignment="Center"/>
-        <ListView x:Name="SearchResultsView" HorizontalAlignment="Left" Height="647" Margin="36,75,0,0" VerticalAlignment="Top" Width="731">
+        <ListView x:Name="SearchResultsView" HorizontalAlignment="Left" Height="647" Margin="36,75,0,0" VerticalAlignment="Top" Width="731" SelectionChanged="SearchResultsView_SelectionChanged">
         </ListView>
         <Button x:Name="CloseButton" Content="Back" HorizontalAlignment="Left" Margin="240,750,0,0" VerticalAlignment="Top" Width="331" Height="74" FontSize="20" Click="CloseButton_Click"/>
 
