@@ -107,6 +107,18 @@ namespace Corkboard.UI.Screens
 
         #region private
 
+        private Dictionary<string, string> ConvertSelectedItem(object item)
+        {
+            var properties = item.GetType().GetProperties();
+            var dictionary = new Dictionary<string, string>();
+            foreach (var prop in properties)
+            {
+                dictionary.Add(prop.Name, prop.GetValue(item, null).ToString());
+            }
+
+            return dictionary;
+        }
+
         private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
         {
             newBinding = newBinding ?? value;
@@ -153,18 +165,6 @@ namespace Corkboard.UI.Screens
         private void DisplayUserInformation()
         {
             NameBox.Text = $"Welcome {User.Name}";
-        }
-
-        private Dictionary<string, string> ConvertSelectedItem(object item)
-        {
-            var properties = item.GetType().GetProperties();
-            var dictionary = new Dictionary<string, string>();
-            foreach (var prop in properties)
-            {
-                dictionary.Add(prop.Name, prop.GetValue(item, null).ToString());
-            }
-
-            return dictionary;
         }
 
         #endregion
