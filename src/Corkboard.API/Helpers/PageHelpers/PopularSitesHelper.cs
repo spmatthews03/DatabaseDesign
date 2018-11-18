@@ -14,6 +14,7 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// </summary>
         public static List<Models.Sites> GetPopularSites()
         {
+            // TODO - we should not limit this
             var results = DatabaseHelper.ExecuteQuery("SELECT url AS Site, COUNT(*) AS PushPins FROM pushpin WHERE tags IS NOT NULL GROUP BY url ORDER BY COUNT(*) DESC LIMIT 4; ");
             var sites = new List<Models.Sites>();
             foreach (DataRow row in results.Rows)
