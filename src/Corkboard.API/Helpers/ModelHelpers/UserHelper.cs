@@ -30,7 +30,7 @@ namespace Corkboard.API.Helpers
         /// <returns>Returns the user with the specified email.</returns>
         public static User GetUserByEmail(string userEmail)
         {
-            var userResults = DatabaseHelper.ExecuteQuery($"SELECT * FROM user WHERE email = '{userEmail}'");
+            var userResults = DatabaseHelper.ExecuteQuery($@"SELECT * FROM ""user"" WHERE email = '{userEmail}'");
             if (userResults?.Rows.Count > 0)
             {
                 var user = new User(
