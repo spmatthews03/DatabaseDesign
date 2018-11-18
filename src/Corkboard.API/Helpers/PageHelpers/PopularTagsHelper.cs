@@ -16,7 +16,7 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// </summary>
         public static List<Models.PopularTags> GetPopularTags()
         {
-
+            // TODO - this should not be limited
             var popularTagRows = DatabaseHelper.ExecuteQuery($"Select name," +
                 $" Count(Distinct date_time, owner_email, url, title) AS Pushpins," +
                 $" Count(Distinct Tags.title, owner_email) AS 'Unique Corkboards'" +
