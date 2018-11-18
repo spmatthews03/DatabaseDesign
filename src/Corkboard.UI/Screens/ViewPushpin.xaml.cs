@@ -102,6 +102,7 @@ namespace Corkboard.UI.Screens
 
         private void SetTitle()
         {
+            // TODO - hyperlink to corkboard
             TitleBlock.Text = $"{pushpin.Title} - {pushpin.DateTime}";
         }
 
