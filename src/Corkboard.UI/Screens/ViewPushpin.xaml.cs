@@ -64,9 +64,29 @@ namespace Corkboard.UI.Screens
         private Pushpin pushpin;
         private User currentUser;
 
+        private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
+        {
+            newBinding = newBinding ?? value;
+            return new GridViewColumn
+            {
+                Header = value,
+                DisplayMemberBinding = new Binding(newBinding),
+                Width = width
+            };
+        }
+
         private void DisplayComments()
         {
-
+            CommentsView.SelectionMode = SelectionMode.Single;
+            var view = new GridView();
+            CommentsView.View = view;
+            view.Columns.Add(CreateGridColumn("User", 170));
+            view.Columns.Add(CreateGridColumn("Comment", 170));
+            
+            foreach (var comment in pushpin.Comments)
+            {
+                CommentsView.Items.Add(new { User = comment.User, Comment = comment.Value });
+            }
         }
 
         private void GetCorkboard()

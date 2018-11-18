@@ -17,11 +17,6 @@
         <TextBlock x:Name="LikesBlock" HorizontalAlignment="Left" Margin="48,686,0,0" TextWrapping="Wrap" Text="List of users who have liked this pushpin" VerticalAlignment="Top" Height="30" Width="568" FontSize="18" TextAlignment="Center"/>
         <Button x:Name="LikeButton" Content="Like" HorizontalAlignment="Left" Margin="662,687,0,0" VerticalAlignment="Top" Width="109" Height="46" Click="LikeButton_Click"/>
         <ListView x:Name="CommentsView" HorizontalAlignment="Left" Height="134" Margin="48,734,0,0" VerticalAlignment="Top" Width="342">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
         </ListView>
 
         <Button x:Name="PostCommentButton" Content="Post" HorizontalAlignment="Left" Margin="662,778,0,0" VerticalAlignment="Top" Width="109" Height="46" Click="PostButton_Click"/>
