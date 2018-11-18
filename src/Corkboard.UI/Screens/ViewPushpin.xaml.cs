@@ -1,4 +1,6 @@
-﻿using Corkboard.API.Models;
+﻿using Corkboard.API.Helpers;
+using Corkboard.API.Helpers.PageHelpers;
+using Corkboard.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +23,13 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class ViewPushpin : Page
     {
-        public ViewPushpin(IPage previousPage, Pushpin pushpin)
+        public ViewPushpin(IPage previousPage, Pushpin pushpin, User currentUser)
         {
             InitializeComponent();
             this.previousPage = previousPage;
             this.pushpin = pushpin;
+            this.currentUser = currentUser;
+            GetCorkboard();
             SetTitle();
             SetImage();
             SetLikes();
@@ -39,7 +43,8 @@ namespace Corkboard.UI.Screens
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
-            // follow user
+            var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
+            ViewCorkboardHelper.FollowUser(owner, currentUser);
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
@@ -54,12 +59,19 @@ namespace Corkboard.UI.Screens
 
         #region private
 
+        private API.Models.Corkboard corkboard;
         private IPage previousPage;
         private Pushpin pushpin;
+        private User currentUser;
 
         private void DisplayComments()
         {
 
+        }
+
+        private void GetCorkboard()
+        {
+            corkboard = CorkboardHelper.GetCorkboardFromPushpin(pushpin);
         }
 
         private void SetImage()
@@ -90,7 +102,7 @@ namespace Corkboard.UI.Screens
 
         private void SetTitle()
         {
-
+            TitleBlock.Text = $"{pushpin.Title} - {pushpin.DateTime}";
         }
 
         #endregion
