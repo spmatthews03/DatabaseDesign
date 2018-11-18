@@ -27,6 +27,11 @@ namespace Corkboard.UI.Screens
         public API.Models.Corkboard Corkboard { get; private set; }
         public User Owner { get; private set; }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            previousPage.MainWindow.Navigate(previousPage.Self);
+        }
+
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
             if (FollowButton.Content.Equals("Follow"))

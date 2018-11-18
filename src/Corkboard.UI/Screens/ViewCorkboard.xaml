@@ -9,7 +9,7 @@
       Title="ViewCorkboard">
 
     <Grid>
-        <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="27,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="77" Width="617" FontSize="24" TextAlignment="Center"/>
+        <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="131,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="77" Width="513" FontSize="24" TextAlignment="Center"/>
         <Button x:Name="FollowButton" Content="Follow" HorizontalAlignment="Left" Margin="672,44,0,0" VerticalAlignment="Top" Width="104" Height="46" FontSize="20" Click="FollowButton_Click"/>
         <ListView x:Name="PushpinView" HorizontalAlignment="Left" Height="566" Margin="27,136,0,0" VerticalAlignment="Top" Width="744">
             <ListView.View>
@@ -19,7 +19,8 @@
             </ListView.View>
         </ListView>
         <TextBlock x:Name="WatcherBlock" HorizontalAlignment="Left" Margin="175,725,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="45" Width="469" FontSize="20" TextAlignment="Center"/>
-        <Button x:Name="SwitchButton" Content="Back" HorizontalAlignment="Left" Margin="175,788,0,0" VerticalAlignment="Top" Width="469" Height="56" Click="SwitchButton_Click"/>
+        <Button x:Name="SwitchButton" Content="Watch" HorizontalAlignment="Left" Margin="175,788,0,0" VerticalAlignment="Top" Width="469" Height="56" Click="SwitchButton_Click"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="27,44,0,0" VerticalAlignment="Top" Width="87" Height="46" FontSize="20" RenderTransformOrigin="0.246,0.658" Click="BackButton_Click"/>
 
     </Grid>
 </Page>
