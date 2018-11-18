@@ -64,7 +64,7 @@ namespace Corkboard.UI.Screens
 
         private void SetImage()
         {
-
+            image.Source = new BitmapImage(new Uri(pushpin.Url));
         }
 
         private void SetLikes()
