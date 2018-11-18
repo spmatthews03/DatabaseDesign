@@ -73,7 +73,7 @@ namespace Corkboard.API.Helpers
         /// <param name="user">User to add to the like table.</param>
         public static void LikePushpin(Pushpin pushpin, User user)
         {
-            DatabaseHelper.ExecuteQuery($"INSERT INTO `Like` (email, date_time, url, title, owner_email) " +
+            DatabaseHelper.ExecuteQuery($"INSERT INTO Likes (email, date_time, url, title, owner_email) " +
                 $"VALUES('{user.Email}','{pushpin.DateTime}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}')");
         }
 
@@ -84,7 +84,7 @@ namespace Corkboard.API.Helpers
         /// <param name="user">User to remove from the likes table.</param>
         public static void UnlikePushpin(Pushpin pushpin, User user)
         {
-            DatabaseHelper.ExecuteQuery($"DELETE FROM `Like` WHERE email='{user.Email}' AND date_time='{pushpin.DateTime}' " +
+            DatabaseHelper.ExecuteQuery($"DELETE FROM Likes WHERE email='{user.Email}' AND date_time='{pushpin.DateTime}' " +
                 $"AND url='{pushpin.Url} AND title='{pushpin.Title}' AND owner_email='{pushpin.Owner_Email}'");
         }
 
@@ -96,7 +96,7 @@ namespace Corkboard.API.Helpers
         /// <param name="comment">Comment being added.</param>
         public static void AddComment(Pushpin pushpin, User user, string comment)
         {
-            DatabaseHelper.ExecuteQuery($"INSERT INTO Comment (date_time, text, email, url, title, owner_email, pushpin, date_time) " +
+            DatabaseHelper.ExecuteQuery($"INSERT INTO Comments (date_time, text, email, url, title, owner_email, pushpin, date_time) " +
                 $"Values(NOW(),'{comment}','{user.Email}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}','{pushpin.DateTime}')");
         }
 
