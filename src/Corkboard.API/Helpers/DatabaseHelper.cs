@@ -8,7 +8,7 @@ namespace Corkboard.API.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string connectionString = "server=gatech-class-01.database.windows.net;uid=gatech;database=cb_db;pwd=Student01";
+        private static string connectionString = "server=localhost;uid=gatech;database=cb_db;pwd=gatechpassword";
         private static SqlConnection sqlConnection;
 
         public static SqlConnection ConnectToDB()
