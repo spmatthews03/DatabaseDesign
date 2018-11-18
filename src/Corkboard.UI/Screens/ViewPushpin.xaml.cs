@@ -71,7 +71,7 @@ namespace Corkboard.UI.Screens
 
         private void GetCorkboard()
         {
-            corkboard = CorkboardHelper.GetCorkboardFromPushpin(pushpin);
+            corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
         }
 
         private void SetImage()
