@@ -34,6 +34,8 @@ namespace Corkboard.UI.Screens
             SetImage();
             SetLikes();
             DisplayComments();
+            DisplayDescription();
+            DisplayTags();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -87,6 +89,16 @@ namespace Corkboard.UI.Screens
             {
                 CommentsView.Items.Add(new { User = comment.User, Comment = comment.Value });
             }
+        }
+
+        private void DisplayDescription()
+        {
+            DescriptionBlock.Text = pushpin.Description;
+        }
+
+        private void DisplayTags()
+        {
+            TagsBlock.Text = pushpin.Tags.Aggregate((x, y) => $"{x}, {y}");
         }
 
         private void GetCorkboard()
