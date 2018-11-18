@@ -8,7 +8,14 @@ namespace Corkboard.API.Models
 {
     public class Pushpin
     {
-        public Pushpin(string title, string dateTime, string owner_email, string description, string url, List<string> tags) { }
+        public Pushpin(string title, string dateTime, string owner_email, string description, string url, List<string> tags) {
+            this.Title = title;
+            this.DateTime = dateTime;
+            this.Owner_Email = owner_email;
+            this.Description = description;
+            this.Url = url;
+            this.Tags = tags;
+        }
 
         public Pushpin() { }
 

@@ -89,6 +89,7 @@ namespace Corkboard.API.Helpers
             var corkboard = new Models.Corkboard();
             corkboard.Category = row.GetValueInRow("category_type");
             // corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
+
             corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
             corkboard.Title = row.GetValueInRow("title");
             corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
@@ -102,7 +103,7 @@ namespace Corkboard.API.Helpers
 
         private static bool GetCorkboardVisibility(string isPrivate)
         {
-            if (isPrivate.Equals("0"))
+            if (isPrivate.Equals("False"))
             {
                 return false;
             }

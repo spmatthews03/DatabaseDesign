@@ -1,6 +1,7 @@
 ﻿using Corkboard.API.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 
 namespace Corkboard.API.Helpers.PageHelpers
 {
@@ -11,15 +12,25 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// </summary>
         public static List<SearchResults> GetResults(string query)
         {
-            var matchingPushpins = GetMatchingPushpins(query);
-
+            var searchedPushpinRows = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN Tags NATURAL JOIN corkboard " +
+                $"where description LIKE '%{query}%' OR name LIKE '%{query}%' OR category_type LIKE '%{query}%' " +
+                $"Order By description ASC");
             var searchResults = new List<SearchResults>();
-            foreach(var pushpin in matchingPushpins)
+            foreach (DataRow row in searchedPushpinRows.Rows)
             {
-                var corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
-                searchResults.Add(new SearchResults(pushpin.Description, corkboard.Title, corkboard.Owner.Name));         
+                searchResults.Add(new SearchResults(row.GetValueInRow("description"),
+                    row.GetValueInRow("title"), row.GetValueInRow("name")));
             }
-            
+
+            //var matchingPushpins = GetMatchingPushpins(query);
+
+            //var searchResults = new List<SearchResults>();
+            //foreach (var pushpin in matchingPushpins)
+            //{
+            //    var corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
+            //    searchResults.Add(new SearchResults(pushpin.Description, corkboard.Title, corkboard.Owner.Name));
+            //}
+
             return searchResults;
         }
 

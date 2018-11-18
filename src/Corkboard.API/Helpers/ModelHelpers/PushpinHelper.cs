@@ -60,7 +60,7 @@ namespace Corkboard.API.Helpers
 
         #region Private
 
-        private static Pushpin CreatePushpinFromDataRow(DataRow row)
+        private static Models.Pushpin CreatePushpinFromDataRow(DataRow row)
         {
             var description = row.GetValueInRow("Description");
             var url = row.GetValueInRow("Url");

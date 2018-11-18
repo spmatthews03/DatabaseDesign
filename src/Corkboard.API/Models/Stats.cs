@@ -8,6 +8,15 @@ namespace Corkboard.API.Models
 {
     public class Stats
     {
+        public Stats(string name, int publicCorkboards, int publicPushpins, int privateCorkboards, int privatePushpins)
+        {
+            User = name;
+            PublicCorkboards = publicCorkboards;
+            PublicPushpins = publicPushpins;
+            PrivateCorkboards = privateCorkboards;
+            PrivatePushpins = privatePushpins;
+        }
+
         /// <summary>
         /// Represents the amount of private corkboards for the user.
         /// </summary>

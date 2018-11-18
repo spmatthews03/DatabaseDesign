@@ -2,6 +2,13 @@
 {
     public class PopularTags
     {
+        public PopularTags(string tag, int numPushPins,  int numUniqueCorkboards)
+        {
+            Tag = tag;
+            Pushpins = numPushPins;
+            UniqueCorkboards = numUniqueCorkboards;
+        }
+
         /// <summary>
         /// Represents the amount of pushpins this tag is used for.
         /// </summary>
