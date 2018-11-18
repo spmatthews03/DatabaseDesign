@@ -25,6 +25,7 @@ namespace Corkboard.UI.Screens
         {
             InitializeComponent();
             homePage = previousPage;
+            DisplayStats();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -51,11 +52,11 @@ namespace Corkboard.UI.Screens
         {
             var view = new GridView();
             StatsView.View = view;
-            view.Columns.Add(CreateGridColumn("User", 269.4));
-            view.Columns.Add(CreateGridColumn("Public Corkboards", 117.9, "PublicCorkboards"));
-            view.Columns.Add(CreateGridColumn("Private Corkboards", 117.9, "PrivateCorkboards"));
-            view.Columns.Add(CreateGridColumn("Public Pushpins", 117.9, "PublicPushpins"));
-            view.Columns.Add(CreateGridColumn("Private Pushpins", 117.9, "PrivatePushpins"));
+            view.Columns.Add(CreateGridColumn("User", 185));
+            view.Columns.Add(CreateGridColumn("Public Corkboards", 138.9, "PublicCorkboards"));
+            view.Columns.Add(CreateGridColumn("Private Corkboards", 144, "PrivateCorkboards"));
+            view.Columns.Add(CreateGridColumn("Public Pushpins", 136, "PublicPushpins"));
+            view.Columns.Add(CreateGridColumn("Private Pushpins", 136, "PrivatePushpins"));
 
             var stats = StatHelper.GetCorkboardStats();
             StatsView.ItemsSource = stats;
