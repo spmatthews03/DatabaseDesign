@@ -21,7 +21,7 @@ namespace Corkboard.UI.Screens
     /// <summary>
     /// Interaction logic for ViewPushpin.xaml
     /// </summary>
-    public partial class ViewPushpin : Page
+    public partial class ViewPushpin : Page, IPage
     {
         public ViewPushpin(IPage previousPage, Pushpin pushpin, User currentUser)
         {
@@ -37,6 +37,9 @@ namespace Corkboard.UI.Screens
             DisplayDescription();
             DisplayTags();
         }
+
+        public MainWindow MainWindow => previousPage.MainWindow;
+        public Page Self => this;
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
