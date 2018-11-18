@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,20 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class ViewPushpin : Page
     {
-        public ViewPushpin()
+        public ViewPushpin(IPage previousPage, Pushpin pushpin)
         {
             InitializeComponent();
+            this.previousPage = previousPage;
+            this.pushpin = pushpin;
             SetTitle();
             SetImage();
             SetLikes();
             DisplayComments();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            previousPage.MainWindow.Navigate(previousPage.Self);
         }
 
         private void FollowButton_Click(object sender, RoutedEventArgs e)
@@ -45,6 +53,9 @@ namespace Corkboard.UI.Screens
         }
 
         #region private
+
+        private IPage previousPage;
+        private Pushpin pushpin;
 
         private void DisplayComments()
         {

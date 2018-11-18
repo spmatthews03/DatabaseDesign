@@ -9,7 +9,7 @@
       Title="ViewPushpin">
 
     <Grid>
-        <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="26,30,0,0" TextWrapping="Wrap" Text="Title Information" VerticalAlignment="Top" Height="46" Width="618" FontSize="24" TextAlignment="Center"/>
+        <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="160,30,0,0" TextWrapping="Wrap" Text="Title Information" VerticalAlignment="Top" Height="46" Width="484" FontSize="24" TextAlignment="Center"/>
         <Button x:Name="FollowButton" Content="Follow" HorizontalAlignment="Left" Margin="662,30,0,0" VerticalAlignment="Top" Width="109" Height="46" Click="FollowButton_Click"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="472" Margin="26,96,0,0" VerticalAlignment="Top" Width="745"/>
         <TextBlock x:Name="DescriptionBlock" HorizontalAlignment="Left" Margin="26,594,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Height="34" Width="745" FontSize="18" TextAlignment="Center"/>
@@ -32,5 +32,6 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="27,44,0,0" VerticalAlignment="Top" Width="87" Height="46" FontSize="20" RenderTransformOrigin="0.246,0.658" Click="BackButton_Click"/>
     </Grid>
 </Page>
