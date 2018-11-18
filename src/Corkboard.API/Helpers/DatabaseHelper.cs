@@ -44,7 +44,7 @@ namespace Corkboard.API.Helpers
             }
             catch (Exception e)
             {
-                return null;
+                return new DataTable();
             }
         }
 
