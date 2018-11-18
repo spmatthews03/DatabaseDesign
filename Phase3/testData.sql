@@ -45,29 +45,14 @@ INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('
 INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Basement Todos', 0, 'john@gt.edu', 'Architecture');
 INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Wedding DIY', 0, 'chelsea@gt.edu', 'Art');
 INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Cool Cars', 0, 'jake@gt.edu', 'Technology');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Delicious Burgers', 0, 'mary@gt.edu', 'Food & Drink');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Beer & Wine', 0, 'meghan@gt.edu', 'Food & Drink');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Sandwich Shops', 0, 'chelsea@gt.edu', 'Food & Drink');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Best Breweries', 0, 'brian@gt.edu', 'Food & Drink');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Burgers & Beer', 0, 'jake@gt.edu', 'Food & Drink');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Puppies', 0, 'john@gt.edu', 'Pets');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Kittens', 1, 'sean@gt.edu', 'Pets');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Australian Shepherds', 0, 'brian@gt.edu', 'Pets');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Pets I want!', 0, 'chelsea@gt.edu', 'Pets');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Ansel Adams', 0, 'chelsea@gt.edu', 'Photography');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('National Geographic', 0, 'jake@gt.edu', 'Photography');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Yosemite Pictures', 0, 'mary@gt.edu', 'Photography');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Yellowstone', 0, 'mary@gt.edu', 'Travel');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Yosemite', 0, 'chelsea@gt.edu', 'Travel');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Down the Coast', 0, 'sean@gt.edu', 'Travel');
-INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Places To Go', 0, 'jake@gt.edu', 'Travel');
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Places To Go', 0, 'mary@gt.edu', 'Travel');
 
 
 -- Private Corkboard
 INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Best Sports', 'sean@gt.edu', 'secret');
 INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Artificial Intelligence', 'meghan@gt.edu', 'password123');
 INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Popular people', 'brian@gt.edu', 'helloworld');
-INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Kittens', 'sean@gt.edu', 'Pets');
+
 
 
 -- Pushpin
@@ -105,7 +90,7 @@ INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`
 VALUES ('Baseball stuff', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.mlb.com/', 'Favorite athletes!');
 
 INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
-VALUES ('Man Cave', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
+VALUES ('Man Cave', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
 
 INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
 VALUES ('Wedding DIY', '2018-11-08 00:02:00', 'chelsea@gt.edu', 'https://www.hobbylobby.com/', 'DIY Projects');
@@ -120,33 +105,33 @@ INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`
 VALUES ('Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
 
 -- Tags
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Stuff For Home', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.fox.com/', 'Here are some of my favorite plants!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/', 'Here are some of my favorite Sports!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Random Cool Stuff', '2018-11-08 00:00:00', 'meghan@gt.edu', 'https://www.cnn.com/', 'Here are some of my favorite games!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Places To Go', '2018-11-08 00:00:00', 'brian@gt.edu', 'https://www.travel.com/', 'Here are some of my favorite places!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Cool Cars', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.tesla.com/', 'Electric Cars');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/', 'Mediteranean Cruise');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('cool', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('baseball', 'Baseball stuff', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.mlb.com/', 'Favorite athletes!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('baseball', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/', 'Here are some of my favorite Sports!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('baseball', 'Man Cave', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('livingroom', 'Wedding DIY', '2018-11-08 00:02:00', 'chelsea@gt.edu', 'https://www.hobbylobby.com/', 'DIY Projects');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('livingroom', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('livingroom', 'Man Cave', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('livingroom', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/', 'Mediteranean Cruise');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('awesome', 'Stuff For Home', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.fox.com/', 'Here are some of my favorite plants!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('awesome', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/', 'Here are some of my favorite Sports!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('awesome', 'Random Cool Stuff', '2018-11-08 00:00:00', 'meghan@gt.edu', 'https://www.cnn.com/', 'Here are some of my favorite games!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('awesome', 'Places To Go', '2018-11-08 00:00:00', 'brian@gt.edu', 'https://www.travel.com/', 'Here are some of my favorite places!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('awesome', 'Cool Cars', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.tesla.com/', 'Electric Cars');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('awesome', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/', 'Mediteranean Cruise');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('bedroom', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('bedroom', 'Baseball stuff', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.mlb.com/', 'Favorite athletes!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('bedroom', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/', 'Here are some of my favorite Sports!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Man Cave', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.nfl.com/', 'Favorite athletes!');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Wedding DIY', '2018-11-08 00:02:00', 'chelsea@gt.edu', 'https://www.hobbylobby.com/', 'DIY Projects');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/', 'work to do in basement');
-INSERT INTO Tags(name, title, date_time, owner_email, url, description) VALUES ('remodel', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/', 'Mediteranean Cruise');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Stuff For Home', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.fox.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Random Cool Stuff', '2018-11-08 00:00:00', 'meghan@gt.edu', 'https://www.cnn.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Places To Go', '2018-11-08 00:00:00', 'brian@gt.edu', 'https://www.travel.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Cool Cars', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.tesla.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('cool', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('baseball', 'Baseball stuff', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.mlb.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('baseball', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('baseball', 'Man Cave', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.nfl.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('livingroom', 'Wedding DIY', '2018-11-08 00:02:00', 'chelsea@gt.edu', 'https://www.hobbylobby.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('livingroom', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('livingroom', 'Man Cave', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.nfl.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('livingroom', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('awesome', 'Stuff For Home', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.fox.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('awesome', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('awesome', 'Random Cool Stuff', '2018-11-08 00:00:00', 'meghan@gt.edu', 'https://www.cnn.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('awesome', 'Places To Go', '2018-11-08 00:00:00', 'brian@gt.edu', 'https://www.travel.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('awesome', 'Cool Cars', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.tesla.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('awesome', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('bedroom', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('bedroom', 'Baseball stuff', '2018-11-08 00:02:00', 'meghan@gt.edu', 'https://www.mlb.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('bedroom', 'Best Sports', '2018-11-08 00:00:00', 'sean@gt.edu', 'https://www.espn.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('remodel', 'Man Cave', '2018-11-08 00:02:00', 'jake@gt.edu', 'https://www.nfl.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('remodel', 'Wedding DIY', '2018-11-08 00:02:00', 'chelsea@gt.edu', 'https://www.hobbylobby.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('remodel', 'Basement Todos', '2018-11-08 00:02:00', 'john@gt.edu', 'https://www.homedepot.com/');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('remodel', 'Places To Go', '2018-11-08 00:02:00', 'mary@gt.edu', 'https://www.travel.com/');
 
 
 -- Private Pushpin
@@ -198,7 +183,7 @@ INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_tim
 VALUES ('2018-11-10 00:01:00','This is great!','brian@gt.edu','https://www.nursery.com/','Stuff For Home', 'sean@gt.edu','2018-11-08 02:00:00');
 
 INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_time) 
-VALUES ('2018-11-10 00:03:00','Dude this is so cool','meghan@gt.edu','https://www.nursery.com/','Stuff For Home', 'sean@gt.edu','2018-11-08 02:00:00');
+VALUES ('2018-11-10 00:03:00','Dude this is so cool','meghan@gt.edu','https://www.nursery.com/','Stuff For Home', 'sean@gt.edu','2018-11-08 03:00:00');
 
 -- Follows
 INSERT INTO Follows (email, follower_email) VALUES ('sean@gt.edu', 'meghan@gt.edu');
@@ -206,7 +191,7 @@ INSERT INTO Follows (email, follower_email) VALUES ('sean@gt.edu', 'brian@gt.edu
 INSERT INTO Follows (email, follower_email) VALUES ('meghan@gt.edu', 'brian@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('meghan@gt.edu', 'sean@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'meghan@gt.edu');
-INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'jake@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'sean@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'john@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'chelsea@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'mary@gt.edu');
@@ -214,12 +199,14 @@ INSERT INTO Follows (email, follower_email) VALUES ('jake@gt.edu', 'meghan@gt.ed
 INSERT INTO Follows (email, follower_email) VALUES ('jake@gt.edu', 'sean@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('john@gt.edu', 'jake@gt.edu');
 INSERT INTO Follows (email, follower_email) VALUES ('chelsea@gt.edu', 'sean@gt.edu');
+
 -- Watch
 INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Places To Go', 'brian@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Stuff For Home', 'sean@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Places To Go', 'brian@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Stuff For Home', 'sean@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('john@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('chelsea@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('jake@gt.edu', 'Random Cool Stuff', 'meghan@gt.edu');
@@ -229,4 +216,3 @@ INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Delicious 
 INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('jake@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
 INSERT INTO Watch (email, title, owner_email) VALUES ('john@gt.edu', 'Delicious Burgers', 'mary@gt.edu');
-

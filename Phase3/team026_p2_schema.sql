@@ -1,21 +1,3 @@
--- CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-CREATE USER IF NOT EXISTS gatechUser@localhost IDENTIFIED BY 'gatech123';
-
-DROP DATABASE IF EXISTS `cs6400_fa18_team026`; 
-SET default_storage_engine=InnoDB;
-SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-CREATE DATABASE IF NOT EXISTS cs6400_fa18_team026 
-    DEFAULT CHARACTER SET utf8mb4 
-    DEFAULT COLLATE utf8mb4_unicode_ci;
-USE cs6400_fa18_team026;
-
-GRANT SELECT, INSERT, UPDATE, DELETE, FILE ON *.* TO 'gatechUser'@'localhost';
-GRANT ALL PRIVILEGES ON `gatechuser`.* TO 'gatechUser'@'localhost';
-GRANT ALL PRIVILEGES ON `cs6400_fa18_team026`.* TO 'gatechUser'@'localhost';
-FLUSH PRIVILEGES;
-
-
 CREATE TABLE `User`(
 	email varchar(30) NOT NULL,
 	name varchar(30) NOT NULL,
@@ -93,8 +75,7 @@ CREATE TABLE Tags (
 	date_time datetime NOT NULL,
 	owner_email varchar(30) NOT NULL,
 	url varchar(300) NOT NULL,
-	description varchar(200) NOT NULL,
-	PRIMARY KEY (name, url, owner_email, date_time, title, description)
+	PRIMARY KEY (name, url, owner_email, date_time, title)
 );
 
 
