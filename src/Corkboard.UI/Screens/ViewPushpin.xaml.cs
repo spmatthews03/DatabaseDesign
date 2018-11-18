@@ -68,7 +68,13 @@ namespace Corkboard.UI.Screens
 
         private void PostButton_Click(object sender, RoutedEventArgs e)
         {
-            // post comment
+            var text = new TextRange(CommentBox.Document.ContentStart, CommentBox.Document.ContentEnd).Text;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return;
+            }
+
+            PushpinHelper.AddComment(pushpin, currentUser, text);
         }
 
         #region private
