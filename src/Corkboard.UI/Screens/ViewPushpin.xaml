@@ -32,6 +32,6 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="27,44,0,0" VerticalAlignment="Top" Width="87" Height="46" FontSize="20" RenderTransformOrigin="0.246,0.658" Click="BackButton_Click"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="26,30,0,0" VerticalAlignment="Top" Width="87" Height="46" FontSize="20" Click="BackButton_Click"/>
     </Grid>
 </Page>
