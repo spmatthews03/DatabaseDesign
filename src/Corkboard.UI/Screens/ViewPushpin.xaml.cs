@@ -69,7 +69,23 @@ namespace Corkboard.UI.Screens
 
         private void SetLikes()
         {
+            var builder = new StringBuilder();
+            foreach (var liker in pushpin.Likes)
+            {
+                if (builder.ToString().Length > 100)
+                {
+                    builder.Append("and more.");
+                }
 
+                if (!string.IsNullOrEmpty(builder.ToString()))
+                {
+                    builder.Append(", ");
+                }
+
+                builder.Append($"{liker.Name}");
+            }
+
+            LikesBlock.Text = $"Liked by: {builder}";
         }
 
         private void SetTitle()
