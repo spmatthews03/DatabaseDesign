@@ -1,4 +1,5 @@
-﻿using Corkboard.UI.Screens;
+﻿using Corkboard.API.Models;
+using Corkboard.UI.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,5 +32,12 @@ namespace Corkboard.UI
         {
             Content = nextPage;
         }
+
+        public void SetUser(User user)
+        {
+            User = user;
+        }
+
+        public User User { get; private set; }
     }
 }
