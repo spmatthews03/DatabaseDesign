@@ -46,7 +46,6 @@ namespace Corkboard.API.Helpers
             {
                 var user = new User(
                     userResults.GetValueInTable("Email"),
-                    null,
                     userResults.GetValueInTable("Name"),
                     userResults.GetValueInTable("Pin"));
 
