@@ -1,8 +1,3 @@
 BUGS
 
-- After Creating a corkboard, My Corkboards isn't updated
-- Popular Sites doesn't work. It also doesn't query substrings yet (sean)
-- When Creating a corkboard, the default text inside the textBoxs get submitted if nothing is entered
-- Follow not working
-- no watch button
-- No visual indicator of private boards, maybe make text red?
+- When Creating a corkboard, the default text inside the tags get submitted if nothing is entered
