@@ -132,7 +132,7 @@ namespace Corkboard.UI.Screens
 
         private void SetSwitchButton_Follow()
         {
-            if (Owner.Followers.Contains(viewer))
+            if (UserHelper.GetUserFollowersEmails(Owner.Email).Contains(viewer.Email))
             {
                 FollowButton.Content = "Unfollow";
             }

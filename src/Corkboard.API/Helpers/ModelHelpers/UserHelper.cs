@@ -6,6 +6,17 @@ namespace Corkboard.API.Helpers
     public static class UserHelper
     {
         /// <summary>
+        /// Gets the emails of the followers of a user.
+        /// </summary>
+        /// <param name="user">User to get the followers of.</param>
+        /// <returns>Returns the users followers, empty list if they have none.</returns>
+        public static List<string> GetUserFollowersEmails(string userEmail)
+        {
+            var followerResults = DatabaseHelper.ExecuteQuery($"SELECT * FROM follows WHERE email = '{userEmail}'");
+            return followerResults.Rows.GetValueInRows("follower_email");
+        }
+
+        /// <summary>
         /// Gets the followers of a user.
         /// </summary>
         /// <param name="user">User to get the followers of.</param>
