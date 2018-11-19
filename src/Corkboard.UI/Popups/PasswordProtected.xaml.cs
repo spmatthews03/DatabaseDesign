@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Corkboard.UI.Screens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,10 @@ namespace Corkboard.UI.Popups
         /// Represents a password protected popup for a corkboard.
         /// </summary>
         /// <param name="previousPage">Page that created this window.</param>
-        public PasswordProtected(Page previousPage)
+        public PasswordProtected(Home previousPage)
         {
             InitializeComponent();
+            PreviousPage = previousPage;
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -33,7 +35,6 @@ namespace Corkboard.UI.Popups
             var isViewable = ValidatePassword(PasswordBox.Text);
             if (!isViewable)
             {
-
                 return;
             }
 
@@ -49,6 +50,8 @@ namespace Corkboard.UI.Popups
             {
                 PasswordBox.Text = string.Empty;
             }
+
+            PasswordBlock.Visibility = Visibility.Visible;
         }
 
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
@@ -56,6 +59,7 @@ namespace Corkboard.UI.Popups
             if (PasswordBox.Text.Equals(string.Empty))
             {
                 PasswordBox.Text = "Password";
+                PasswordBlock.Visibility = Visibility.Hidden;
             }
         }
 
