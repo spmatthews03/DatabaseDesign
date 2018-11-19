@@ -20,16 +20,16 @@ namespace Corkboard.API.Helpers
         }
 
         /// <summary>
-        /// Returns the list of recently updated corkboards. This strictly includes the corkboards
+        /// Returns the list of recently updated corkboards. This includes strictly includes the corkboards
         /// the current user follows or watches.
         /// </summary>
         /// <param name="currentUser">User to use for following/watching.</param>
         /// <returns>Returns the list of corkboards, or an empty list.</returns>
         public static List<Models.Corkboard> GetRecentUpdatedCorkboards(User currentUser)
         {
-            var recentUpdates = DatabaseHelper.ExecuteQuery($@"Select * from (corkboard NATURAL JOIN Users) " +
+            var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from (corkboard NATURAL JOIN Users) " +
                 $"NATURAL JOIN pushpin where (corkboard.owner_email IN (Select Follows.follower_email from Follows WHERE Follows.email='{currentUser.Email}' " +
-                $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR corkboard.owner_email='{currentUser.Email}') AND corkboard.owner_email=User.email " +
+                $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR corkboard.owner_email='{currentUser.Email}') AND corkboard.owner_email=Users.email " +
                 $"Group By corkboard.title Order By pushpin.date_time DESC Limit 4");
 
 
@@ -65,15 +65,14 @@ namespace Corkboard.API.Helpers
         public static List<Models.User> GetNumberOfWatchersCorkboards(Models.Corkboard corkboard)
         {
             var watchers = DatabaseHelper.ExecuteQuery($"Select * from Corkboard NATURAL JOIN Watch WHERE owner_email='{corkboard.Owner.Email}' AND title='{corkboard.Title}'");
-            var watchersList = new List<User>();
-
+            var watchersList = new List<Models.User>();
             foreach (DataRow row in watchers.Rows)
             {
                 watchersList.Add(UserHelper.GetUserByEmail(row.GetValueInRow("email")));
             }
-
             return watchersList;
         }
+
 
         /// <summary>
         /// Gets the user's public corkboards.

@@ -8,16 +8,16 @@ namespace Corkboard.API.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string connectionString = "server=gatech-class-01.database.windows.net;uid=gatech;database=cb_db;pwd=Student01";
-        private static SqlConnection sqlConnection;
-
-        public static SqlConnection ConnectToDB()
+        private static string connectionString = "server=localhost;uid=gatech;database=cb_db;pwd=gatechpassword";
+        private static MySqlConnection sqlConnection;
+        
+        public static MySqlConnection ConnectToDB()
         {
             if (sqlConnection == null)
             {
                 try
                 {
-                    sqlConnection = new SqlConnection(connectionString);
+                    sqlConnection = new MySqlConnection(connectionString);
                     sqlConnection.Open();
                 }
                 catch (Exception e)
@@ -36,15 +36,15 @@ namespace Corkboard.API.Helpers
             try
             {
                 var connection = ConnectToDB();
-                var command = new SqlCommand(sqlQuery, connection);
-                var dataAdapter = new SqlDataAdapter(command);
+                var command = new MySqlCommand(sqlQuery, connection);
+                var dataAdapter = new MySqlDataAdapter(command);
                 var resultDataSet = new DataTable();
                 dataAdapter.Fill(resultDataSet);
                 return resultDataSet;
             }
             catch (Exception e)
             {
-                return new DataTable();
+                return null;
             }
         }
 

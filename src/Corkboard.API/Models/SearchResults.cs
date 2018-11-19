@@ -5,11 +5,16 @@
     /// </summary>
     public class SearchResults
     {
-        public SearchResults(string corkboard, string description, string owner)
+        public SearchResults(string corkboard, string description, string owner, 
+            string owner_email, string url, string dateTime, string title)
         {
             Corkboard = corkboard;
             Description = description;
             Owner = owner;
+            OwnerEmail = owner_email;
+            Url = url;
+            DateTime = dateTime;
+            Title = title;
         }
 
         /// <summary>
