@@ -1,3 +1,8 @@
 BUGS
 
 - When Creating a corkboard, the default text inside the tags get submitted if nothing is entered
+- stats counts not right for private
+- recently updated not correct
+- comments not displaying on pushpin
+- posted comments arent being inserted to database
+- follow on pushpin doesn't change when clicked
