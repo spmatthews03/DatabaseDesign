@@ -15,7 +15,7 @@
         <TextBox x:Name="DescriptionBox" HorizontalAlignment="Left" Height="63" Margin="124,277,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center" GotFocus="DescriptionBox_GotFocus" LostFocus="DescriptionBox_LostFocus"/>
         <TextBlock x:Name="DescriptionBlock" HorizontalAlignment="Left" Margin="334,345,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Height="31" Width="143" FontSize="20" TextAlignment="Center" Visibility="Hidden"/>
         <TextBox x:Name="TagsBox" HorizontalAlignment="Left" Height="59" Margin="124,427,0,0" TextWrapping="Wrap" Text="Tags - Comma Separated" VerticalAlignment="Top" Width="564" FontSize="20" TextAlignment="Center" GotFocus="TagsBox_GotFocus" LostFocus="TagsBox_LostFocus"/>
-        <TextBlock x:Name="TagsBlock" HorizontalAlignment="Left" Margin="334,491,0,0" TextWrapping="Wrap" Text="Tags - Comma Separated" VerticalAlignment="Top" Height="30" Width="143" FontSize="20" TextAlignment="Center" Visibility="Hidden"/>
+        <TextBlock x:Name="TagsBlock" HorizontalAlignment="Left" Margin="334,491,0,0" TextWrapping="Wrap" Text="Tags - Comma Separated" VerticalAlignment="Top" Height="66" Width="143" FontSize="20" TextAlignment="Center" Visibility="Hidden"/>
         <Button x:Name="AddButton" Content="Add" HorizontalAlignment="Left" Margin="217,632,0,0" VerticalAlignment="Top" Width="376" Height="55" FontSize="20" Click="AddButton_Click"/>
         <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="334,708,0,0" VerticalAlignment="Top" Width="143" Height="43" Background="Red" Click="CancelButton_Click"/>
 
