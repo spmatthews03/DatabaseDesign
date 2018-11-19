@@ -23,12 +23,11 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class ViewPushpin : Page, IPage
     {
-        public ViewPushpin(IPage previousPage, Pushpin pushpin, User currentUser)
+        public ViewPushpin(IPage previousPage, Pushpin pushpin)
         {
             InitializeComponent();
             this.previousPage = previousPage;
             this.pushpin = pushpin;
-            this.currentUser = currentUser;
             GetCorkboard();
             SetTitle();
             SetImage();
@@ -49,21 +48,21 @@ namespace Corkboard.UI.Screens
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
             var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
-            ViewCorkboardHelper.FollowUser(owner, currentUser);
+            ViewCorkboardHelper.FollowUser(owner, MainWindow.User);
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
         {
             if (LikeButton.Content.Equals("Like"))
             {
-                PushpinHelper.LikePushpin(pushpin, currentUser);
-                pushpin.Likes.Add(currentUser);
+                PushpinHelper.LikePushpin(pushpin, MainWindow.User);
+                pushpin.Likes.Add(MainWindow.User);
             }
 
             if (LikeButton.Content.Equals("Unlike"))
             {
-                PushpinHelper.UnlikePushpin(pushpin, currentUser);
-                pushpin.Likes.Remove(currentUser);
+                PushpinHelper.UnlikePushpin(pushpin, MainWindow.User);
+                pushpin.Likes.Remove(MainWindow.User);
             }
 
             SetSwitchButton_Like();
@@ -77,14 +76,14 @@ namespace Corkboard.UI.Screens
                 return;
             }
 
-            PushpinHelper.AddComment(pushpin, currentUser, text);
+            PushpinHelper.AddComment(pushpin, MainWindow.User, text);
         }
 
         private void ViewCorkboardButton_Click(object sender, RoutedEventArgs e)
         {
             var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
             var corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
-            MainWindow.Navigate(new ViewCorkboard(this, owner, currentUser, corkboard.Title));
+            MainWindow.Navigate(new ViewCorkboard(this, owner, MainWindow.User, corkboard.Title));
         }
 
         #region private
@@ -92,7 +91,6 @@ namespace Corkboard.UI.Screens
         private API.Models.Corkboard corkboard;
         private IPage previousPage;
         private Pushpin pushpin;
-        private User currentUser;
 
         private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
         {
@@ -168,7 +166,7 @@ namespace Corkboard.UI.Screens
 
         private void SetSwitchButton_Like()
         {
-            if (pushpin.Likes.Contains(currentUser))
+            if (pushpin.Likes.Contains(MainWindow.User))
             {
                 LikeButton.Content = "Unlike";
             }

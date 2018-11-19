@@ -47,7 +47,7 @@ namespace Corkboard.UI.Screens
             var view = sender as ListView;
             var properties = ConvertSelectedItem(view.SelectedItem);
             var pushpin = PushpinHelper.GetPushpin(properties["Title"], properties["OwnerEmail"], properties["Url"], properties["DateTime"]);
-            PreviousPage.MainWindow.Navigate(new ViewPushpin(this, pushpin, PreviousPage.User));
+            PreviousPage.MainWindow.Navigate(new ViewPushpin(this, pushpin));
         }
 
         #region private

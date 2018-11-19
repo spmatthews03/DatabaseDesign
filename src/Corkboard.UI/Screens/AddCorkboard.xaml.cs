@@ -43,15 +43,15 @@ namespace Corkboard.UI.Screens
                 return;
             }
 
-            var alreadyExists = AddCorkboardHelper.CheckCorkboardExists(PreviousPage.User, newCorkboard.Title);
+            var alreadyExists = AddCorkboardHelper.CheckCorkboardExists(PreviousPage.MainWindow.User, newCorkboard.Title);
             if (alreadyExists)
             {
                 CreatePopup("Corkboard already exists with that title from this user.");
                 return;
             }
 
-            AddCorkboardHelper.AddCorkboard(PreviousPage.User, newCorkboard);
-            PreviousPage.MainWindow.Navigate(new ViewCorkboard(PreviousPage, PreviousPage.User, PreviousPage.User, newCorkboard.Title));
+            AddCorkboardHelper.AddCorkboard(PreviousPage.MainWindow.User, newCorkboard);
+            PreviousPage.MainWindow.Navigate(new ViewCorkboard(PreviousPage, PreviousPage.MainWindow.User, PreviousPage.MainWindow.User, newCorkboard.Title));
         }
 
         private void VisibilityButton_Private_Checked(object sender, RoutedEventArgs e)
@@ -137,7 +137,7 @@ namespace Corkboard.UI.Screens
                 {
                     Category = category,
                     IsPrivate = true,
-                    Owner = PreviousPage.User,
+                    Owner = PreviousPage.MainWindow.User,
                     Title = title
                 };
             }
@@ -146,7 +146,7 @@ namespace Corkboard.UI.Screens
             {
                 Category = category,
                 IsPrivate = false,
-                Owner = PreviousPage.User,
+                Owner = PreviousPage.MainWindow.User,
                 Title = title
             };
         }
