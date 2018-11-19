@@ -73,6 +73,18 @@ namespace Corkboard.API.Helpers
             return watchersList;
         }
 
+        /// <summary>
+        /// Validates the password for the corkboard.
+        /// </summary>
+        /// <param name="title">Title of the corkboard.</param>
+        /// <param name="ownerEmail">Owner's email of the corkboard.</param>
+        /// <param name="password">Attempted password of the corkboard.</param>
+        public static bool CanViewCorkboard(string title, string ownerEmail, string password)
+        {
+            // TODO - if password is correct, return true. False otherwise.
+            return false;
+        }
+
 
         /// <summary>
         /// Gets the user's public corkboards.
