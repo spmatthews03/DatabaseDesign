@@ -22,6 +22,7 @@ namespace Corkboard.UI.Screens
             GetCorkboard(title);
             SetTitle();
             SetSwitchButton();
+            SetSwitchButton_Follow();
             SetWatch();
         }
 
@@ -132,6 +133,11 @@ namespace Corkboard.UI.Screens
 
         private void SetSwitchButton_Follow()
         {
+            if (Owner.Equals(viewer))
+            {
+                FollowButton.Visibility = Visibility.Hidden;
+            }
+
             if (Owner.Followers.Contains(viewer))
             {
                 FollowButton.Content = "Unfollow";
