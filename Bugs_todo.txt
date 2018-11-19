@@ -7,3 +7,4 @@ BUGS
 - likes and comments not updated on view of pushping when after hitting Like
 - Once you leave a pushping the Unlike button returns to Like when you return
 - can't view pushpin from corkboard
+- corkboard not automatically updating after adding new pushpin
