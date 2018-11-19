@@ -15,7 +15,7 @@ namespace Corkboard.API.Helpers
 
         public static Models.Corkboard GetCorkboardPushpinIsOn(Pushpin pushpin)
         {
-            var pushpinRows = DatabaseHelper.ExecuteQuery($"Select * From corkboard where owner_email = '{pushpin.Owner_Email}' AND title = '{pushpin.Title}'");
+            var pushpinRows = DatabaseHelper.ExecuteQuery($"Select * From corkboard NATURAL JOIN Pushpin where owner_email = '{pushpin.Owner_Email}' AND title = '{pushpin.Title}'");
             return CorkboardHelper.CreateCorkboardFromDataRow(pushpinRows.Rows[0]);
         }
 
@@ -63,7 +63,46 @@ namespace Corkboard.API.Helpers
         /// </summary>
         public static Pushpin GetPushpin(string title, string ownerEmail, string url, string dateTime)
         {
-            return null;
+            var pushpinRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
+            var likesRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN likes where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
+            var commentsRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN Comments where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
+            var tagsRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN Tags where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
+
+
+            var pushpin = new Models.Pushpin();
+
+            pushpin.Title = title;
+            pushpin.Owner_Email = ownerEmail;
+            pushpin.DateTime = dateTime;
+
+            pushpin.Title = title;
+
+            var likesList = new List<User>();
+            var commentsList = new List<Comment>();
+            var tagsList = new List<string>();
+
+            foreach (DataRow row in pushpinRow.Rows)
+            {
+                pushpin.Description = row.GetValueInRow("description");
+            }
+
+            foreach (DataRow row in likesRow.Rows)
+            {
+                likesList.Add(UserHelper.GetUserByEmail(row.GetValueInRow("email")));
+            }
+
+            foreach (DataRow row in commentsRow.Rows)
+            {
+                var datetime = row.GetValueInRow("date_time");
+                var text = row.GetValueInRow("text");
+                var email = UserHelper.GetUserByEmail(row.GetValueInRow("email"));
+                commentsList.Add(new Comment(email.Name, DateTime.Parse(datetime), text));
+            }
+
+            var tags = GetTagsForPushpin(title, dateTime, ownerEmail, url);
+
+
+            return new Models.Pushpin(title, dateTime, ownerEmail, pushpin.Description, url, tags, likesList, commentsList);
         }
 
         /// <summary>

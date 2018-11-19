@@ -82,6 +82,12 @@ namespace Corkboard.API.Helpers
         public static bool CanViewCorkboard(string title, string ownerEmail, string password)
         {
             // TODO - if password is correct, return true. False otherwise.
+            var passwordRow = DatabaseHelper.ExecuteQuery($"Select password from private_corkboard NATURAL JOIN Corkboard where owner_email='{ownerEmail}' AND title='{title}'");
+            var corkboardPassword = passwordRow.GetValueInTable("password");
+            if(corkboardPassword == password)
+            {
+                return true;
+            }
             return false;
         }
 

@@ -124,7 +124,10 @@ namespace Corkboard.UI.Screens
 
         private void DisplayTags()
         {
-            TagsBlock.Text = $"Tags - {pushpin.Tags.Aggregate((x, y) => $"{x}, {y}")}";
+            if (pushpin.Tags.Count != 0)
+            {
+                TagsBlock.Text = $"Tags - {pushpin.Tags.Aggregate((x, y) => $"{x}, {y}")}";
+            }
         }
 
         private void GetCorkboard()

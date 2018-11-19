@@ -42,5 +42,10 @@ namespace Corkboard.API.Models
         /// Represents the watchers of the corkboard.
         /// </summary>
         public List<User> Watchers { get; set; }
+
+        /// <summary>
+        /// Password if the corkboard is private
+        /// </summary>
+        public string Password { get; set; }
     }
 }

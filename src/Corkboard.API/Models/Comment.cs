@@ -8,6 +8,13 @@ namespace Corkboard.API.Models
 {
     public class Comment
     {
+        public Comment(string user, DateTime dt, string text)
+        {
+            User = user;
+            DateTime = dt;
+            Value = text;
+        }
+
         /// <summary>
         /// Represents the user's name who left the comment.
         /// </summary>

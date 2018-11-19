@@ -138,7 +138,8 @@ namespace Corkboard.UI.Screens
                     Category = category,
                     IsPrivate = true,
                     Owner = PreviousPage.MainWindow.User,
-                    Title = title
+                    Title = title,
+                    Password = password
                 };
             }
 
