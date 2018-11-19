@@ -77,41 +77,15 @@ namespace Corkboard.UI.Screens
         private IPage previousPage;
         private User viewer;
 
-        private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
-        {
-            newBinding = newBinding ?? value;
-            return new GridViewColumn
-            {
-                Header = value,
-                DisplayMemberBinding = new Binding(newBinding),
-                Width = width
-            };
-        }
-
         private void GetCorkboard(string title)
         {
             Corkboard = CorkboardHelper.GetCorkboard(Owner, title);
-            // TODO - populate ui (pushpin images)
             PushpinView.SelectionMode = SelectionMode.Single;
-            var view = new GridView();
-            PushpinView.View = view;
-            view.Columns.Add(CreateGridColumn("PushPins", 740));
 
             foreach (var pin in Corkboard.Pushpins)
             {
-                var image = new Image();
-                image.Source = new BitmapImage(new System.Uri(pin.Url));
-                PushpinView.Items.Add(new { Image = new BitmapImage(new System.Uri(pin.Url)) });
+                PushpinView.Items.Add(new { Url = pin.Url });
             }
-
-            //PushpinView.ItemsSource = new Bullshit[]
-            //{
-            //    new Bullshit{Title = "Shit", ImageData = new BitmapImage(new System.Uri("https://s3.caradvice.com.au/wp-content/uploads/2017/03/17-Lamborghini-Phillip-Island-March-008.jpg")) },
-            //    new Bullshit{Title = "Fuck", ImageData = new BitmapImage(new System.Uri("https://s3.caradvice.com.au/wp-content/uploads/2017/03/17-Lamborghini-Phillip-Island-March-008.jpg")) }
-            //};
-
-            //var bitmap = new System.Windows.Media.Imaging.BitmapImage(new System.Uri("https://s3.caradvice.com.au/wp-content/uploads/2017/03/17-Lamborghini-Phillip-Island-March-008.jpg"));
-            //image.Source = bitmap;
         }
 
         private void SetTitle()
@@ -169,22 +143,5 @@ namespace Corkboard.UI.Screens
         }
 
         #endregion
-    }
-
-    public class Bullshit
-    {
-        private string _Title;
-        public string Title
-        {
-            get { return this._Title; }
-            set { this._Title = value; }
-        }
-
-        private BitmapImage _ImageData;
-        public BitmapImage ImageData
-        {
-            get { return this._ImageData; }
-            set { this._ImageData = value; }
-        }
     }
 }
