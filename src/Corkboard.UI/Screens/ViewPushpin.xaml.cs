@@ -29,6 +29,7 @@ namespace Corkboard.UI.Screens
             this.previousPage = previousPage;
             this.pushpin = pushpin;
             GetCorkboard();
+            GetPushpinComments();
             SetTitle();
             SetImage();
             SetLikes();
@@ -133,6 +134,11 @@ namespace Corkboard.UI.Screens
         private void GetCorkboard()
         {
             corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
+        }
+
+        private void GetPushpinComments()
+        {
+            pushpin.Comments = PushpinHelper.GetCommentsForPushpin(pushpin.Title, pushpin.DateTime, pushpin.Owner_Email, pushpin.Url);
         }
 
         private void SetImage()
