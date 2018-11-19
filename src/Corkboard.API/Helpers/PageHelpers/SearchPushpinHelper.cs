@@ -12,8 +12,9 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// </summary>
         public static List<SearchResults> GetResults(string query)
         {
-            var searchedPushpinRows = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN Tags NATURAL JOIN corkboard " +
-                $"where description LIKE '%{query}%' OR name LIKE '%{query}%' OR category_type LIKE '%{query}%' " +
+            var searchedPushpinRows = DatabaseHelper.ExecuteQuery($"Select title, description, tags.name AS tags, users.name AS name, owner_email, url, date_time " +
+                $"from pushpin NATURAL JOIN Tags NATURAL JOIN corkboard JOIN Users on owner_email=email " +
+                $"where description LIKE '%{query}%' OR tags.name LIKE '%{query}%' OR category_type LIKE '%{query}%' " +
                 $"Order By description ASC");
             var searchResults = new List<SearchResults>();
             foreach (DataRow row in searchedPushpinRows.Rows)
