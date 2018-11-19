@@ -8,7 +8,7 @@ namespace Corkboard.API.Models
 {
     public class Pushpin
     {
-        public Pushpin(string title, string dateTime, string owner_email, string description, string url, List<string> tags) {
+        public Pushpin(string title, DateTime dateTime, string owner_email, string description, string url, List<string> tags) {
             this.Title = title;
             this.DateTime = dateTime;
             this.Owner_Email = owner_email;
@@ -19,7 +19,7 @@ namespace Corkboard.API.Models
             this.Comments = new List<Comment>();
         }
 
-        public Pushpin(string title, string dateTime, string owner_email, string description, string url, List<string> tags, List<User> likes, List<Comment> comments)
+        public Pushpin(string title, DateTime dateTime, string owner_email, string description, string url, List<string> tags, List<User> likes, List<Comment> comments)
         {
             this.Title = title;
             this.DateTime = dateTime;
@@ -41,7 +41,7 @@ namespace Corkboard.API.Models
         /// <summary>
         /// Represents the dateTime of the pushpin.
         /// </summary>
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
         /// <summary>
         /// Represents the owner email of the corkboard the pushpin belongs to.

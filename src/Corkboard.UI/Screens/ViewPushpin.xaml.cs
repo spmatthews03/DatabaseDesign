@@ -30,6 +30,8 @@ namespace Corkboard.UI.Screens
             this.pushpin = pushpin;
             GetCorkboard();
             GetPushpinComments();
+            GetPushpinLikes();
+            GetPushpinTags();
             SetTitle();
             SetImage();
             SetLikes();
@@ -139,6 +141,16 @@ namespace Corkboard.UI.Screens
         private void GetPushpinComments()
         {
             pushpin.Comments = PushpinHelper.GetCommentsForPushpin(pushpin.Title, pushpin.DateTime, pushpin.Owner_Email, pushpin.Url);
+        }
+
+        private void GetPushpinLikes()
+        {
+            pushpin.Likes = PushpinHelper.GetLikesForPushpin(pushpin.Title, pushpin.DateTime, pushpin.Owner_Email, pushpin.Url);
+        }
+
+        private void GetPushpinTags()
+        {
+            pushpin.Tags = PushpinHelper.GetTagsForPushpin(pushpin.Title, pushpin.DateTime, pushpin.Owner_Email, pushpin.Url);
         }
 
         private void SetImage()

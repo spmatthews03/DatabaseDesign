@@ -48,7 +48,7 @@ namespace Corkboard.API.Helpers
             return publicPushpins;
         }
 
-        public static List<string> GetTagsForPushpin(string corkboardTitle, string dateTime, string userEmail, string url)
+        public static List<string> GetTagsForPushpin(string corkboardTitle, DateTime dateTime, string userEmail, string url)
         {
             var tagResults = DatabaseHelper.ExecuteQuery($"Select * from tags where " +
                     $"title = '{corkboardTitle}' AND " +
@@ -59,9 +59,9 @@ namespace Corkboard.API.Helpers
             return tagResults.Rows.GetValueInRows("Name");
         }
 
-        public static List<User> GetLikesForPushpin(string corkboardTitle, string dateTime, string userEmail, string url)
+        public static List<User> GetLikesForPushpin(string corkboardTitle, DateTime dateTime, string userEmail, string url)
         {
-            var likesRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL LEFT OUTER JOIN likes " +
+            var likesRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN likes " +
                 $"where title='{corkboardTitle}' AND owner_email='{userEmail}' AND url='{url}'");
             var likesList = new List<User>();
 
@@ -72,7 +72,7 @@ namespace Corkboard.API.Helpers
             return likesList;
         }
 
-        public static List<Comment> GetCommentsForPushpin(string corkboardTitle, string dateTime, string userEmail, string url)
+        public static List<Comment> GetCommentsForPushpin(string corkboardTitle, DateTime dateTime, string userEmail, string url)
         {
             var commentsRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin JOIN Comments " +
                 $"where pushpin.title='{corkboardTitle}' AND pushpin.owner_email='{userEmail}' AND pushpin.url='{url}' AND pushpin.date_time=pushpin_date_time");
@@ -82,7 +82,7 @@ namespace Corkboard.API.Helpers
             {
                 var datetime = row.GetValueInRow("date_time");
                 var text = row.GetValueInRow("text");
-                var email = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
+                var email = UserHelper.GetUserByEmail(row.GetValueInRow("email"));
                 commentsList.Add(new Comment(email.Name, DateTime.Parse(datetime), text));
             }
 
@@ -93,48 +93,21 @@ namespace Corkboard.API.Helpers
         /// <summary>
         /// Gets the pushpin.
         /// </summary>
-        public static Pushpin GetPushpin(string title, string ownerEmail, string url, string dateTime)
+        public static Pushpin GetPushpin(string title, string ownerEmail, string url, DateTime dateTime)
         {
-            var pushpinRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
-            var likesRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN likes where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
-            var commentsRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN Comments where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
-            var tagsRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin NATURAL JOIN Tags where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");
-
-
+            var pushpinRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'");            
             var pushpin = new Models.Pushpin();
-
-            pushpin.Title = title;
-            pushpin.Owner_Email = ownerEmail;
-            pushpin.DateTime = dateTime;
-
-            pushpin.Title = title;
-
-            var likesList = new List<User>();
-            var commentsList = new List<Comment>();
-            var tagsList = new List<string>();
 
             foreach (DataRow row in pushpinRow.Rows)
             {
                 pushpin.Description = row.GetValueInRow("description");
             }
 
-            foreach (DataRow row in likesRow.Rows)
-            {
-                likesList.Add(UserHelper.GetUserByEmail(row.GetValueInRow("email")));
-            }
-
-            foreach (DataRow row in commentsRow.Rows)
-            {
-                var datetime = row.GetValueInRow("date_time");
-                var text = row.GetValueInRow("text");
-                var email = UserHelper.GetUserByEmail(row.GetValueInRow("email"));
-                commentsList.Add(new Comment(email.Name, DateTime.Parse(datetime), text));
-            }
-
             var tags = GetTagsForPushpin(title, dateTime, ownerEmail, url);
+            var likes = GetLikesForPushpin(title, dateTime, url, ownerEmail);
+            var comments = GetCommentsForPushpin(title, dateTime, url, ownerEmail);
 
-
-            return new Models.Pushpin(title, dateTime, ownerEmail, pushpin.Description, url, tags, likesList, commentsList);
+            return new Models.Pushpin(title, dateTime, ownerEmail, pushpin.Description, url, tags, likes, comments);
         }
 
         /// <summary>
@@ -145,7 +118,7 @@ namespace Corkboard.API.Helpers
         public static void LikePushpin(Pushpin pushpin, User user)
         {
             DatabaseHelper.ExecuteQuery($"INSERT INTO Likes (email, date_time, url, title, owner_email) " +
-                $"VALUES('{user.Email}','{pushpin.DateTime}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}')");
+                $"VALUES('{user.Email}','{pushpin.DateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}')");
         }
 
         /// <summary>
@@ -155,7 +128,7 @@ namespace Corkboard.API.Helpers
         /// <param name="user">User to remove from the likes table.</param>
         public static void UnlikePushpin(Pushpin pushpin, User user)
         {
-            DatabaseHelper.ExecuteQuery($"DELETE FROM Likes WHERE email='{user.Email}' AND date_time='{pushpin.DateTime}' " +
+            DatabaseHelper.ExecuteQuery($"DELETE FROM Likes WHERE email='{user.Email}' AND date_time='{pushpin.DateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}' " +
                 $"AND url='{pushpin.Url} AND title='{pushpin.Title}' AND owner_email='{pushpin.Owner_Email}'");
         }
 
@@ -167,8 +140,8 @@ namespace Corkboard.API.Helpers
         /// <param name="comment">Comment being added.</param>
         public static void AddComment(Pushpin pushpin, User user, string comment)
         {
-            DatabaseHelper.ExecuteQuery($"INSERT INTO Comments (date_time, text, email, url, title, owner_email, pushpin, date_time) " +
-                $"Values(NOW(),'{comment}','{user.Email}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}','{pushpin.DateTime}')");
+            DatabaseHelper.ExecuteQuery($"INSERT INTO Comments (date_time, text, email, url, title, owner_email, pushpin_date_time) " +
+                $"Values(NOW(),'{comment}','{user.Email}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}','{pushpin.DateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}')");
         }
 
         #region Private
@@ -177,7 +150,7 @@ namespace Corkboard.API.Helpers
         {
             var description = row.GetValueInRow("Description");
             var url = row.GetValueInRow("Url");
-            var dateTime = row.GetValueInRow("date_time");
+            var dateTime = DateTime.Parse(row.GetValueInRow("date_time"));
             var title = row.GetValueInRow("title");
             var owner_email = row.GetValueInRow("owner_email");
             var tags = GetTagsForPushpin(title, dateTime, owner_email, url);
