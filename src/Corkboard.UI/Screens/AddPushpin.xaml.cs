@@ -25,6 +25,7 @@ namespace Corkboard.UI.Screens
         public AddPushpin(MainWindow window, ViewCorkboard previousPage)
         {
             InitializeComponent();
+            MainWindow = window;
             PreviousPage = previousPage;
             SetTitle();
         }

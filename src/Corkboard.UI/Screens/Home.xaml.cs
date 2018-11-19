@@ -23,18 +23,16 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class Home : Page, IPage
     {
-        public Home(MainWindow window, User user)
+        public Home(MainWindow window)
         {
             InitializeComponent();
             MainWindow = window;
-            User = user;
             DisplayUserInformation();
             DisplayRecentCorkboardUpdates();
             DisplayMyCorkboards();
         }
 
         public MainWindow MainWindow { get; private set; }
-        public User User { get; private set; }
         public Page Self => this;
 
         private void CreateCorkboardButton_Click(object sender, RoutedEventArgs e)
@@ -75,11 +73,11 @@ namespace Corkboard.UI.Screens
             if (view.Name.Equals("UpdatesView"))
             {
                 var owner = UserHelper.GetUserByEmail(properties["Email"]);
-                MainWindow.Navigate(new ViewCorkboard(this, owner, User, properties["Title"]));
+                MainWindow.Navigate(new ViewCorkboard(this, owner, MainWindow.User, properties["Title"]));
             }
             else
             {
-                MainWindow.Navigate(new ViewCorkboard(this, User, User, properties["Title"]));
+                MainWindow.Navigate(new ViewCorkboard(this, MainWindow.User, MainWindow.User, properties["Title"]));
             }
 
             view.SelectedItem = null;
@@ -138,7 +136,7 @@ namespace Corkboard.UI.Screens
             view.Columns.Add(CreateGridColumn("Title", 309));
             view.Columns.Add(CreateGridColumn("Pushpins", 309));
 
-            var corkboards = CorkboardHelper.GetUserPublicCorkboards(User);
+            var corkboards = CorkboardHelper.GetUserPublicCorkboards(MainWindow.User);
             foreach (var board in corkboards)
             {
                 MyCorkboardView.Items.Add(new { Title = board.Title, Pushpins = board.Pushpins.Count });
@@ -155,7 +153,7 @@ namespace Corkboard.UI.Screens
             view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 188, "LastUpdate"));
             view.Columns.Add(CreateGridColumn("Email", 0));
 
-            var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(User);
+            var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(MainWindow.User);
             foreach (var board in corkboards)
             {
                 UpdatesView.Items.Add(new { Title = board.Title, Owner = board.Owner.Name, LastUpdate = board.LastUpdate, Email = board.Owner.Email });
@@ -164,7 +162,7 @@ namespace Corkboard.UI.Screens
 
         private void DisplayUserInformation()
         {
-            NameBox.Text = $"Welcome {User.Name}";
+            NameBox.Text = $"Welcome {MainWindow.User.Name}";
         }
 
         #endregion

@@ -49,7 +49,8 @@ namespace Corkboard.UI.Screens
                 return;
             }
 
-            MainWindow.Navigate(new Home(MainWindow, user));
+            MainWindow.SetUser(user);
+            MainWindow.Navigate(new Home(MainWindow));
         }
 
         private void PageGrid_KeyDown(object sender, KeyEventArgs e)

@@ -14,7 +14,7 @@
         <ComboBox x:Name="CategoryComboBox" HorizontalAlignment="Left" Margin="226,360,0,0" VerticalAlignment="Top" Width="338" Height="56" FontSize="22" IsReadOnly="True"/>
         <RadioButton x:Name="VisibilityButton_Public" Content="Public" HorizontalAlignment="Left" Margin="259,536,0,0" VerticalAlignment="Top" Height="42" Width="108" FontSize="22" IsChecked="True"/>
         <RadioButton x:Name="VisibilityButton_Private" Content="Private" HorizontalAlignment="Left" Margin="411,536,0,0" VerticalAlignment="Top" Height="42" Width="108" FontSize="22" Checked="VisibilityButton_Private_Checked" Unchecked="VisibilityButton_Private_Unchecked"/>
-        <TextBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="84" Margin="226,626,0,0" TextWrapping="Wrap" Text="Enter the password for the new Corkboard" VerticalAlignment="Top" Width="338" FontSize="22" TextAlignment="Center" Visibility="Visible" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+        <TextBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="84" Margin="226,626,0,0" TextWrapping="Wrap" Text="Enter the password for the new Corkboard" VerticalAlignment="Top" Width="338" FontSize="22" TextAlignment="Center" Visibility="Hidden" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
         <Button x:Name="CreateButton" Content="Create" HorizontalAlignment="Left" Margin="259,734,0,0" VerticalAlignment="Top" Width="305" Height="60" Click="CreateButton_Click"/>
         <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="332,812,0,0" VerticalAlignment="Top" Width="160" Height="34" Background="#FFFF2300" BorderBrush="#FFFF0C00" Click="CancelButton_Click"/>
     </Grid>

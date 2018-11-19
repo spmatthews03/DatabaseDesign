@@ -3,7 +3,8 @@ using Corkboard.API.Helpers.PageHelpers;
 using Corkboard.API.Models;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace Corkboard.UI.Screens
 {
@@ -79,7 +80,12 @@ namespace Corkboard.UI.Screens
         private void GetCorkboard(string title)
         {
             Corkboard = CorkboardHelper.GetCorkboard(Owner, title);
-            // TODO - populate ui (pushpin images)
+            PushpinView.SelectionMode = SelectionMode.Single;
+
+            foreach (var pin in Corkboard.Pushpins)
+            {
+                PushpinView.Items.Add(new { Url = pin.Url });
+            }
         }
 
         private void SetTitle()
