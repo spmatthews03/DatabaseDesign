@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Corkboard.API.Helpers;
+using Corkboard.UI.Screens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +24,11 @@ namespace Corkboard.UI.Popups
         /// <summary>
         /// Represents a password protected popup for a corkboard.
         /// </summary>
-        /// <param name="previousPage">Page that created this window.</param>
-        public PasswordProtected(Page previousPage)
+        public PasswordProtected(string title, string ownerEmail)
         {
             InitializeComponent();
+            this.ownerEmail = ownerEmail;
+            this.title = title;
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -33,11 +36,11 @@ namespace Corkboard.UI.Popups
             var isViewable = ValidatePassword(PasswordBox.Text);
             if (!isViewable)
             {
-
+                this.DialogResult = false;
                 return;
             }
 
-            // pass success state to previous page
+            this.DialogResult = true;
             Close();
         }
 
@@ -49,6 +52,8 @@ namespace Corkboard.UI.Popups
             {
                 PasswordBox.Text = string.Empty;
             }
+
+            PasswordBlock.Visibility = Visibility.Visible;
         }
 
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
@@ -56,6 +61,7 @@ namespace Corkboard.UI.Popups
             if (PasswordBox.Text.Equals(string.Empty))
             {
                 PasswordBox.Text = "Password";
+                PasswordBlock.Visibility = Visibility.Hidden;
             }
         }
 
@@ -63,11 +69,12 @@ namespace Corkboard.UI.Popups
 
         #region private
 
-        private Page PreviousPage { get; set; }
+        private string ownerEmail;
+        private string title;
 
         private bool ValidatePassword(string password)
         {
-            return false;
+            return CorkboardHelper.CanViewCorkboard(title, ownerEmail, password);
         }
 
         #endregion
