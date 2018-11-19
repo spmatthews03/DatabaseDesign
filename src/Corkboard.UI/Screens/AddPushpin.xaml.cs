@@ -155,7 +155,7 @@ namespace Corkboard.UI.Screens
             var description = DescriptionBox.Text;
             var tags = TagsBox.Text;
 
-            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(description))
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(description) || tags.Equals("Tags - Comma Separated"))
             {
                 return null;
             }

@@ -8,10 +8,9 @@ namespace Corkboard.API.Models
 {
     public class User
     {
-        public User(string email, List<User> followers, string name,  string pin)
+        public User(string email, string name,  string pin)
         {
             Email = email;
-            // Followers = followers;
             Name = name;
             Pin = pin;
         }

@@ -138,7 +138,7 @@ namespace Corkboard.UI.Screens
                 FollowButton.Visibility = Visibility.Hidden;
             }
 
-            if (Owner.Followers.Contains(viewer))
+            if (UserHelper.GetUserFollowersEmails(Owner.Email).Contains(viewer.Email))
             {
                 FollowButton.Content = "Unfollow";
             }
