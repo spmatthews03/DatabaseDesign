@@ -75,7 +75,8 @@ namespace Corkboard.API.Helpers
         public static List<Comment> GetCommentsForPushpin(string corkboardTitle, DateTime dateTime, string userEmail, string url)
         {
             var commentsRow = DatabaseHelper.ExecuteQuery($"Select * from pushpin JOIN Comments " +
-                $"where pushpin.title='{corkboardTitle}' AND pushpin.owner_email='{userEmail}' AND pushpin.url='{url}' AND pushpin.date_time=pushpin_date_time");
+                $"where pushpin.title='{corkboardTitle}' AND pushpin.owner_email='{userEmail}' AND pushpin.url='{url}' AND pushpin.date_time=pushpin_date_time " +
+                $"ORDER BY Comments.date_time DESC");
             var commentsList = new List<Comment>();
 
             foreach (DataRow row in commentsRow.Rows)
