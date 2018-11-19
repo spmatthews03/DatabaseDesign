@@ -3,6 +3,6 @@ BUGS
 - When Creating a corkboard, the default text inside the tags get submitted if nothing is entered
 - stats counts not right for private (Sean)
 - recently updated not correct (Sean)
-- posted comments arent being inserted to database (sean)
 - follow on pushpin doesn't change when clicked
-- likes not entering database (sean)
+- likes and comments not updated on view of pushping when after hitting Like
+- Once you leave a pushping the Unlike button returns to Like when you return
