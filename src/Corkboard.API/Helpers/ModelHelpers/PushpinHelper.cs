@@ -52,9 +52,9 @@ namespace Corkboard.API.Helpers
         {
             var tagResults = DatabaseHelper.ExecuteQuery($"Select * from tags where " +
                     $"title = '{corkboardTitle}' AND " +
-                    $"date_time = '{dateTime}' AND " +
+                    $"date_time = '{dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}' AND " +
                     $"owner_email = '{userEmail}' AND " +
-                    $"url = '{url}'");
+                    $"url = '{url}' ORDER BY title ASC");
 
             return tagResults.Rows.GetValueInRows("Name");
         }
