@@ -15,6 +15,7 @@ namespace Corkboard.API.Helpers.PageHelpers
             var searchedPushpinRows = DatabaseHelper.ExecuteQuery($"Select title, description, tags.name AS tags, users.name AS name, owner_email, url, date_time " +
                 $"from pushpin NATURAL JOIN corkboard NATURAL LEFT OUTER JOIN Tags JOIN Users on owner_email=email " +
                 $"where description LIKE '%{query}%' OR tags.name LIKE '%{query}%' OR category_type LIKE '%{query}%' " +
+                $"GROUP BY description " +
                 $"Order By description ASC");
             var searchResults = new List<SearchResults>();
             foreach (DataRow row in searchedPushpinRows.Rows)

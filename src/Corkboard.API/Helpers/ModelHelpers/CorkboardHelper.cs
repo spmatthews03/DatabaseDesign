@@ -30,7 +30,7 @@ namespace Corkboard.API.Helpers
             var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from (corkboard NATURAL JOIN Users) " +
                 $"NATURAL JOIN pushpin where (corkboard.owner_email IN (Select Follows.follower_email from Follows WHERE Follows.email='{currentUser.Email}' " +
                 $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR corkboard.owner_email='{currentUser.Email}') AND corkboard.owner_email=Users.email " +
-                $"Group By corkboard.title Order By pushpin.date_time DESC Limit 4");
+                $"Group By pushpin.date_time Order By pushpin.date_time DESC Limit 4");
 
 
             var corkboardList = new List<Models.Corkboard>();
