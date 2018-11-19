@@ -12,16 +12,19 @@
         <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="131,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="77" Width="513" FontSize="24" TextAlignment="Center"/>
         <Button x:Name="FollowButton" Content="Follow" HorizontalAlignment="Left" Margin="672,44,0,0" VerticalAlignment="Top" Width="104" Height="46" FontSize="20" Click="FollowButton_Click"/>
         <ListView x:Name="PushpinView" HorizontalAlignment="Left" Height="566" Margin="27,136,0,0" VerticalAlignment="Top" Width="744">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" HorizontalAlignment="Stretch" Width="375" Height="550"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{Binding Image}" />
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--<Image x:Name="image" HorizontalAlignment="Left" Height="433" Margin="131,230,0,0" VerticalAlignment="Top" Width="567"/>-->
-        <!--<ListBox x:Name="PushpinView" HorizontalAlignment="Left" Height="438" Margin="131,214,0,0" VerticalAlignment="Top" Width="558"/>-->
 
         <TextBlock x:Name="WatcherBlock" HorizontalAlignment="Left" Margin="175,725,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="45" Width="469" FontSize="20" TextAlignment="Center"/>
         <Button x:Name="SwitchButton" Content="Watch" HorizontalAlignment="Left" Margin="175,788,0,0" VerticalAlignment="Top" Width="469" Height="56" Click="SwitchButton_Click"/>
