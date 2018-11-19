@@ -1,6 +1,7 @@
 ﻿using Corkboard.API.Helpers;
 using Corkboard.API.Helpers.PageHelpers;
 using Corkboard.API.Models;
+using Corkboard.UI.Popups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,13 @@ namespace Corkboard.UI.Screens
             var view = sender as ListView;
             var properties = ConvertSelectedItem(view.SelectedItem);
 
+            if (!ViewPasswordProtected(properties["Title"], properties["Email"], properties["Private"]))
+            {
+                var popup = new Error("Cannot view corkboard. Incorrect password.");
+                popup.ShowDialog();
+                return;
+            }
+
             if (view.Name.Equals("UpdatesView"))
             {
                 var owner = UserHelper.GetUserByEmail(properties["Email"]);
@@ -134,12 +142,18 @@ namespace Corkboard.UI.Screens
             var view = new GridView();
             MyCorkboardView.View = view;
             view.Columns.Add(CreateGridColumn("Title", 309));
-            view.Columns.Add(CreateGridColumn("Pushpins", 309));
+            view.Columns.Add(CreateGridColumn("Pushpins", 209));
+            view.Columns.Add(CreateGridColumn("", 109, "Private"));
 
             var corkboards = CorkboardHelper.GetUserPublicCorkboards(MainWindow.User);
             foreach (var board in corkboards)
             {
-                MyCorkboardView.Items.Add(new { Title = board.Title, Pushpins = board.Pushpins.Count });
+                var isPrivate = string.Empty;
+                if (board.IsPrivate)
+                {
+                    isPrivate = "Private";
+                }
+                MyCorkboardView.Items.Add(new { Title = board.Title, Pushpins = board.Pushpins.Count, Private = isPrivate });
             }
         }
 
@@ -148,21 +162,39 @@ namespace Corkboard.UI.Screens
             UpdatesView.SelectionMode = SelectionMode.Single;
             var view = new GridView();
             UpdatesView.View = view;
-            view.Columns.Add(CreateGridColumn("Title", 206));
-            view.Columns.Add(CreateGridColumn("Owner", 206));
+            view.Columns.Add(CreateGridColumn("Title", 196));
+            view.Columns.Add(CreateGridColumn("Owner", 156));
             view.Columns.Add(CreateGridColumn("Last PushPin Update Time", 188, "LastUpdate"));
-            view.Columns.Add(CreateGridColumn("Email", 0));
+            view.Columns.Add(CreateGridColumn("", 60, "Private"));
+            view.Columns.Add(CreateGridColumn("", 0, "Email"));
 
             var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(MainWindow.User);
             foreach (var board in corkboards)
             {
-                UpdatesView.Items.Add(new { Title = board.Title, Owner = board.Owner.Name, LastUpdate = board.LastUpdate, Email = board.Owner.Email });
+                var isPrivate = string.Empty;
+                if (board.IsPrivate)
+                {
+                    isPrivate = "Private";
+                }
+                UpdatesView.Items.Add(new { Title = board.Title, Owner = board.Owner.Name, LastUpdate = board.LastUpdate, Private = isPrivate, Email = board.Owner.Email });
             }
         }
 
         private void DisplayUserInformation()
         {
             NameBox.Text = $"Welcome {MainWindow.User.Name}";
+        }
+
+        private bool ViewPasswordProtected(string title, string ownerEmail, string isPrivate)
+        {
+            if (string.IsNullOrEmpty(isPrivate))
+            {
+                return true;
+            }
+
+            var popup = new PasswordProtected(title, ownerEmail);
+            var result = popup.ShowDialog();
+            return result == true;
         }
 
         #endregion
