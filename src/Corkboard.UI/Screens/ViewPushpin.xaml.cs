@@ -80,6 +80,13 @@ namespace Corkboard.UI.Screens
             PushpinHelper.AddComment(pushpin, currentUser, text);
         }
 
+        private void ViewCorkboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
+            var corkboard = PushpinHelper.GetCorkboardPushpinIsOn(pushpin);
+            MainWindow.Navigate(new ViewCorkboard(this, owner, currentUser, corkboard.Title));
+        }
+
         #region private
 
         private API.Models.Corkboard corkboard;
