@@ -30,7 +30,14 @@ namespace Corkboard.UI
 
         public void Navigate(Page nextPage)
         {
-            Content = nextPage;
+            if (nextPage.GetType() == typeof(Home))
+            {
+                Content = new Home(this);
+            }
+            else
+            {
+                Content = nextPage;
+            }
         }
 
         public void SetUser(User user)
