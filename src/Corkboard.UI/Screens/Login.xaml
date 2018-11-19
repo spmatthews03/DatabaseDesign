@@ -9,11 +9,11 @@
       Title="Login">
 
     <Grid x:Name="PageGrid" KeyDown="PageGrid_KeyDown">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="241" Margin="146,179,0,0" VerticalAlignment="Top" Width="497" Source="/Corkboard.UI;component/logo.png"/>
         <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Height="79" Margin="278,484,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="250" GotFocus="EmailBox_GotFocus" LostFocus="EmailBox_LostFocus" TextAlignment="Center" Foreground="#FF0835FF" FontSize="22"/>
         <TextBlock x:Name="EmailBlock" HorizontalAlignment="Left" Margin="364,568,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Height="29" Width="74" FontSize="20" TextAlignment="Center" Foreground="#FF0068FF" Visibility="Hidden"/>
         <TextBox x:Name="PinBox" HorizontalAlignment="Left" Height="46" Margin="278,621,0,0" TextWrapping="Wrap" Text="Pin" VerticalAlignment="Top" Width="250" TextAlignment="Center" Foreground="#FF002DF5" FontSize="20" GotFocus="PinBox_GotFocus" LostFocus="PinBox_LostFocus"/>
         <TextBlock x:Name="PinBlock" HorizontalAlignment="Left" Margin="364,674,0,0" TextWrapping="Wrap" Text="Pin" VerticalAlignment="Top" Height="29" Width="74" FontSize="20" TextAlignment="Center" Foreground="#FF0068FF" Visibility="Hidden"/>
         <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="364,718,0,0" VerticalAlignment="Top" Width="74" Click="Login_Click"/>
-
     </Grid>
 </Page>

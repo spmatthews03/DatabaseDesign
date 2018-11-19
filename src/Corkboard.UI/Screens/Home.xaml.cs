@@ -70,22 +70,31 @@ namespace Corkboard.UI.Screens
 
             var view = sender as ListView;
             var properties = ConvertSelectedItem(view.SelectedItem);
-
-            if (!ViewPasswordProtected(properties["Title"], properties["Email"], properties["Private"]))
-            {
-                var popup = new Error("Cannot view corkboard. Incorrect password.");
-                popup.ShowDialog();
-                return;
-            }
+            var title = properties["Title"];
+            var isPrivate = properties["Private"];
 
             if (view.Name.Equals("UpdatesView"))
             {
                 var owner = UserHelper.GetUserByEmail(properties["Email"]);
-                MainWindow.Navigate(new ViewCorkboard(this, owner, MainWindow.User, properties["Title"]));
+                if (!ViewPasswordProtected(title, owner.Email, isPrivate))
+                {
+                    var popup = new Error("Cannot view corkboard. Incorrect password.");
+                    popup.ShowDialog();
+                    return;
+                }
+
+                MainWindow.Navigate(new ViewCorkboard(this, owner, MainWindow.User, title));
             }
             else
             {
-                MainWindow.Navigate(new ViewCorkboard(this, MainWindow.User, MainWindow.User, properties["Title"]));
+                if (!ViewPasswordProtected(title, MainWindow.User.Email, isPrivate))
+                {
+                    var popup = new Error("Cannot view corkboard. Incorrect password.");
+                    popup.ShowDialog();
+                    return;
+                }
+
+                MainWindow.Navigate(new ViewCorkboard(this, MainWindow.User, MainWindow.User, title));
             }
 
             view.SelectedItem = null;
