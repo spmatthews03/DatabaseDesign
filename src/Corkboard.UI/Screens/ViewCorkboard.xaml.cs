@@ -65,6 +65,7 @@ namespace Corkboard.UI.Screens
             if (SwitchButton.Content.Equals("Add PushPin"))
             {
                 previousPage.MainWindow.Navigate(new AddPushpin(previousPage.MainWindow, this));
+                GetCorkboard(Corkboard.Title);
             }
 
             if (SwitchButton.Content.Equals("Watch"))
@@ -103,7 +104,12 @@ namespace Corkboard.UI.Screens
 
             foreach (var pin in Corkboard.Pushpins)
             {
-                PushpinView.Items.Add(new { Url = pin.Url, Pushpin = pin });
+                var item = new { Url = pin.Url, Pushpin = pin };
+                if (PushpinView.Items.Contains(item))
+                {
+                    continue;
+                }
+                PushpinView.Items.Add(item);
             }
         }
 
