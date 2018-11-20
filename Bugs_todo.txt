@@ -8,4 +8,3 @@ BUGS
 - can't view pushpin from corkboard
 - corkboard not automatically updating after adding new pushpin
 - website address isn't displayed on pushpin ( i really don't care if this gets done )
-- latest update on the Corkboard window is not right
