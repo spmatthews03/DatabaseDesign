@@ -38,6 +38,9 @@ namespace Corkboard.UI.Screens
             DisplayComments();
             DisplayDescription();
             DisplayTags();
+            var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
+            SetSwitchButton_Follow(owner);
+            SetSwitchButton_Like();
         }
 
         public MainWindow MainWindow => previousPage.MainWindow;
@@ -54,11 +57,13 @@ namespace Corkboard.UI.Screens
             if (FollowButton.Content.Equals("Follow"))
             {
                 ViewCorkboardHelper.FollowUser(owner, MainWindow.User);
+                owner.Followers.Add(MainWindow.User);
             }
 
             if (FollowButton.Content.Equals("Unfollow"))
             {
                 ViewCorkboardHelper.UnfollowUser(owner, MainWindow.User);
+                owner.Followers.Remove(MainWindow.User);
             }
 
             SetSwitchButton_Follow(owner);
