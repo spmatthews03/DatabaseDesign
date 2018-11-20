@@ -1,11 +1,8 @@
 BUGS
 
-- When Creating a corkboard, the default text inside the tags get submitted if nothing is entered
 - stats counts not right for private (Sean)
-- follow on pushpin doesn't change when clicked
-- likes and comments not updated on view of pushping when after hitting Like
-- Once you leave a pushping the Unlike button returns to Like when you return
-- can't view pushpin from corkboard
-- corkboard not automatically updating after adding new pushpin
-- website address isn't displayed on pushpin ( i really don't care if this gets done )
-- create a private corkboard with no password
+- comments not updated on view of pushping when after hitting Post
+- pushpins on corkboard are doubling after new pushpin
+- follow on corkboard fails
+- Corkboard button from pushpin fails (search -> pushpin -> corkboard button )
+
