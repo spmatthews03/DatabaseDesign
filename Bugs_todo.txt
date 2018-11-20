@@ -5,4 +5,6 @@ BUGS
 - pushpins on corkboard are doubling after new pushpin
 - follow on corkboard fails
 - Corkboard button from pushpin fails (search -> pushpin -> corkboard button )
+- recent updates query not right on the follows (sean)
+- show pushpins for selected tag
 
