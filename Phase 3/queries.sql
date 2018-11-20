@@ -2,7 +2,7 @@
 SELECT name AS Tag, COUNT(Tags.date_time) AS PushPins, Count(DISTINCT Tags.title) AS 'Unique Corkboards'
 FROM Tags
 GROUP BY name
-ORDER BY COUNT(Tags.date_time) DESC, COUNT(DISTINCT Tags.title) DESC LIMIT 5
+ORDER BY COUNT(Tags.date_time) DESC, COUNT(DISTINCT Tags.title) DESC LIMIT 5;
 
 
 -- Popular Sites
@@ -13,15 +13,16 @@ ORDER BY COUNT(*) DESC LIMIT 4;
 
 
 -- Corkboard Statistics
-SELECT name, COUNT(DISTINCT Corkboard.title) AS 'Public Corkboard', 
-COUNT(PushPin.date_time) AS 'Public PushPins', 
-COUNT(DISTINCT Private_Corkboard.title) AS 'Private Corkboards', 
-COUNT(Private_Corkboard.owner_email) AS 'Private PushPins'
-FROM ((Corkboard NATURAL JOIN User) NATURAL JOIN PushPin)
-LEFT JOIN Private_Corkboard ON Corkboard.title=Private_Corkboard.title AND Corkboard.owner_email=Private_Corkboard.owner_email
-WHERE Corkboard.owner_email=User.email AND PushPin.title=Corkboard.title
-GROUP BY name
-ORDER BY Count(Corkboard.title) DESC;
+SELECT name,
+Count(DISTINCT corkboard.title, corkboard.owner_email)- Count(DISTINCT corkboard.title, corkboard.owner_email, password) AS 'Public Corkboards',
+COUNT(Pushpin.date_time) AS 'Public PushPins',
+COUNT(Distinct Private_Corkboard.title, Private_Corkboard.owner_email) AS 'Private Corkboards',
+COUNT(Private_Corkboard.owner_email) AS 'Private PushPins' 
+FROM ((Corkboard NATURAL JOIN Users) NATURAL LEFT OUTER JOIN Private_Corkboard) 
+NATURAL LEFT OUTER JOIN Pushpin
+WHERE Corkboard.owner_email=Users.email 
+GROUP BY name 
+ORDER BY COUNT(DISTINCT Corkboard.title,Corkboard.owner_email) DESC;
 
 -- Logging in
 SELECT * FROM User WHERE User.email='$Email'; -- check if user exists
