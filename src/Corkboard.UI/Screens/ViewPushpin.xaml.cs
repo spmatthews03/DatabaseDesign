@@ -69,6 +69,11 @@ namespace Corkboard.UI.Screens
             SetSwitchButton_Follow(owner);
         }
 
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start(pushpin.Url);
+        }
+
         private void LikeButton_Click(object sender, RoutedEventArgs e)
         {
             if (LikeButton.Content.Equals("Like"))
