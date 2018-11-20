@@ -51,7 +51,17 @@ namespace Corkboard.UI.Screens
         private void FollowButton_Click(object sender, RoutedEventArgs e)
         {
             var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
-            ViewCorkboardHelper.FollowUser(owner, MainWindow.User);
+            if (FollowButton.Content.Equals("Follow"))
+            {
+                ViewCorkboardHelper.FollowUser(owner, MainWindow.User);
+            }
+
+            if (FollowButton.Content.Equals("Unfollow"))
+            {
+                ViewCorkboardHelper.UnfollowUser(owner, MainWindow.User);
+            }
+
+            SetSwitchButton_Follow(owner);
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
@@ -183,6 +193,23 @@ namespace Corkboard.UI.Screens
         {
             // TODO - hyperlink to corkboard
             TitleBlock.Text = $"{pushpin.Title} - {pushpin.DateTime}";
+        }
+
+        private void SetSwitchButton_Follow(User owner)
+        {
+            if (owner.Equals(MainWindow.User))
+            {
+                FollowButton.Visibility = Visibility.Hidden;
+            }
+
+            if (UserHelper.GetUserFollowersEmails(owner.Email).Contains(MainWindow.User.Email))
+            {
+                FollowButton.Content = "Unfollow";
+            }
+            else
+            {
+                FollowButton.Content = "Follow";
+            }
         }
 
         private void SetSwitchButton_Like()
