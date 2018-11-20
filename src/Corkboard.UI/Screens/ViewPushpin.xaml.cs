@@ -150,8 +150,9 @@ namespace Corkboard.UI.Screens
             CommentsView.View = view;
             view.Columns.Add(CreateGridColumn("User", 170));
             view.Columns.Add(CreateGridColumn("Comment", 170));
-            
-            foreach (var comment in pushpin.Comments)
+
+            CommentsView.Items.Clear();
+            foreach (var comment in pushpin.Comments.OrderByDescending(x => x.DateTime).ToList())
             {
                 CommentsView.Items.Add(new { User = comment.User, Comment = comment.Value });
             }
