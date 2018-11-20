@@ -78,6 +78,7 @@ namespace Corkboard.UI.Screens
                 pushpin.Likes.Remove(MainWindow.User);
             }
 
+            SetLikes();
             SetSwitchButton_Like();
         }
 
