@@ -27,19 +27,16 @@ namespace Corkboard.API.Helpers
         /// <returns>Returns the list of corkboards, or an empty list.</returns>
         public static List<Models.Corkboard> GetRecentUpdatedCorkboards(User currentUser)
         {
-            var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from (corkboard NATURAL JOIN Users) " +
-                $"NATURAL JOIN pushpin where (corkboard.owner_email IN (Select Follows.follower_email from Follows WHERE Follows.email='{currentUser.Email}' " +
-                $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR corkboard.owner_email='{currentUser.Email}') AND corkboard.owner_email=Users.email " +
-                $"Group By pushpin.date_time Order By pushpin.date_time DESC Limit 4");
+            var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from updates " +
+                $"NATURAL JOIN Users where (updates.owner_email IN (Select Follows.follower_email from Follows WHERE Follows.email='{currentUser.Email}' " +
+                $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR updates.owner_email='{currentUser.Email}') AND updates.owner_email=Users.email " +
+                $"Group By updates.title Order By updates.date_time DESC Limit 4");
 
 
             var corkboardList = new List<Models.Corkboard>();
             foreach (DataRow row in recentUpdates.Rows)
             {
-                // TODO: fix this... shouldn't call CreateCorkboard
-                // corkboardList.Add(CreateCorkboardFromDataRow(row));
                 corkboardList.Add(CreateCorkboardFromDataRow(row));
-
             }
             return corkboardList;
         }
@@ -51,7 +48,7 @@ namespace Corkboard.API.Helpers
         /// <returns></returns>
         public static List<Models.Corkboard> GetUserCorkboards(User user)
         {
-            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from corkboard NATURAL LEFT OUTER JOIN pushpin where owner_email = '{user.Email}' GROUP BY title");
+            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from updates where owner_email = '{user.Email}' GROUP BY title ORDER BY title");
             var corkboardList = new List<Models.Corkboard>();
             foreach (DataRow row in corkboardRows.Rows)
             {
@@ -81,7 +78,6 @@ namespace Corkboard.API.Helpers
         /// <param name="password">Attempted password of the corkboard.</param>
         public static bool CanViewCorkboard(string title, string ownerEmail, string password)
         {
-            // TODO - if password is correct, return true. False otherwise.
             var passwordRow = DatabaseHelper.ExecuteQuery($"Select password from private_corkboard NATURAL JOIN Corkboard where owner_email='{ownerEmail}' AND title='{title}'");
             var corkboardPassword = passwordRow.GetValueInTable("password");
             if(corkboardPassword == password)
@@ -98,7 +94,6 @@ namespace Corkboard.API.Helpers
         /// <param name="user">User to retrieve public corkboards for.</param>
         public static List<Models.Corkboard> GetUserPublicCorkboards(User user)
         {
-            // return GetUserCorkboards(user).Where(x => x.IsPrivate.Equals(false)).ToList();
             return GetUserCorkboards(user);
         }
 
@@ -106,10 +101,13 @@ namespace Corkboard.API.Helpers
         {
             var corkboard = new Models.Corkboard();
             corkboard.Category = row.GetValueInRow("category_type");
-            // corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("LastUpdate"));
+
             if(!row.GetValueInRow("date_time").Equals(""))
             {
-                corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("date_time"));
+                if (corkboard.LastUpdate < Convert.ToDateTime(row.GetValueInRow("date_time")))
+                {
+                    corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("date_time"));
+                }
             }
             corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
             corkboard.Title = row.GetValueInRow("title");

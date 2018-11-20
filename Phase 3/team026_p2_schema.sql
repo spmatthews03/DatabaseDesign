@@ -113,3 +113,19 @@ ALTER TABLE `Comment`
 	ADD CONSTRAINT fk_Comment_url_PushPin_url FOREIGN KEY (url) REFERENCES PushPin (url),
 	ADD CONSTRAINT fk_Comment_title_PushPin_title FOREIGN KEY (title) REFERENCES PushPin (title),
 	ADD CONSTRAINT fk_Comment_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+
+
+-- Create Views
+Create View siteName As 
+SELECT left(replace(replace(url, 'https://',''),'http://',''), INSTR(replace(replace(url, 'https://',''),'http://',''), '/') - 1) As Site
+FROM pushpin
+GROUP BY url
+Order By COUNT(url) DESC
+
+
+Create View updates As 
+SELECT *
+FROM Corkboard NATURAL LEFT OUTER JOIN Pushpin 
+GROUP BY date_time 
+ORDER BY date_time DESC
+
