@@ -91,7 +91,7 @@ namespace Corkboard.UI.Screens
             }
 
             PushpinHelper.AddComment(pushpin, MainWindow.User, text);
-            
+            DisplayComments();
         }
 
         private void ViewCorkboardButton_Click(object sender, RoutedEventArgs e)
