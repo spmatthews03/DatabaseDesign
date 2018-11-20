@@ -91,6 +91,7 @@ namespace Corkboard.UI.Screens
             }
 
             PushpinHelper.AddComment(pushpin, MainWindow.User, text);
+            
         }
 
         private void ViewCorkboardButton_Click(object sender, RoutedEventArgs e)
@@ -192,7 +193,6 @@ namespace Corkboard.UI.Screens
 
         private void SetTitle()
         {
-            // TODO - hyperlink to corkboard
             TitleBlock.Text = $"{pushpin.Title} - {pushpin.DateTime}";
         }
 
