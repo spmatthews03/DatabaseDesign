@@ -38,6 +38,7 @@ namespace Corkboard.UI.Screens
             DisplayComments();
             DisplayDescription();
             DisplayTags();
+            DisplayBaseUrl();
             var owner = UserHelper.GetUserByEmail(pushpin.Owner_Email);
             SetSwitchButton_Follow(owner);
             SetSwitchButton_Like();
@@ -126,6 +127,20 @@ namespace Corkboard.UI.Screens
                 DisplayMemberBinding = new Binding(newBinding),
                 Width = width
             };
+        }
+
+        private void DisplayBaseUrl()
+        {
+            try
+            {
+                var split = pushpin.Url.Split('/');
+                var shortUrl = split.First(x => x.Contains(".com") || x.Contains("www."));
+                imageUrlBlock.Text = shortUrl;
+            }
+            catch (Exception e)
+            {
+                imageUrlBlock.Text = string.Empty;
+            }
         }
 
         private void DisplayComments()

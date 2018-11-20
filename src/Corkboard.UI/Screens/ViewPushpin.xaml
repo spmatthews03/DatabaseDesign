@@ -13,6 +13,7 @@
         <Button x:Name="FollowButton" Content="Follow" HorizontalAlignment="Left" Margin="535,30,0,0" VerticalAlignment="Top" Width="109" Height="46" Click="FollowButton_Click"/>
         <Button x:Name="ViewCorkboardButton" Content="Corkboard" HorizontalAlignment="Left" Margin="662,30,0,0" VerticalAlignment="Top" Width="109" Height="46" Click="ViewCorkboardButton_Click"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="472" Margin="26,96,0,0" VerticalAlignment="Top" Width="745" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <TextBlock x:Name="imageUrlBlock" HorizontalAlignment="Left" Margin="409,536,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="27" Width="362" FontSize="16" TextAlignment="Center"/>
         <TextBlock x:Name="DescriptionBlock" HorizontalAlignment="Left" Margin="26,594,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Height="34" Width="745" FontSize="18" TextAlignment="Center"/>
         <TextBlock x:Name="TagsBlock" HorizontalAlignment="Left" Margin="26,633,0,0" TextWrapping="Wrap" Text="Tags" VerticalAlignment="Top" Height="34" Width="745" FontSize="18" TextAlignment="Center"/>
         <TextBlock x:Name="LikesBlock" HorizontalAlignment="Left" Margin="48,686,0,0" TextWrapping="Wrap" Text="List of users who have liked this pushpin" VerticalAlignment="Top" Height="30" Width="568" FontSize="18" TextAlignment="Center"/>
