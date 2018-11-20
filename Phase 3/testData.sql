@@ -1,15 +1,15 @@
 
--- `User`
-INSERT INTO `User` (email, name, pin) VALUES('sean@gt.edu', 'Sean', 1234);
-INSERT INTO `User` (email, name, pin) VALUES('meghan@gt.edu', 'Meghan', 1234);
-INSERT INTO `User` (email, name, pin) VALUES('brian@gt.edu', 'Brian', 1234);
-INSERT INTO `User` (email, name, pin) VALUES('john@gt.edu', 'John', 1234);
-INSERT INTO `User` (email, name, pin) VALUES('jake@gt.edu', 'Jake', 1234);
-INSERT INTO `User` (email, name, pin) VALUES('mary@gt.edu', 'Mary', 1234);
-INSERT INTO `User` (email, name, pin) VALUES('chelsea@gt.edu', 'Chelsea', 1234);
+-- Users
+INSERT INTO Users (email, name, pin) VALUES('sean@gt.edu', 'Sean', 1234);
+INSERT INTO Users (email, name, pin) VALUES('meghan@gt.edu', 'Meghan', 1234);
+INSERT INTO Users (email, name, pin) VALUES('brian@gt.edu', 'Brian', 1234);
+INSERT INTO Users (email, name, pin) VALUES('john@gt.edu', 'John', 1234);
+INSERT INTO Users (email, name, pin) VALUES('jake@gt.edu', 'Jake', 1234);
+INSERT INTO Users (email, name, pin) VALUES('mary@gt.edu', 'Mary', 1234);
+INSERT INTO Users (email, name, pin) VALUES('chelsea@gt.edu', 'Chelsea', 1234);
 
 -- logging in
--- SELECT email FROM `User` WHERE email = `$Email`;
+-- SELECT email FROM Users WHERE email = `$Email`;
 
 -- -- POPULAR TAGS and SITES
 -- SELECT
@@ -148,28 +148,28 @@ VALUES ('Popular people', '2018-11-11 00:00:00', 'brian@gt.edu', 'https://i.pini
 
 
 -- Likes
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('brian@gt.edu','2018-11-08 00:00:00', 'https://i.pinimg.com/564x/da/ce/c4/dacec44e7ffcbfc43a95f3d683f7af90.jpg', 'Best Sports', 'sean@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('brian@gt.edu','2018-11-08 03:20:00', 'https://i.pinimg.com/564x/f7/24/97/f724971f00cfe08ee1b99486d197d112.jpg', 'Stuff For Home', 'sean@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('brian@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81/23/b78123972faadd8de48f7eb2c64a0d49.jpg','Places To Go', 'mary@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('sean@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81/23/b78123972faadd8de48f7eb2c64a0d49.jpg','Places To Go', 'mary@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('meghan@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81/23/b78123972faadd8de48f7eb2c64a0d49.jpg','Places To Go', 'mary@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('john@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81/23/b78123972faadd8de48f7eb2c64a0d49.jpg','Places To Go', 'mary@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('jake@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81/23/b78123972faadd8de48f7eb2c64a0d49.jpg','Places To Go', 'mary@gt.edu');
 
-INSERT INTO `Like` (email, date_time, url, title, owner_email)
+INSERT INTO Likes (email, date_time, url, title, owner_email)
 VALUES ('chelsea@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81/23/b78123972faadd8de48f7eb2c64a0d49.jpg','Places To Go', 'mary@gt.edu');
 
 
@@ -177,11 +177,11 @@ VALUES ('chelsea@gt.edu','2018-11-08 00:02:00', 'https://i.pinimg.com/564x/b7/81
 
 
 
--- Comments
-INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_time) 
+-- Commentss
+INSERT INTO Comments (date_time,text,email,url,title,owner_email,pushpin_date_time) 
 VALUES ('2018-11-10 00:01:00','This is great!','brian@gt.edu','https://i.pinimg.com/564x/c3/79/5b/c3795b63067d60f58021f12b96833fdd.jpg','Stuff For Home', 'sean@gt.edu','2018-11-08 04:00:00');
 
-INSERT INTO Comment (date_time,text,email,url,title,owner_email,pushpin_date_time) 
+INSERT INTO Comments (date_time,text,email,url,title,owner_email,pushpin_date_time) 
 VALUES ('2018-11-10 00:03:00','Dude this is so cool','meghan@gt.edu','https://i.pinimg.com/564x/c3/79/5b/c3795b63067d60f58021f12b96833fdd.jpg','Stuff For Home', 'sean@gt.edu','2018-11-08 04:00:00');
 
 -- Follows
