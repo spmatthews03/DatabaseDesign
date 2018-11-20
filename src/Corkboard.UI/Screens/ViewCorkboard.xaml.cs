@@ -1,6 +1,7 @@
 ﻿using Corkboard.API.Helpers;
 using Corkboard.API.Helpers.PageHelpers;
 using Corkboard.API.Models;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,7 +12,7 @@ namespace Corkboard.UI.Screens
     /// <summary>
     /// Interaction logic for ViewCorkboard.xaml
     /// </summary>
-    public partial class ViewCorkboard : Page
+    public partial class ViewCorkboard : Page, IPage
     {
         public ViewCorkboard(IPage previousPage, User owner, User viewer, string title)
         {
@@ -27,7 +28,9 @@ namespace Corkboard.UI.Screens
         }
 
         public API.Models.Corkboard Corkboard { get; private set; }
+        public MainWindow MainWindow => previousPage.MainWindow;
         public User Owner { get; private set; }
+        public Page Self => this;
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -47,6 +50,14 @@ namespace Corkboard.UI.Screens
             }
 
             SetSwitchButton_Follow();
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var image = sender as Image;
+            var imageContext = image.DataContext;
+            var pushpin = ConvertToPushpin(imageContext);
+            previousPage.MainWindow.Navigate(new ViewPushpin(this, pushpin));
         }
 
         private void SwitchButton_Click(object sender, RoutedEventArgs e)
@@ -78,6 +89,13 @@ namespace Corkboard.UI.Screens
         private IPage previousPage;
         private User viewer;
 
+        private Pushpin ConvertToPushpin(object context)
+        {
+            var properties = context.GetType().GetProperties();
+            var pushpin = properties.FirstOrDefault(x => x.Name.Equals("Pushpin"));
+            return pushpin.GetValue(context, null) as Pushpin;
+        }
+
         private void GetCorkboard(string title)
         {
             Corkboard = CorkboardHelper.GetCorkboard(Owner, title);
@@ -85,7 +103,7 @@ namespace Corkboard.UI.Screens
 
             foreach (var pin in Corkboard.Pushpins)
             {
-                PushpinView.Items.Add(new { Url = pin.Url });
+                PushpinView.Items.Add(new { Url = pin.Url, Pushpin = pin });
             }
         }
 

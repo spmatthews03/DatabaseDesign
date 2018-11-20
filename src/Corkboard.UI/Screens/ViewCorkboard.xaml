@@ -20,7 +20,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <Image Source="{Binding Url}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                        <Image Source="{Binding Url}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
