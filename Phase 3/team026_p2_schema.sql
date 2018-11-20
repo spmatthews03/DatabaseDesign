@@ -21,7 +21,7 @@ CREATE TABLE Private_Corkboard (
 );
 
 
-CREATE TABLE `Comment`(
+CREATE TABLE Comments (
 	date_time datetime NOT NULL,
 	text varchar(100) NOT NULL,
 	email varchar(30) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE Watch (
 	PRIMARY KEY (email, title, owner_email)
 );
 
-CREATE TABLE `Like` (
+CREATE TABLE Likes (
 	email varchar(30) NOT NULL,
 	date_time datetime NOT NULL,
 	url varchar(100) NOT NULL,
@@ -84,35 +84,36 @@ CREATE TABLE Tags (
 -- Constraints Foreign Keys: fk_ChildTable_childColumn_ParentTable_parentColumn
 -- If no child-parent, then: fk_Table_child
 ALTER TABLE Corkboard
-	ADD CONSTRAINT fk_Corkboard_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_Corkboard_email_User_email FOREIGN KEY (owner_email) REFERENCES Users (email);
 
 ALTER TABLE Follows
-	ADD CONSTRAINT fk_Follows_email_User_email FOREIGN KEY (email) REFERENCES `User` (email),
-	ADD CONSTRAINT fk_Follows_follower_email_User_email FOREIGN KEY (follower_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_Follows_email_User_email FOREIGN KEY (email) REFERENCES Users (email),
+	ADD CONSTRAINT fk_Follows_follower_email_User_email FOREIGN KEY (follower_email) REFERENCES Users (email);
 
 ALTER TABLE Private_Corkboard
 	ADD CONSTRAINT fk_PrivateCorkboard_title_Corkboard_title FOREIGN KEY (title) REFERENCES Corkboard (title),
-	ADD CONSTRAINT fk_PrivateCorkboard_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_PrivateCorkboard_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES Users (email);
 
 ALTER TABLE Watch
-	ADD CONSTRAINT fk_Watch_email_User_email FOREIGN KEY (email) REFERENCES `User` (email),
-	ADD CONSTRAINT fk_Watch_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_Watch_email_User_email FOREIGN KEY (email) REFERENCES Users (email),
+	ADD CONSTRAINT fk_Watch_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES Users (email);
 
 ALTER TABLE PushPin
 	ADD CONSTRAINT fk_PushPin_title_Corkboard_title FOREIGN KEY (title) REFERENCES Corkboard (title),
-	ADD CONSTRAINT fk_PushPin_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_PushPin_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES Users (email);
 
 
-ALTER TABLE `Like`
+ALTER TABLE Likes
 	ADD CONSTRAINT fk_Likes_title_PushPin_title FOREIGN KEY (title) REFERENCES PushPin (title),
 	ADD CONSTRAINT fk_Likes_url_PushPin_url FOREIGN KEY (url) REFERENCES PushPin (url),
-	ADD CONSTRAINT fk_Likes_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_Likes_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES Users (email);
     
     
-ALTER TABLE `Comment`
+ALTER TABLE Comments
 	ADD CONSTRAINT fk_Comment_url_PushPin_url FOREIGN KEY (url) REFERENCES PushPin (url),
 	ADD CONSTRAINT fk_Comment_title_PushPin_title FOREIGN KEY (title) REFERENCES PushPin (title),
-	ADD CONSTRAINT fk_Comment_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES `User` (email);
+	ADD CONSTRAINT fk_Comment_owner_email_User_email FOREIGN KEY (owner_email) REFERENCES Users (email);
+
 
 
 -- Create Views
@@ -120,7 +121,7 @@ Create View siteName As
 SELECT left(replace(replace(url, 'https://',''),'http://',''), INSTR(replace(replace(url, 'https://',''),'http://',''), '/') - 1) As Site
 FROM pushpin
 GROUP BY url
-Order By COUNT(url) DESC
+Order By COUNT(url) DESC;
 
 
 Create View updates As 
