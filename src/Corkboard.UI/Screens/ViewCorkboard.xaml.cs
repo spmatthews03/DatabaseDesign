@@ -72,14 +72,12 @@ namespace Corkboard.UI.Screens
             if (SwitchButton.Content.Equals("Watch"))
             {
                 ViewCorkboardHelper.WatchCorkboard(Owner, viewer, Corkboard.Title);
-                Corkboard.Watchers.Add(viewer);
                 SetWatch();
             }
 
             if (SwitchButton.Content.Equals("Unwatch"))
             {
                 ViewCorkboardHelper.UnwatchCorkboard(Owner, viewer, Corkboard.Title);
-                Corkboard.Watchers.Remove(viewer);
                 SetWatch();
             }
 
@@ -124,7 +122,7 @@ namespace Corkboard.UI.Screens
 
         private void SetWatch()
         {
-            var watchers = Corkboard.Watchers;
+            var watchers = CorkboardHelper.GetCorkboardWatchers(Corkboard);
 
             if (Owner.Email.Equals(viewer.Email))
             {
@@ -142,7 +140,7 @@ namespace Corkboard.UI.Screens
                 }
                 else
                 {
-                    WatcherBlock.Text = $"This corkboard has {Corkboard.Watchers.Count} watchers.";
+                    WatcherBlock.Text = $"This corkboard has {watchers.Count} watchers.";
                 }
             }          
         }
@@ -155,7 +153,7 @@ namespace Corkboard.UI.Screens
             }
             else if (!Corkboard.IsPrivate)
             {
-                var alreadyWatching = Corkboard.Watchers.Exists(x => x.Email.Equals(viewer.Email));
+                var alreadyWatching = CorkboardHelper.GetCorkboardWatchers(Corkboard).Exists(x => x.Email.Equals(viewer.Email));
                 if (alreadyWatching)
                 {
                     SwitchButton.Content = "Unwatch";

@@ -60,7 +60,6 @@ namespace Corkboard.API.Helpers
             return corkboardList;
         }
 
-
         public static List<Models.User> GetCorkboardWatchers(Models.Corkboard corkboard)
         {
             var watchers = DatabaseHelper.ExecuteQuery($"Select * from Corkboard NATURAL JOIN Watch WHERE owner_email='{corkboard.Owner.Email}' AND title='{corkboard.Title}'");
@@ -103,14 +102,6 @@ namespace Corkboard.API.Helpers
         {
             var corkboard = new Models.Corkboard();
             corkboard.Category = row.GetValueInRow("category_type");
-
-            if(!row.GetValueInRow("date_time").Equals(""))
-            {
-                if (corkboard.LastUpdate < Convert.ToDateTime(row.GetValueInRow("date_time")))
-                {
-                    corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("date_time"));
-                }
-            }
             corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
             corkboard.Title = row.GetValueInRow("title");
             corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
