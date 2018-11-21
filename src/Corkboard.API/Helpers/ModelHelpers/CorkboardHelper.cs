@@ -61,7 +61,7 @@ namespace Corkboard.API.Helpers
         }
 
 
-        public static List<Models.User> GetNumberOfWatchersCorkboards(Models.Corkboard corkboard)
+        public static List<Models.User> GetCorkboardWatchers(Models.Corkboard corkboard)
         {
             var watchers = DatabaseHelper.ExecuteQuery($"Select * from Corkboard NATURAL JOIN Watch WHERE owner_email='{corkboard.Owner.Email}' AND title='{corkboard.Title}'");
             var watchersList = new List<Models.User>();
@@ -115,7 +115,7 @@ namespace Corkboard.API.Helpers
             corkboard.Title = row.GetValueInRow("title");
             corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
             corkboard.Pushpins = PushpinHelper.GetPushpinsForCorkboard(corkboard);
-            corkboard.Watchers = GetNumberOfWatchersCorkboards(corkboard);
+            corkboard.Watchers = GetCorkboardWatchers(corkboard);
 
             return corkboard;
         }
