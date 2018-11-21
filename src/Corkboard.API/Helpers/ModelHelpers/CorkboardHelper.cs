@@ -28,9 +28,11 @@ namespace Corkboard.API.Helpers
         public static List<Models.Corkboard> GetRecentUpdatedCorkboards(User currentUser)
         {
             var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from updates " +
-                $"NATURAL JOIN Users where (updates.owner_email IN (Select Follows.follower_email from Follows WHERE Follows.email='{currentUser.Email}' " +
-                $"UNION Select Watch.owner_email from Watch WHERE Watch.email='{currentUser.Email}') OR updates.owner_email='{currentUser.Email}') AND updates.owner_email=Users.email " +
-                $"Group By updates.title Order By updates.date_time DESC Limit 4");
+                $"NATURAL JOIN Users " +
+                $"where(updates.owner_email IN(Select Follows.email from Follows WHERE Follows.follower_email = 'sean@gt.edu') " +
+                $"OR updates.title in (Select Watch.title from Watch WHERE Watch.email = 'sean@gt.edu')) AND updates.owner_email = Users.email " +
+                $"Group By updates.title " +
+                $"Order By updates.date_time DESC Limit 4");
 
 
             var corkboardList = new List<Models.Corkboard>();
