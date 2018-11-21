@@ -1,6 +1,7 @@
 BUGS
 
 - follow on pushpin fails (API)
-- show pushpins for selected tag (UI)
-- notification for watching pops up on own board (UI)
 - latest update wrong (API)
+- unwatch button not working (API)
+
+- Update TeamInfo.txt to point to the queries.

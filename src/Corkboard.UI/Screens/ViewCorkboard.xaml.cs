@@ -1,6 +1,7 @@
 ﻿using Corkboard.API.Helpers;
 using Corkboard.API.Helpers.PageHelpers;
 using Corkboard.API.Models;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -112,7 +113,13 @@ namespace Corkboard.UI.Screens
 
         private void SetTitle()
         {
-            TitleBlock.Text = $"{Corkboard.Title} by {Owner.Name} - {Corkboard.Category} - Latest update: {Corkboard.LastUpdate}";
+            var lastUpdate = Corkboard.LastUpdate.ToShortDateString();
+            if (lastUpdate.Equals(DateTime.MinValue.ToShortDateString()))
+            {
+                lastUpdate = "Never updated.";
+            }
+
+            TitleBlock.Text = $"{Corkboard.Title} by {Owner.Name} - {Corkboard.Category} - Latest update: {lastUpdate}";
         }
 
         private void SetWatch()
