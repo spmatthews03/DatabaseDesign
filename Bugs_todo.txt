@@ -1,10 +1,8 @@
 BUGS
 
 - stats counts not right for private (Sean)
-- comments not updated on view of pushping when after hitting Post
-- pushpins on corkboard are doubling after new pushpin
-- follow on corkboard fails
+- follow on corkboard fails (api or ui?)
 - Corkboard button from pushpin fails (search -> pushpin -> corkboard button )
 - recent updates query not right on the follows (sean)
-- show pushpins for selected tag
+- show pushpins for selected tag (api or ui?)
 
