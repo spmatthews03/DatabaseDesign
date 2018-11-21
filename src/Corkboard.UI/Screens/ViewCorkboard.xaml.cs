@@ -102,13 +102,10 @@ namespace Corkboard.UI.Screens
             Corkboard = CorkboardHelper.GetCorkboard(Owner, title);
             PushpinView.SelectionMode = SelectionMode.Single;
 
+            PushpinView.Items.Clear();
             foreach (var pin in Corkboard.Pushpins)
             {
                 var item = new { Url = pin.Url, Pushpin = pin };
-                if (PushpinView.Items.Contains(item))
-                {
-                    continue;
-                }
                 PushpinView.Items.Add(item);
             }
         }
