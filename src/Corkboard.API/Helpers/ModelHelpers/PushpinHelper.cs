@@ -15,7 +15,7 @@ namespace Corkboard.API.Helpers
 
         public static Models.Corkboard GetCorkboardPushpinIsOn(Pushpin pushpin)
         {
-            var pushpinRows = DatabaseHelper.ExecuteQuery($"Select * From corkboard NATURAL JOIN Pushpin where owner_email = '{pushpin.Owner_Email}' AND title = '{pushpin.Title}'");
+            var pushpinRows = DatabaseHelper.ExecuteQuery($"Select * From corkboard where owner_email = '{pushpin.Owner_Email}' AND title = '{pushpin.Title}'");
             return CorkboardHelper.CreateCorkboardFromDataRow(pushpinRows.Rows[0]);
         }
 
