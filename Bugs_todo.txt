@@ -1,7 +1,6 @@
 BUGS
 
-- stats counts not right for private (Sean)
-- follow on corkboard fails (api or ui?)
+- follow on corkboard fails ()
 - recent updates query not right on the follows (sean)
-- show pushpins for selected tag (api or ui?)
+- show pushpins for selected tag (UI)
 
