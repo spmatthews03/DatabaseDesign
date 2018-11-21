@@ -125,23 +125,31 @@ namespace Corkboard.UI.Screens
         private void SetWatch()
         {
             var watchers = Corkboard.Watchers;
-            if (watchers.Count == 0)
+
+            if (Owner.Email.Equals(viewer.Email))
             {
-                WatcherBlock.Text = "No one is watching this corkboard. Be the first!";
-            }
-            else if (watchers.Count == 1)
-            {
-                WatcherBlock.Text = "This corkboard has 1 watcher.";
+                WatcherBlock.Visibility = Visibility.Hidden;
             }
             else
             {
-                WatcherBlock.Text = $"This corkboard has {Corkboard.Watchers.Count} watchers.";
-            }
+                if (watchers.Count == 0)
+                {
+                    WatcherBlock.Text = "No one is watching this corkboard. Be the first!";
+                }
+                else if (watchers.Count == 1)
+                {
+                    WatcherBlock.Text = "This corkboard has 1 watcher.";
+                }
+                else
+                {
+                    WatcherBlock.Text = $"This corkboard has {Corkboard.Watchers.Count} watchers.";
+                }
+            }          
         }
 
         private void SetSwitchButton()
         {
-            if (Owner.Name.Equals(viewer.Name))
+            if (Owner.Email.Equals(viewer.Email))
             {
                 SwitchButton.Content = "Add PushPin";
             }
