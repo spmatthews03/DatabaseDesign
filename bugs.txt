@@ -1,0 +1,2 @@
+-- private pushpins displaying on search results and tags
+-- recently updtaed sorted correctly but not only those followed, watched and owned
