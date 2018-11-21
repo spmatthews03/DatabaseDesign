@@ -1,0 +1,285 @@
+----------------------------------------------------------------
+-- Popular tags
+----------------------------------------------------------------
+Select name,
+Count(Distinct date_time, owner_email, url, title) AS Pushpins,
+Count(Distinct Tags.title, owner_email) AS 'Unique Corkboards'
+from tags NATURAL JOIN corkboard
+Group By name 
+ORDER BY Count(Distinct date_time, owner_email, url, title) DESC, 
+Count(Distinct Tags.title, owner_email) DESC
+=================================================================
+
+
+----------------------------------------------------------------
+-- Popular Sites
+----------------------------------------------------------------
+-- Create a View
+----------------
+
+Create View siteName As 
+
+SELECT left(replace(replace(url, 'https://',''),'http://',''), 
+INSTR(replace(replace(url, 'https://',''),'http://',''), '/') - 1) 
+As Site
+FROM pushpin
+GROUP BY url
+Order By COUNT(url) DESC;
+
+SELECT site, COUNT(*) AS Count 
+FROM sitename 
+Group BY site 
+ORDER BY COUNT(*) DESC 
+=================================================================
+
+
+----------------------------------------------------------------
+-- Corkboard Statistics
+----------------------------------------------------------------
+SELECT name,
+Count(DISTINCT corkboard.title, corkboard.owner_email) - Count(DISTINCT corkboard.title, corkboard.owner_email, password) AS 'Public Corkboards',
+COUNT(Pushpin.date_time)-COUNT(Private_Corkboard.owner_email) AS 'Public PushPins',
+COUNT(Distinct Private_Corkboard.title, Private_Corkboard.owner_email) AS 'Private Corkboards',
+COUNT(DISTINCT Private_Corkboard.owner_email, pushpin.url) AS 'Private PushPins'
+FROM((Corkboard NATURAL JOIN Users) NATURAL LEFT OUTER JOIN Private_Corkboard) NATURAL LEFT OUTER JOIN Pushpin
+WHERE Corkboard.owner_email = Users.email
+GROUP BY name 
+ORDER BY COUNT(DISTINCT Corkboard.title, Corkboard.owner_email) DESC
+=================================================================
+
+
+----------------------------------------------------------------
+-- Recent Updates
+----------------------------------------------------------------
+Select * from updates 
+NATURAL JOIN Users 
+where(updates.owner_email IN(Select Follows.email from Follows WHERE Follows.follower_email = 'sean@gt.edu') 
+OR updates.title in (Select Watch.title from Watch WHERE Watch.email = 'sean@gt.edu')) AND updates.owner_email = Users.email 
+Group By updates.title 
+Order By updates.date_time DESC Limit 4
+=================================================================
+
+
+----------------------------------------------------------------
+-- Searching Pushpins
+----------------------------------------------------------------
+Select title, description, tags.name AS tags, users.name AS name, owner_email, url, date_time 
+from pushpin NATURAL JOIN corkboard NATURAL LEFT OUTER JOIN Tags JOIN Users on owner_email=email 
+where description LIKE '%{query}%' OR tags.name LIKE '%{query}%' OR category_type LIKE '%{query}%' 
+GROUP BY description 
+Order By description ASC
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Populate Category Drop Down
+----------------------------------------------------------------
+Select * from category
+
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get User Corkboards (updates view worked more appropriately for this)
+----------------------------------------------------------------
+Select * 
+from updates 
+where owner_email = '{user.Email}' 
+GROUP BY title 
+ORDER BY title
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Add Corkboard
+----------------------------------------------------------------
+
+INSERT INTO corkboard ( title, visibility, owner_email, category_type) 
+VALUES ('{corkboard.Title}', {GetCorkboardVisibility(corkboard.IsPrivate)}, '{owner.Email}', '{corkboard.Category}')
+=================================================================
+
+----------------------------------------------------------------
+-- Add Private Corkboard
+----------------------------------------------------------------
+INSERT INTO private_corkboard ( title, owner_email, password) 
+VALUES ('{corkboard.Title}', '{owner.Email}', '{corkboard.Password}');
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get Watchers of a Corkboard
+----------------------------------------------------------------
+Select * 
+from Corkboard NATURAL JOIN Watch 
+WHERE owner_email='{corkboard.Owner.Email}' AND title='{corkboard.Title}'
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Check Password for Private Board
+----------------------------------------------------------------
+Select password 
+from private_corkboard NATURAL JOIN Corkboard 
+where owner_email='{ownerEmail}' AND title='{title}'
+=================================================================
+
+
+----------------------------------------------------------------
+-- Get Pushpins for Corkboard
+----------------------------------------------------------------
+Select * 
+From pushpin 
+where owner_email = '{corkboard.Owner.Email}' AND title = '{corkboard.Title}'
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get All Pushpins
+----------------------------------------------------------------
+Select * From pushpin
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get Tags for Pushpin
+----------------------------------------------------------------
+Select * from tags 
+where title = '{corkboardTitle}' AND 
+date_time = '{dateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}' AND 
+owner_email = '{userEmail}' AND 
+url = '{url}' ORDER BY title ASC
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get Likes for Pushpin
+----------------------------------------------------------------
+Select * 
+from pushpin NATURAL JOIN likes 
+where title='{corkboardTitle}' AND owner_email='{userEmail}' AND url='{url}'
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get Comments for Pushpin
+----------------------------------------------------------------
+Select * from pushpin JOIN Comments 
+where pushpin.title='{corkboardTitle}' AND pushpin.owner_email='{userEmail}' 
+AND pushpin.url='{url}' AND pushpin.date_time=pushpin_date_time 
+ORDER BY Comments.date_time DESC
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Add Pushpin
+----------------------------------------------------------------
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`) 
+VALUES ('{corkboard}', NOW(), '{owner.Email}', '{pushpin.Url}', '{pushpin.Description}')
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Add Tags To Pushpin
+----------------------------------------------------------------
+INSERT INTO Tags (name, title, date_time, owner_email, url) 
+VALUES ('{tag}', '{corkboard}', NOW(), '{owner.Email}', '{pushpin.Url}')
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get Pushpin
+----------------------------------------------------------------
+Select * 
+from pushpin 
+where title='{title}' AND owner_email='{ownerEmail}' AND url='{url}'
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Like Pushpin
+----------------------------------------------------------------
+INSERT INTO Likes (email, date_time, url, title, owner_email)
+VALUES('{user.Email}','{pushpin.DateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}')
+----------------------------------------------------------------
+-- Unlike Pushpin
+----------------------------------------------------------------
+DELETE FROM Likes 
+WHERE email='{user.Email}' AND date_time='{pushpin.DateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}' 
+AND url='{pushpin.Url} AND title='{pushpin.Title}' AND owner_email='{pushpin.Owner_Email}'
+----------------------------------------------------------------
+-- Comment On Pushpin
+----------------------------------------------------------------
+INSERT INTO Comments (date_time, text, email, url, title, owner_email, pushpin_date_time) 
+Values(NOW(),'{comment}','{user.Email}','{pushpin.Url}','{pushpin.Title}','{pushpin.Owner_Email}','{pushpin.DateTime.ToString("yyyy-MM-dd HH:mm:ss.fff")}')
+=================================================================
+
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get User Followers
+----------------------------------------------------------------
+SELECT * FROM follows WHERE email = '{userEmail}'
+----------------------------------------------------------------
+-- Get User Followers Emails
+----------------------------------------------------------------
+SELECT * FROM follows WHERE email = '{userEmail}'
+----------------------------------------------------------------
+-- Get User By Email
+----------------------------------------------------------------
+SELECT * FROM users WHERE email = '{userEmail}'
+----------------------------------------------------------------
+-- Follow User
+----------------------------------------------------------------
+INSERT INTO follows ( email, follower_email) 
+VALUES ('{owner.Email}', '{follower.Email}')
+----------------------------------------------------------------
+-- Unfollow User
+----------------------------------------------------------------
+DELETE FROM follows 
+WHERE email = '{owner.Email}' AND follower_email = '{follower.Email}'
+----------------------------------------------------------------
+-- Watch Corkboard
+----------------------------------------------------------------
+INSERT INTO Watch(email, title, owner_email) 
+VALUES('{follower.Email}', '{title}', '{owner.Email}')
+----------------------------------------------------------------
+-- Unwatch Corkboard
+----------------------------------------------------------------
+DELETE FROM watch
+WHERE email = '{follower.Email}' AND title = '{title}' AND owner_email = '{owner.Email}'
+
+
+
+
+
+
+
+
+
+
