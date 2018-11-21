@@ -102,6 +102,7 @@ namespace Corkboard.UI.Screens
             }
 
             PushpinHelper.AddComment(pushpin, MainWindow.User, text);
+            UpdatePushpin();
             DisplayComments();
         }
 
@@ -249,6 +250,11 @@ namespace Corkboard.UI.Screens
             {
                 LikeButton.Content = "Like";
             }
+        }
+
+        private void UpdatePushpin()
+        {
+            pushpin = PushpinHelper.GetPushpin(pushpin.Title, pushpin.Owner_Email, pushpin.Url, pushpin.DateTime);
         }
 
         #endregion
