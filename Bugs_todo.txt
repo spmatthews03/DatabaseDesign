@@ -1,7 +1,0 @@
-BUGS
-
-- follow on pushpin fails (API)
-- latest update wrong (API)
-- unwatch button not working (API)
-
-- Update TeamInfo.txt to point to the queries.
