@@ -22,7 +22,7 @@ namespace Corkboard.UI.Screens
     /// </summary>
     public partial class SearchPushpin : Page, IPage
     {
-        public SearchPushpin(Home previousPage, string searchText)
+        public SearchPushpin(IPage previousPage, string searchText)
         {
             InitializeComponent();
             PreviousPage = previousPage;
@@ -34,7 +34,7 @@ namespace Corkboard.UI.Screens
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            PreviousPage.MainWindow.Navigate(PreviousPage);
+            PreviousPage.MainWindow.Navigate(PreviousPage as Page);
         }
 
         private void SearchResultsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,7 +52,7 @@ namespace Corkboard.UI.Screens
 
         #region private
 
-        private Home PreviousPage { get; set; }
+        private IPage PreviousPage { get; set; }
 
         private Dictionary<string, string> ConvertSelectedItem(object item)
         {

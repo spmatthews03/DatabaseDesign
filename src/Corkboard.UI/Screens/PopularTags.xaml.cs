@@ -19,7 +19,7 @@ namespace Corkboard.UI.Screens
     /// <summary>
     /// Interaction logic for PopularTags.xaml
     /// </summary>
-    public partial class PopularTags : Page
+    public partial class PopularTags : Page, IPage
     {
         public PopularTags(Home previousPage)
         {
@@ -29,10 +29,24 @@ namespace Corkboard.UI.Screens
         }
 
         public Home HomePage { get; private set; }
+        public MainWindow MainWindow => HomePage.MainWindow;
+        public Page Self => this;
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             HomePage.MainWindow.Navigate(HomePage);
+        }
+
+        private void TagView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count < 1)
+            {
+                return;
+            }
+
+            var view = sender as ListView;
+            var tag = GetTagValue(view.SelectedItem);
+            HomePage.MainWindow.Navigate(new SearchPushpin(this, tag));
         }
 
         #region private
@@ -58,6 +72,13 @@ namespace Corkboard.UI.Screens
 
             var tags = PopularTagsHelper.GetPopularTags();
             TagView.ItemsSource = tags;
+        }
+
+        private string GetTagValue(object item)
+        {
+            var properties = item.GetType().GetProperties();
+            var tag = properties.FirstOrDefault(x => x.Name.Equals("Tag"));
+            return tag.GetValue(item, null).ToString();
         }
 
         #endregion

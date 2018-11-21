@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="24,30,0,0" TextWrapping="Wrap" Text="Popular Tags" VerticalAlignment="Top" Height="40" Width="746" FontSize="24" TextAlignment="Center"/>
-        <ListView x:Name="TagView" HorizontalAlignment="Left" Height="499" Margin="80,75,0,0" VerticalAlignment="Top" Width="634">
+        <ListView x:Name="TagView" HorizontalAlignment="Left" Height="499" Margin="80,75,0,0" VerticalAlignment="Top" Width="634" SelectionChanged="TagView_SelectionChanged">
         </ListView>
         <Button x:Name="CancelButton" Content="Back" HorizontalAlignment="Left" Margin="308,648,0,0" VerticalAlignment="Top" Width="180" FontSize="20" Click="CancelButton_Click" Height="44"/>
 
