@@ -111,7 +111,7 @@ namespace Corkboard.UI.Screens
 
         private void SetTitle()
         {
-            var lastUpdate = Corkboard.LastUpdate.ToShortDateString();
+            var lastUpdate = Corkboard.GetLatestCorkboardUpdate().ToShortDateString();
             if (lastUpdate.Equals(DateTime.MinValue.ToShortDateString()))
             {
                 lastUpdate = "Never updated.";
