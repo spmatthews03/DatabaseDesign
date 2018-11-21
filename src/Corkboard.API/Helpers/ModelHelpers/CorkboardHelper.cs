@@ -40,8 +40,6 @@ namespace Corkboard.API.Helpers
         /// <returns>Returns the list of corkboards, or an empty list.</returns>
         public static List<Models.Corkboard> GetRecentUpdatedCorkboards(User currentUser)
         {
-            var maxQuery = $"SELECT owner_email, title, MAX(date_time) FROM pushpin NATURAL GROUP BY owner_email, title";
-
             var recentUpdates = DatabaseHelper.ExecuteQuery($"SELECT corkboard.*, MAX(pushpin.date_time) AS 'LastUpdated' FROM pushpin " +
                 $"NATURAL JOIN corkboard " +
                 $"GROUP BY pushpin.owner_email, pushpin.title " +
