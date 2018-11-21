@@ -16,15 +16,14 @@ namespace Corkboard.API.Helpers.ModelHelpers
         public static List<Models.Stats> GetCorkboardStats()
         {
             var statsRows = DatabaseHelper.ExecuteQuery($"SELECT name," +
-                $"COUNT(Distinct Corkboard.title, Corkboard.owner_email) AS 'Public Corkboards'," +
-                $"COUNT(PushPin.date_time) AS 'Public PushPins'," +
+                $"Count(DISTINCT corkboard.title, corkboard.owner_email) - Count(DISTINCT corkboard.title, corkboard.owner_email, password) AS 'Public Corkboards'," +
+                $"COUNT(Pushpin.date_time)-COUNT(Private_Corkboard.owner_email) AS 'Public PushPins'," +
                 $"COUNT(Distinct Private_Corkboard.title, Private_Corkboard.owner_email) AS 'Private Corkboards'," +
-                $"COUNT(Private_Corkboard.owner_email) AS 'Private PushPins' " +
-                $"FROM ((Corkboard NATURAL JOIN Users) NATURAL JOIN Pushpin) " +
-                $"LEFT JOIN Private_Corkboard ON Corkboard.title=Private_Corkboard.title AND Corkboard.owner_email=Private_Corkboard.owner_email " +
-                $"WHERE Corkboard.owner_email=Users.email AND PushPin.title=Corkboard.title " +
-                $"GROUP BY name " +
-                $"ORDER BY COUNT(DISTINCT Corkboard.title,Corkboard.owner_email) DESC");
+                $"COUNT(DISTINCT Private_Corkboard.owner_email, pushpin.url) AS 'Private PushPins'" +
+                $"FROM((Corkboard NATURAL JOIN Users) NATURAL LEFT OUTER JOIN Private_Corkboard) NATURAL LEFT OUTER JOIN Pushpin" +
+                $" wHERE Corkboard.owner_email = Users.email" +
+                $" GROUP BY name " +
+                $"ORDER BY COUNT(DISTINCT Corkboard.title, Corkboard.owner_email) DESC");
 
             var statsList = new List<Models.Stats>();
             foreach (DataRow row in statsRows.Rows)
