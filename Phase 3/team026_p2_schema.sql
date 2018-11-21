@@ -127,6 +127,5 @@ Order By COUNT(url) DESC;
 Create View updates As 
 SELECT *
 FROM Corkboard NATURAL LEFT OUTER JOIN Pushpin 
-GROUP BY date_time 
 ORDER BY date_time DESC
 

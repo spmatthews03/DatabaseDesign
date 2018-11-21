@@ -1,8 +1,2 @@
-// TODO - Full path (starting from root) to the files containing all our SQL queries.
-
-Pulled from requirement:
-PleaseincludeaTeamInfo.txtfile in the root directory of your project indicating which file/files contains the SQL implemented by your project. 
-If your SQL queries are spread across >10 files, you should place your SQL queriesin a single file.  
-The grading TA will want to look at your SQL, and it will be much easier for us to find if you tell us which file(s) that’s located in!
-MAKE SURE you have pushed your changes to GitHub, not merely committed locally. We need to be able to inspect your code. 
-If you are unsure how to get the commit ID, one way is to go into your project directory and type “git log”.
+﻿All sql files have been placed in the following file compiled from > 10 files:
+Phase 3/sqlstatements.txt

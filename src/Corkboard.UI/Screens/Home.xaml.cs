@@ -71,6 +71,11 @@ namespace Corkboard.UI.Screens
             var view = sender as ListView;
             var properties = ConvertSelectedItem(view.SelectedItem);
             var title = properties["Title"];
+            if (title.Equals("No recent updates."))
+            {
+                return;
+            }
+
             var isPrivate = properties["Private"];
 
             if (view.Name.Equals("UpdatesView"))
@@ -168,6 +173,7 @@ namespace Corkboard.UI.Screens
 
         private void DisplayRecentCorkboardUpdates()
         {
+            UpdatesView.Items.Clear();
             UpdatesView.SelectionMode = SelectionMode.Single;
             var view = new GridView();
             UpdatesView.View = view;
@@ -178,6 +184,13 @@ namespace Corkboard.UI.Screens
             view.Columns.Add(CreateGridColumn("", 0, "Email"));
 
             var corkboards = HomeHelper.GetRecentlyUpdatedCorkboards(MainWindow.User);
+
+            if (corkboards.Count == 0)
+            {
+                UpdatesView.Items.Add(new { Title = "No recent updates." });
+                return;
+            }
+
             foreach (var board in corkboards)
             {
                 var isPrivate = string.Empty;
