@@ -225,7 +225,7 @@ namespace Corkboard.UI.Screens
 
         private void SetSwitchButton_Follow(User owner)
         {
-            if (owner.Equals(MainWindow.User))
+            if (owner.Email.Equals(MainWindow.User.Email))
             {
                 FollowButton.Visibility = Visibility.Hidden;
             }
