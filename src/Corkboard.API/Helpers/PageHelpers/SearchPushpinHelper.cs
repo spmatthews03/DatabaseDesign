@@ -12,11 +12,13 @@ namespace Corkboard.API.Helpers.PageHelpers
         /// </summary>
         public static List<SearchResults> GetResults(string query)
         {
-            var searchedPushpinRows = DatabaseHelper.ExecuteQuery($"Select title, description, tags.name AS tags, users.name AS name, owner_email, url, date_time " +
-                $"from pushpin NATURAL JOIN corkboard NATURAL LEFT OUTER JOIN Tags JOIN Users on owner_email=email " +
-                $"where description LIKE '%{query}%' OR tags.name LIKE '%{query}%' OR category_type LIKE '%{query}%' " +
-                $"GROUP BY description " +
-                $"Order By description ASC");
+            var searchedPushpinRows = DatabaseHelper.ExecuteQuery($"SELECT title, description, users.name AS name, owner_email, url, date_time " +
+                $"FROM pushpin NATURAL JOIN corkboard NATURAL LEFT OUTER JOIN tags JOIN users ON corkboard.owner_email = users.email " +
+                $"WHERE corkboard.visibility = 0 AND " +
+                $"(pushpin.description LIKE '%{query}%' OR corkboard.category_type LIKE '%{query}%' OR tags.name LIKE '%{query}%') " +
+                $"GROUP BY pushpin.title, pushpin.owner_email, pushpin.date_time, pushpin.url " +
+                $"ORDER BY description ASC");
+
             var searchResults = new List<SearchResults>();
             foreach (DataRow row in searchedPushpinRows.Rows)
             {
@@ -26,37 +28,6 @@ namespace Corkboard.API.Helpers.PageHelpers
             }
 
             return searchResults;
-        }
-
-        /// <summary>
-        /// Returns the search results.
-        /// </summary>
-        public static List<Pushpin> GetMatchingPushpins(string query)
-        {
-            ///Gets all pushpins on public corkboards
-            var publicPushpins = PushpinHelper.GetPublicPushpins();
-
-            var matchingPushpins = new List<Pushpin>();
-            foreach (var pushpin in publicPushpins)
-            {
-                ///Searches the pushpin description for a match.
-                if (pushpin.Description.Contains(query))
-                {
-                    matchingPushpins.Add(pushpin);
-                }
-                ///Searches the pushpin tags for a match.
-                else if (pushpin.Tags.Any(x => x.Contains(query)))
-                {
-                    matchingPushpins.Add(pushpin);
-                }
-                ///Searches the corkboard category for a match.
-                else if (PushpinHelper.GetCorkboardPushpinIsOn(pushpin).Category.Contains(query))
-                {
-                    matchingPushpins.Add(pushpin);
-                }
-            }
-
-            return matchingPushpins;
         }
     }
 }

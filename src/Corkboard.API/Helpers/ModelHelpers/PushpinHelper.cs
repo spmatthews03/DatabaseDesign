@@ -34,18 +34,8 @@ namespace Corkboard.API.Helpers
         /// </summary>
         public static List<Models.Pushpin> GetPublicPushpins()
         {
-            var allPushpins = GetAllPushpins();
-
-            var publicPushpins = new List<Pushpin>();
-            foreach(var pushpin in allPushpins)
-            {
-                if (!GetCorkboardPushpinIsOn(pushpin).IsPrivate)
-                {
-                    publicPushpins.Add(pushpin);
-                }
-            }
-
-            return publicPushpins;
+            var allPushpinsTable = DatabaseHelper.ExecuteQuery($"SELECT * FROM pushpin WHERE visbility = 0");
+            return CreatePushpinsFromDataRows(allPushpinsTable.Rows);
         }
 
         public static List<string> GetTagsForPushpin(string corkboardTitle, DateTime dateTime, string userEmail, string url)
