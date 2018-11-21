@@ -58,13 +58,11 @@ namespace Corkboard.UI.Screens
             if (FollowButton.Content.Equals("Follow"))
             {
                 ViewCorkboardHelper.FollowUser(owner, MainWindow.User);
-                owner.Followers.Add(MainWindow.User);
             }
 
             if (FollowButton.Content.Equals("Unfollow"))
             {
                 ViewCorkboardHelper.UnfollowUser(owner, MainWindow.User);
-                owner.Followers.Remove(MainWindow.User);
             }
 
             SetSwitchButton_Follow(owner);
@@ -114,7 +112,7 @@ namespace Corkboard.UI.Screens
         }
 
         #region private
-
+       
         private API.Models.Corkboard corkboard;
         private IPage previousPage;
         private Pushpin pushpin;
