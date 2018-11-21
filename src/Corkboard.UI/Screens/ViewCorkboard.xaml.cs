@@ -140,7 +140,7 @@ namespace Corkboard.UI.Screens
             }
             else if (!Corkboard.IsPrivate)
             {
-                var alreadyWatching = Corkboard.Watchers.Contains(viewer);
+                var alreadyWatching = Corkboard.Watchers.Exists(x => x.Email.Equals(viewer.Email));
                 if (alreadyWatching)
                 {
                     SwitchButton.Content = "Unwatch";
