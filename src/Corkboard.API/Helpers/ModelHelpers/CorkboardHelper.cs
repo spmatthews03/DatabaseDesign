@@ -20,6 +20,19 @@ namespace Corkboard.API.Helpers
         }
 
         /// <summary>
+        /// Gets the last time a pushpin was added to the corkboard.
+        /// </summary>
+        /// <param name="owner">Owner of the corkboard.</param>
+        /// <param name="title">Title of the corkboard.</param>
+        /// <returns>Returns the last time a pushpin was added to the corkboard, null otherwise.</returns>
+        public static DateTime GetLatestCorkboardUpdate(this Models.Corkboard corkboard)
+        {
+            var results = DatabaseHelper.ExecuteQuery($"SELECT date_time FROM pushpin WHERE owner_email = '{corkboard.Owner.Email}' AND title = '{corkboard.Title}' ORDER BY date_time DESC LIMIT 1");
+            var update = (results.Rows.Count > 0) ? Convert.ToDateTime(results.GetValueInTable("date_time")) : DateTime.MinValue;
+            return update;
+        }
+
+        /// <summary>
         /// Returns the list of recently updated corkboards. This includes strictly includes the corkboards
         /// the current user follows or watches.
         /// </summary>
@@ -29,11 +42,12 @@ namespace Corkboard.API.Helpers
         {
             var recentUpdates = DatabaseHelper.ExecuteQuery($"Select * from updates " +
                 $"NATURAL JOIN Users " +
-                $"where(updates.owner_email IN(Select Follows.email from Follows WHERE Follows.follower_email = 'sean@gt.edu') " +
-                $"OR updates.title in (Select Watch.title from Watch WHERE Watch.email = 'sean@gt.edu')) AND updates.owner_email = Users.email " +
+                $"where(updates.owner_email IN" +
+                $"(Select Follows.email from Follows WHERE Follows.follower_email = '{currentUser.Email}') " +
+                $"OR updates.title in (Select Watch.title from Watch WHERE Watch.email = '{currentUser.Email}')) " +
+                $"OR updates.owner_email = '{currentUser.Email}' " +
                 $"Group By updates.title " +
                 $"Order By updates.date_time DESC Limit 4");
-
 
             var corkboardList = new List<Models.Corkboard>();
             foreach (DataRow row in recentUpdates.Rows)
@@ -50,7 +64,7 @@ namespace Corkboard.API.Helpers
         /// <returns></returns>
         public static List<Models.Corkboard> GetUserCorkboards(User user)
         {
-            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from updates where owner_email = '{user.Email}' GROUP BY title ORDER BY title");
+            var corkboardRows = DatabaseHelper.ExecuteQuery($"Select * from corkboard where owner_email = '{user.Email}'");
             var corkboardList = new List<Models.Corkboard>();
             foreach (DataRow row in corkboardRows.Rows)
             {
@@ -59,7 +73,6 @@ namespace Corkboard.API.Helpers
 
             return corkboardList;
         }
-
 
         public static List<Models.User> GetCorkboardWatchers(Models.Corkboard corkboard)
         {
@@ -103,18 +116,11 @@ namespace Corkboard.API.Helpers
         {
             var corkboard = new Models.Corkboard();
             corkboard.Category = row.GetValueInRow("category_type");
-
-            if(!row.GetValueInRow("date_time").Equals(""))
-            {
-                if (corkboard.LastUpdate < Convert.ToDateTime(row.GetValueInRow("date_time")))
-                {
-                    corkboard.LastUpdate = Convert.ToDateTime(row.GetValueInRow("date_time"));
-                }
-            }
             corkboard.IsPrivate = GetCorkboardVisibility(row.GetValueInRow("visibility"));
             corkboard.Title = row.GetValueInRow("title");
             corkboard.Owner = UserHelper.GetUserByEmail(row.GetValueInRow("owner_email"));
             corkboard.Pushpins = PushpinHelper.GetPushpinsForCorkboard(corkboard);
+            corkboard.LastUpdate = Convert.ToDateTime(corkboard.GetLatestCorkboardUpdate());
             corkboard.Watchers = GetCorkboardWatchers(corkboard);
 
             return corkboard;
