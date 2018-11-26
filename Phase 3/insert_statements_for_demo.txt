@@ -1,0 +1,256 @@
+-- USERS
+INSERT INTO Users (email, name, pin) VALUES('sean@gt.edu', 'Sean', 1234);
+INSERT INTO Users (email, name, pin) VALUES('meghan@gt.edu', 'Meghan', 1234);
+INSERT INTO Users (email, name, pin) VALUES('brian@gt.edu', 'Brian', 1234);
+INSERT INTO Users (email, name, pin) VALUES('john@gt.edu', 'John', 1234);
+INSERT INTO Users (email, name, pin) VALUES('jake@gt.edu', 'Jake', 1234);
+INSERT INTO Users (email, name, pin) VALUES('mary@gt.edu', 'Mary', 1234);
+
+
+
+
+-- CATEGORIES
+INSERT INTO Category (type) VALUES('Education');
+INSERT INTO Category (type) VALUES('People');
+INSERT INTO Category (type) VALUES('Architecture');
+INSERT INTO Category (type) VALUES('Sports');
+INSERT INTO Category (type) VALUES('Technology');
+INSERT INTO Category (type) VALUES('Food & Drink');
+INSERT INTO Category (type) VALUES('Travel');
+INSERT INTO Category (type) VALUES('Pets');
+
+
+
+
+-- CORKBOARDS
+-- Education
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Seans Education Corkboard', 0, 'sean@gt.edu', 'Education');
+-- People
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Megs Private People Corkboard', 1, 'meghan@gt.edu', 'People');
+-- Architecture
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Brians Architechture Corkboard', 0, 'brian@gt.edu', 'Architecture');
+-- Sport
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Johns Sports Corkboard', 0, 'john@gt.edu', 'Sports');
+-- Technology
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Jakes Technology Corkboard', 0, 'jake@gt.edu', 'Technology');
+-- Food & Drink
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Marys Food & Drink Corkboard', 0, 'mary@gt.edu', 'Food & Drink');
+-- Travel
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Seans Travel Corkboard', 0, 'sean@gt.edu', 'Travel');
+-- Pets
+INSERT INTO Corkboard ( title, visibility, owner_email, category_type) VALUES ('Brians Private Pets Corkboard', 1, 'brian@gt.edu', 'Pets');
+
+
+
+
+-- PRIVATE CORKBOARDS
+INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Megs Private People Corkboard', 'meghan@gt.edu', 'people');
+INSERT INTO Private_Corkboard( title, owner_email, password) VALUES ('Brians Private Pets Corkboard', 'brian@gt.edu', 'password123');
+
+
+
+
+-- PUSHPINS
+-- Education
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Education Corkboard', '2018-11-08 01:00:00', 'sean@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/mercury/oms-cs-web-rotator_2_0_3.jpeg', 'OMSCS program logo');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Education Corkboard', '2018-11-08 01:15:00', 'sean@gt.edu', 'http://www.buzzcard.gatech.edu/sites/default/files/uploads/images/superblock_images/img_2171.jpg', 'student ID for Georgia Tech');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Education Corkboard', '2018-11-08 01:30:00', 'sean@gt.edu', 'https://www.news.gatech.edu/sites/default/files/uploads/mercury_images/piazza-icon.png', 'logo for Piazza');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Education Corkboard', '2018-11-08 01:17:00', 'sean@gt.edu', 'http://www.comm.gatech.edu/sites/default/files/images/brand-graphics/gt-seal.png', 'official seal of Georgia Tech');
+
+-- People
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'http://www.me.gatech.edu/sites/default/files/styles/180_240/public/gpburdell.jpg', 'the struggle is real!');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/projects/XMLApe/people/imgs/leo.jpg', 'Leo Mark, CS 6400 professor');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/27126038747_06d417015b_z.jpg', 'fearless leader of OMSCS');
+
+-- Architecture
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Architechture Corkboard', '2018-11-09 03:30:00', 'brian@gt.edu', 'http://daily.gatech.edu/sites/default/files/styles/1170_x_x/public/hgt-tower-crop.jpg', 'Tech Tower interior photo');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Architechture Corkboard', '2018-11-09 03:31:00', 'brian@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/techtower1_636215523842964533.jpg', 'Tech Tower exterior photo');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Architechture Corkboard', '2018-11-09 03:35:00', 'brian@gt.edu', 'https://www.ece.gatech.edu/sites/default/files/styles/1500_x_scale/public/images/mercury/kessler2.0442077-p16-49.jpg', 'Kessler Campanile at Georgia Tech');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Architechture Corkboard', '2018-11-09 02:21:00', 'brian@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/klaus-building.jpg', 'Klaus building');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Architechture Corkboard', '2018-11-07 03:30:00', 'brian@gt.edu', 'https://www.news.gatech.edu/sites/default/files/styles/740_x_scale/public/uploads/mercury_images/Tech_Tower_WebFeature_1.jpg', 'Tech tower sign');
+
+-- Sports
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://traditions.gatech.edu/images/mantle-reck3.jpg', 'Ramblin’ wreck today');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.swag.gatech.edu/sites/default/files/buzz-android-tablet.jpg', 'Driving the mini wreck');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/ramblinwreck1_636215542678295357.jpg', 'Ramblin’ Wreck of the past');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'https://www.news.gatech.edu/sites/default/files/uploads/mercury_images/screen_shot_2016-08-11_at_12.45.48_pm_10.png', 'Bobby Dodd stadium');
+
+-- Food & Drink
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Marys Food & Drink Corkboard', '2018-11-08 02:00:00', 'mary@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/thevarsity1_636215546286483906.jpg', 'The Varsity');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Marys Food & Drink Corkboard', '2018-11-08 02:00:00', 'mary@gt.edu', 'http://blogs.iac.gatech.edu/food14/files/2014/09/wafflefries2.jpg', 'Chick-fil-a Waffle Fries');
+
+-- Technology
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'http://it.studentlife.gatech.edu/sites/default/files/uploads/images/superblock_images/it_imac.png', 'iMac');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://pe.gatech.edu/sites/pe.gatech.edu/files/component_assets/Computer_Lab_Tech_750_x_500.jpg', 'Computer lab');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/cs-research-databases.jpg', 'Database server');
+
+-- Travel
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://pbs.twimg.com/media/DZzi7dyU8AAUSJe.jpg', 'Georgia Tech Transette');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.calendar.gatech.edu/sites/default/files/events/related-images/mini_500_0_0.jpg', 'Mini 500');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.gatech.edu/sites/default/files/uploads/images/superblock_images/tech-trolly.png', 'Tech Trolley');
+
+-- Pets
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://hr.gatech.edu/sites/default/files/uploads/images/superblock_images/nee-buzz.jpg', 'Buzz');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://georgiadogs.com/images/2018/4/6/18_Uga_VIII.jpg', 'Uga the “dog"');
+
+INSERT INTO `PushPin` (`title`, `date_time`, `owner_email`, `url`, `description`)
+VALUES ('Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://www.news.gatech.edu/sites/default/files/pictures/feature_images/running%20sideways.jpg', 'Sideways the dog');
+
+
+
+
+-- TAGS
+-- Education
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('OMCS', 'Seans Education Corkboard', '2018-11-08 01:00:00', 'sean@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/mercury/oms-cs-web-rotator_2_0_3.jpeg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('buzzcard', 'Seans Education Corkboard', '2018-11-08 01:15:00', 'sean@gt.edu', 'http://www.buzzcard.gatech.edu/sites/default/files/uploads/images/superblock_images/img_2171.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('Piazza', 'Seans Education Corkboard', '2018-11-08 01:30:00', 'sean@gt.edu', 'https://www.news.gatech.edu/sites/default/files/uploads/mercury_images/piazza-icon.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('Georgia tech seal', 'Seans Education Corkboard', '2018-11-08 01:17:00', 'sean@gt.edu', 'http://www.comm.gatech.edu/sites/default/files/images/brand-graphics/gt-seal.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('great seal', 'Seans Education Corkboard', '2018-11-08 01:17:00', 'sean@gt.edu', 'http://www.comm.gatech.edu/sites/default/files/images/brand-graphics/gt-seal.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('official', 'Seans Education Corkboard', '2018-11-08 01:17:00', 'sean@gt.edu', 'http://www.comm.gatech.edu/sites/default/files/images/brand-graphics/gt-seal.png');
+
+-- People
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('burdell', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'http://www.me.gatech.edu/sites/default/files/styles/180_240/public/gpburdell.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('george p burdell', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'http://www.me.gatech.edu/sites/default/files/styles/180_240/public/gpburdell.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('student', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'http://www.me.gatech.edu/sites/default/files/styles/180_240/public/gpburdell.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('database faculty', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/projects/XMLApe/people/imgs/leo.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('computing', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/projects/XMLApe/people/imgs/leo.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('gtcomputing', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/projects/XMLApe/people/imgs/leo.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('zvi', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/27126038747_06d417015b_z.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('dean', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/27126038747_06d417015b_z.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('computer science', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/27126038747_06d417015b_z.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('computing', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/27126038747_06d417015b_z.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('gtcomputing', 'Megs Private People Corkboard', '2018-11-09 03:30:00', 'meghan@gt.edu', 'https://www.cc.gatech.edu/sites/default/files/images/27126038747_06d417015b_z.jpg');
+
+-- Architecture
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('administration', 'Brians Architechture Corkboard', '2018-11-09 03:30:00', 'brian@gt.edu', 'http://daily.gatech.edu/sites/default/files/styles/1170_x_x/public/hgt-tower-crop.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('facilities', 'Brians Architechture Corkboard', '2018-11-09 03:30:00', 'brian@gt.edu', 'http://daily.gatech.edu/sites/default/files/styles/1170_x_x/public/hgt-tower-crop.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('administration', 'Brians Architechture Corkboard', '2018-11-09 03:31:00', 'brian@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/techtower1_636215523842964533.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('facilities', 'Brians Architechture Corkboard', '2018-11-09 03:31:00', 'brian@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/techtower1_636215523842964533.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('student facilities', 'Brians Architechture Corkboard', '2018-11-09 02:21:00', 'brian@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/klaus-building.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('computing', 'Brians Architechture Corkboard', '2018-11-09 02:21:00', 'brian@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/klaus-building.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('gtcomputing', 'Brians Architechture Corkboard', '2018-11-09 02:21:00', 'brian@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/klaus-building.jpg');
+
+-- Sports
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('tohellwithgeorgia', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://traditions.gatech.edu/images/mantle-reck3.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('decked out', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://traditions.gatech.edu/images/mantle-reck3.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('parade', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://traditions.gatech.edu/images/mantle-reck3.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('ramblin wreck', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.swag.gatech.edu/sites/default/files/buzz-android-tablet.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('buzz', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.swag.gatech.edu/sites/default/files/buzz-android-tablet.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('mascot', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.swag.gatech.edu/sites/default/files/buzz-android-tablet.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('parade', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.swag.gatech.edu/sites/default/files/buzz-android-tablet.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('football game', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/ramblinwreck1_636215542678295357.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('parade', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/ramblinwreck1_636215542678295357.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('football', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'https://www.news.gatech.edu/sites/default/files/uploads/mercury_images/screen_shot_2016-08-11_at_12.45.48_pm_10.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('game day', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'https://www.news.gatech.edu/sites/default/files/uploads/mercury_images/screen_shot_2016-08-11_at_12.45.48_pm_10.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('tohellwithgeorgia', 'Johns Sports Corkboard', '2018-11-09 03:30:00', 'john@gt.edu', 'https://www.news.gatech.edu/sites/default/files/uploads/mercury_images/screen_shot_2016-08-11_at_12.45.48_pm_10.png');
+
+-- Food & Drink
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('traditions', 'Marys Food & Drink Corkboard', '2018-11-08 02:00:00', 'mary@gt.edu', 'http://www.livinghistory.gatech.edu/s/1481/images/content_images/thevarsity1_636215546286483906.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('delicious', 'Marys Food & Drink Corkboard', '2018-11-08 02:00:00', 'mary@gt.edu', 'http://blogs.iac.gatech.edu/food14/files/2014/09/wafflefries2.jpg');
+
+-- Technology
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('Macintosh', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'http://it.studentlife.gatech.edu/sites/default/files/uploads/images/superblock_images/it_imac.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('Computer', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'http://it.studentlife.gatech.edu/sites/default/files/uploads/images/superblock_images/it_imac.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('macOS', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'http://it.studentlife.gatech.edu/sites/default/files/uploads/images/superblock_images/it_imac.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('PCs', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://pe.gatech.edu/sites/pe.gatech.edu/files/component_assets/Computer_Lab_Tech_750_x_500.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('student facilities', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://pe.gatech.edu/sites/pe.gatech.edu/files/component_assets/Computer_Lab_Tech_750_x_500.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('gtcomputing', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://pe.gatech.edu/sites/pe.gatech.edu/files/component_assets/Computer_Lab_Tech_750_x_500.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('computing', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/cs-research-databases.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('blades', 'Jakes Technology Corkboard', '2018-11-11 02:00:00', 'jake@gt.edu', 'https://www.scs.gatech.edu/sites/scs.gatech.edu/files/files/cs-research-databases.jpg');
+
+-- Travel
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('rapid transit', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://pbs.twimg.com/media/DZzi7dyU8AAUSJe.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('historical oddity', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://pbs.twimg.com/media/DZzi7dyU8AAUSJe.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('tricycle', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.calendar.gatech.edu/sites/default/files/events/related-images/mini_500_0_0.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('race', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.calendar.gatech.edu/sites/default/files/events/related-images/mini_500_0_0.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('traditions', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.calendar.gatech.edu/sites/default/files/events/related-images/mini_500_0_0.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('free', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.gatech.edu/sites/default/files/uploads/images/superblock_images/tech-trolly.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('transit', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.gatech.edu/sites/default/files/uploads/images/superblock_images/tech-trolly.png');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('connections', 'Seans Travel Corkboard', '2018-11-11 02:00:00', 'sean@gt.edu', 'https://www.gatech.edu/sites/default/files/uploads/images/superblock_images/tech-trolly.png');
+
+-- Pets
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('mascot', 'Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://hr.gatech.edu/sites/default/files/uploads/images/superblock_images/nee-buzz.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('tohellwithgeorgia', 'Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://georgiadogs.com/images/2018/4/6/18_Uga_VIII.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('dawgs', 'Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://georgiadogs.com/images/2018/4/6/18_Uga_VIII.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('not our mascot', 'Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://georgiadogs.com/images/2018/4/6/18_Uga_VIII.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('mascot', 'Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://www.news.gatech.edu/sites/default/files/pictures/feature_images/running%20sideways.jpg');
+INSERT INTO Tags(name, title, date_time, owner_email, url) VALUES ('traditions', 'Brians Private Pets Corkboard', '2018-11-14 02:00:00', 'brian@gt.edu', 'https://www.news.gatech.edu/sites/default/files/pictures/feature_images/running%20sideways.jpg');
+
+
+
+
+-- FOLLOWS
+INSERT INTO Follows (email, follower_email) VALUES ('sean@gt.edu', 'meghan@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('sean@gt.edu', 'brian@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('meghan@gt.edu', 'brian@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('meghan@gt.edu', 'sean@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'john@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('brian@gt.edu', 'jake@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('john@gt.edu', 'mary@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('john@gt.edu', 'sean@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('jake@gt.edu', 'john@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('jake@gt.edu', 'mary@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('mary@gt.edu', 'meghan@gt.edu');
+INSERT INTO Follows (email, follower_email) VALUES ('mary@gt.edu', 'brian@gt.edu');
+
+
+
+
+-- WATCHERS
+INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Jakes Technology Corkboard', 'jake@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('sean@gt.edu', 'Marys Food & Drink Corkboard', 'mary@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Jakes Technology Corkboard', 'jake@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('meghan@gt.edu', 'Johns Sports Corkboard', 'john@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Seans Education Corkboard', 'sean@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('brian@gt.edu', 'Marys Food & Drink Corkboard', 'mary@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('john@gt.edu', 'Brians Architechture Corkboard', 'brian@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('john@gt.edu', 'Jakes Technology Corkboard', 'jake@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('jake@gt.edu', 'Seans Education Corkboard', 'sean@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('jake@gt.edu', 'Brians Architechture Corkboard', 'brian@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('mary@gt.edu', 'Jakes Technology Corkboard', 'jake@gt.edu');
+INSERT INTO Watch (email, title, owner_email) VALUES ('mary@gt.edu', 'Johns Sports Corkboard', 'john@gt.edu');
+
