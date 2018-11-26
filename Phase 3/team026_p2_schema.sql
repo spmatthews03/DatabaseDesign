@@ -16,7 +16,7 @@ CREATE TABLE Corkboard (
 CREATE TABLE Private_Corkboard (
 	title varchar(30) NOT NULL,
 	owner_email varchar(30) NOT NULL,
-	password varchar(30) NOT NULL,
+	password varchar(40) NOT NULL,
 	PRIMARY KEY (title, owner_email)
 );
 
