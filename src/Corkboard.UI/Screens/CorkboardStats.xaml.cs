@@ -24,6 +24,7 @@ namespace Corkboard.UI.Screens
 
         #region private
 
+        private object DisplayedUser { get; set; }
         private Home homePage;
 
         private GridViewColumn CreateGridColumn(string value, double width, string newBinding = null)
@@ -48,7 +49,22 @@ namespace Corkboard.UI.Screens
             view.Columns.Add(CreateGridColumn("Private Pushpins", 136, "PrivatePushpins"));
 
             var stats = StatHelper.GetCorkboardStats();
-            StatsView.ItemsSource = stats;
+            foreach (var stat in stats)
+            {
+                var item = new { User = stat.User, PublicCorkboards = stat.PublicCorkboards, PrivateCorkboards = stat.PrivateCorkboards, PublicPushpins = stat.PublicPushpins, PrivatePushpins = stat.PrivatePushpins };
+                StatsView.Items.Add(item);
+
+                if (item.User.Equals(homePage.MainWindow.User.Name))
+                {
+                    DisplayedUser = item;
+                    StatsView.SelectedItem = item;
+                }
+            }
+        }
+
+        private void StatsView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatsView.SelectedItem = DisplayedUser;
         }
 
         #endregion

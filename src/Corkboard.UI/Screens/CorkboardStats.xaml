@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBlock x:Name="TitleBlock" HorizontalAlignment="Left" Margin="30,36,0,0" TextWrapping="Wrap" Text="Corkboard Stats" VerticalAlignment="Top" Height="36" Width="741" FontSize="24" TextAlignment="Center"/>
-        <ListView x:Name="StatsView" HorizontalAlignment="Left" Height="695" Margin="30,77,0,0" VerticalAlignment="Top" Width="741">
+        <ListView x:Name="StatsView" HorizontalAlignment="Left" Height="695" Margin="30,77,0,0" VerticalAlignment="Top" Width="741" SelectionChanged="StatsView_SelectionChanged">
         </ListView>
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="288,796,0,0" VerticalAlignment="Top" Width="205" Height="60" Click="BackButton_Click"/>
 
