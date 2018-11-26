@@ -23,7 +23,7 @@ namespace Corkboard.API.Helpers.PageHelpers
                 $" from tags NATURAL JOIN corkboard" +
                 $" Group By name " +
                 $"ORDER BY Count(Distinct date_time, owner_email, url, title) DESC, " +
-                $"Count(Distinct Tags.title, owner_email) DESC");
+                $"Count(Distinct Tags.title, owner_email) DESC LIMIT 5");
 
             var popularTagList = new List<Models.PopularTags>();
             foreach (DataRow row in popularTagRows.Rows)
