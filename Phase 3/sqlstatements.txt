@@ -7,7 +7,7 @@ Count(Distinct Tags.title, owner_email) AS 'Unique Corkboards'
 from tags NATURAL JOIN corkboard
 Group By name 
 ORDER BY Count(Distinct date_time, owner_email, url, title) DESC, 
-Count(Distinct Tags.title, owner_email) DESC
+Count(Distinct Tags.title, owner_email) DESC LIMIT 5
 =================================================================
 
 
@@ -53,8 +53,10 @@ ORDER BY COUNT(DISTINCT Corkboard.title, Corkboard.owner_email) DESC
 ----------------------------------------------------------------
 Select * from updates 
 NATURAL JOIN Users 
-where(updates.owner_email IN(Select Follows.email from Follows WHERE Follows.follower_email = 'sean@gt.edu') 
-OR updates.title in (Select Watch.title from Watch WHERE Watch.email = 'sean@gt.edu')) AND updates.owner_email = Users.email 
+where(updates.owner_email IN
+Select Follows.email from Follows WHERE Follows.follower_email = '{currentUser.Email}') 
+OR updates.title in (Select Watch.title from Watch WHERE Watch.email = '{currentUser.Email}')) 
+OR updates.owner_email = '{currentUser.Email}' 
 Group By updates.title 
 Order By updates.date_time DESC Limit 4
 =================================================================
@@ -63,11 +65,12 @@ Order By updates.date_time DESC Limit 4
 ----------------------------------------------------------------
 -- Searching Pushpins
 ----------------------------------------------------------------
-Select title, description, tags.name AS tags, users.name AS name, owner_email, url, date_time 
-from pushpin NATURAL JOIN corkboard NATURAL LEFT OUTER JOIN Tags JOIN Users on owner_email=email 
-where description LIKE '%{query}%' OR tags.name LIKE '%{query}%' OR category_type LIKE '%{query}%' 
-GROUP BY description 
-Order By description ASC
+SELECT title, description, users.name AS name, owner_email, url, date_time 
+FROM pushpin NATURAL JOIN corkboard NATURAL LEFT OUTER JOIN tags JOIN users ON corkboard.owner_email = users.email 
+WHERE corkboard.visibility = 0 AND 
+(pushpin.description LIKE '%{query}%' OR corkboard.category_type LIKE '%{query}%' OR tags.name LIKE '%{query}%') 
+GROUP BY pushpin.title, pushpin.owner_email, pushpin.date_time, pushpin.url 
+ORDER BY description ASC
 =================================================================
 
 
@@ -84,13 +87,9 @@ Select * from category
 
 =================================================================
 ----------------------------------------------------------------
--- Get User Corkboards (updates view worked more appropriately for this)
+-- Get User Corkboards
 ----------------------------------------------------------------
-Select * 
-from updates 
-where owner_email = '{user.Email}' 
-GROUP BY title 
-ORDER BY title
+Select * from corkboard where owner_email = '{user.Email}'
 =================================================================
 
 
@@ -103,6 +102,16 @@ ORDER BY title
 INSERT INTO corkboard ( title, visibility, owner_email, category_type) 
 VALUES ('{corkboard.Title}', {GetCorkboardVisibility(corkboard.IsPrivate)}, '{owner.Email}', '{corkboard.Category}')
 =================================================================
+
+
+=================================================================
+----------------------------------------------------------------
+-- Get Latest Update to a Corkboard
+----------------------------------------------------------------
+
+SELECT date_time FROM pushpin WHERE owner_email = '{corkboard.Owner.Email}' AND title = '{corkboard.Title}' ORDER BY date_time DESC LIMIT 1
+=================================================================
+
 
 ----------------------------------------------------------------
 -- Add Private Corkboard
@@ -142,6 +151,13 @@ From pushpin
 where owner_email = '{corkboard.Owner.Email}' AND title = '{corkboard.Title}'
 =================================================================
 
+
+=================================================================
+----------------------------------------------------------------
+-- Get Public Pushpins
+----------------------------------------------------------------
+SELECT * FROM pushpin WHERE visbility = 0
+=================================================================
 
 
 =================================================================
